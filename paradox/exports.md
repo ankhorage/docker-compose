@@ -17,6 +17,19 @@ into Compose services, networks, volumes, configs and execution-only secrets.
   - options: `DockerComposeAdapterOptions`
   - returns: `InfraRuntimeAdapter<"docker-compose">`
 
+## createSubprocessDockerComposeCommandRunner
+
+Kind: `function`
+Module: `src/features/compose-runtime/adapters/createSubprocessDockerComposeCommandRunner.ts`
+Source: `src/features/compose-runtime/adapters/createSubprocessDockerComposeCommandRunner.ts:10:1`
+
+Create the concrete shell-free subprocess boundary used by Docker Compose operations.
+
+### Signatures
+
+- `() => DockerComposeCommandRunner`
+  - returns: `DockerComposeCommandRunner`
+
 ## DockerComposeAdapterOptions
 
 Kind: `type`
@@ -28,6 +41,48 @@ Source: `src/types/dockerComposeRuntime.ts:14:1`
 | Name         | Kind     | Type                        | Required | Description |
 | ------------ | -------- | --------------------------- | -------- | ----------- |
 | controlPlane | property | `DockerComposeControlPlane` | yes      |             |
+
+## DockerComposeCommandRequest
+
+Kind: `type`
+Module: `src/types/dockerComposeProcess.ts`
+Source: `src/types/dockerComposeProcess.ts:2:1`
+
+### Members
+
+| Name        | Kind     | Type                                            | Required | Description |
+| ----------- | -------- | ----------------------------------------------- | -------- | ----------- |
+| arguments   | property | `readonly string[]`                             | yes      |             |
+| environment | property | `Readonly<Record<string, string>> \| undefined` | no       |             |
+| executable  | property | `string`                                        | yes      |             |
+| signal      | property | `AbortSignal \| undefined`                      | no       |             |
+| stdin       | property | `string \| undefined`                           | no       |             |
+
+## DockerComposeCommandResult
+
+Kind: `type`
+Module: `src/types/dockerComposeProcess.ts`
+Source: `src/types/dockerComposeProcess.ts:11:1`
+
+### Members
+
+| Name     | Kind     | Type     | Required | Description |
+| -------- | -------- | -------- | -------- | ----------- |
+| exitCode | property | `number` | yes      |             |
+| stderr   | property | `string` | yes      |             |
+| stdout   | property | `string` | yes      |             |
+
+## DockerComposeCommandRunner
+
+Kind: `type`
+Module: `src/types/dockerComposeProcess.ts`
+Source: `src/types/dockerComposeProcess.ts:18:1`
+
+### Members
+
+| Name     | Kind   | Type                                                                            | Required | Description |
+| -------- | ------ | ------------------------------------------------------------------------------- | -------- | ----------- |
+| runAsync | method | `(request: DockerComposeCommandRequest) => Promise<DockerComposeCommandResult>` | yes      |             |
 
 ## DockerComposeConfig
 

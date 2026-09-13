@@ -32,6 +32,31 @@
     "structuredRows": []
   },
   {
+    "name": "createSubprocessDockerComposeCommandRunner",
+    "description": "Create the concrete shell-free subprocess boundary used by Docker Compose operations.",
+    "isReadme": false,
+    "examples": [],
+    "kind": "function",
+    "modulePath": "src/features/compose-runtime/adapters/createSubprocessDockerComposeCommandRunner.ts",
+    "sourceLocation": {
+      "filePath": "src/features/compose-runtime/adapters/createSubprocessDockerComposeCommandRunner.ts",
+      "line": 10,
+      "column": 1
+    },
+    "exportPaths": ["src/index.ts"],
+    "relatedSymbols": ["DockerComposeCommandRunner"],
+    "signatures": [
+      {
+        "label": "() => DockerComposeCommandRunner",
+        "parameters": [],
+        "returnType": "DockerComposeCommandRunner",
+        "returnDescription": null
+      }
+    ],
+    "members": [],
+    "structuredRows": []
+  },
+  {
     "name": "DockerComposeAdapterOptions",
     "description": null,
     "isReadme": false,
@@ -51,6 +76,126 @@
         "name": "controlPlane",
         "kind": "property",
         "type": "DockerComposeControlPlane",
+        "required": true,
+        "description": null
+      }
+    ],
+    "structuredRows": []
+  },
+  {
+    "name": "DockerComposeCommandRequest",
+    "description": null,
+    "isReadme": false,
+    "examples": [],
+    "kind": "type",
+    "modulePath": "src/types/dockerComposeProcess.ts",
+    "sourceLocation": {
+      "filePath": "src/types/dockerComposeProcess.ts",
+      "line": 2,
+      "column": 1
+    },
+    "exportPaths": ["src/index.ts"],
+    "relatedSymbols": [],
+    "signatures": [],
+    "members": [
+      {
+        "name": "arguments",
+        "kind": "property",
+        "type": "readonly string[]",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "environment",
+        "kind": "property",
+        "type": "Readonly<Record<string, string>> | undefined",
+        "required": false,
+        "description": null
+      },
+      {
+        "name": "executable",
+        "kind": "property",
+        "type": "string",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "signal",
+        "kind": "property",
+        "type": "AbortSignal | undefined",
+        "required": false,
+        "description": null
+      },
+      {
+        "name": "stdin",
+        "kind": "property",
+        "type": "string | undefined",
+        "required": false,
+        "description": null
+      }
+    ],
+    "structuredRows": []
+  },
+  {
+    "name": "DockerComposeCommandResult",
+    "description": null,
+    "isReadme": false,
+    "examples": [],
+    "kind": "type",
+    "modulePath": "src/types/dockerComposeProcess.ts",
+    "sourceLocation": {
+      "filePath": "src/types/dockerComposeProcess.ts",
+      "line": 11,
+      "column": 1
+    },
+    "exportPaths": ["src/index.ts"],
+    "relatedSymbols": [],
+    "signatures": [],
+    "members": [
+      {
+        "name": "exitCode",
+        "kind": "property",
+        "type": "number",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "stderr",
+        "kind": "property",
+        "type": "string",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "stdout",
+        "kind": "property",
+        "type": "string",
+        "required": true,
+        "description": null
+      }
+    ],
+    "structuredRows": []
+  },
+  {
+    "name": "DockerComposeCommandRunner",
+    "description": null,
+    "isReadme": false,
+    "examples": [],
+    "kind": "type",
+    "modulePath": "src/types/dockerComposeProcess.ts",
+    "sourceLocation": {
+      "filePath": "src/types/dockerComposeProcess.ts",
+      "line": 18,
+      "column": 1
+    },
+    "exportPaths": ["src/index.ts"],
+    "relatedSymbols": ["DockerComposeCommandRequest", "DockerComposeCommandResult"],
+    "signatures": [],
+    "members": [
+      {
+        "name": "runAsync",
+        "kind": "method",
+        "type": "(request: DockerComposeCommandRequest) => Promise<DockerComposeCommandResult>",
         "required": true,
         "description": null
       }

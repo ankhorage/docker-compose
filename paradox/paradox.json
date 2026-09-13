@@ -14,7 +14,7 @@
     {
       "id": "npm",
       "label": "npm",
-      "value": "v0.1.0",
+      "value": "v0.2.0",
       "color": "cb3837"
     },
     {
@@ -81,10 +81,22 @@
       "exports": ["infraAdapterDescriptor"]
     },
     {
+      "path": "src/dockerComposeProcess.test.ts",
+      "isEntrypoint": false,
+      "dependencies": ["src/index.ts"],
+      "exports": []
+    },
+    {
       "path": "src/dockerComposeRuntime.test.ts",
       "isEntrypoint": false,
       "dependencies": ["src/index.ts", "src/runtimeFixtures.test.ts"],
       "exports": []
+    },
+    {
+      "path": "src/features/compose-runtime/adapters/createSubprocessDockerComposeCommandRunner.ts",
+      "isEntrypoint": false,
+      "dependencies": ["src/types/dockerComposeProcess.ts"],
+      "exports": ["createSubprocessDockerComposeCommandRunner"]
     },
     {
       "path": "src/features/compose-runtime/application/destroyDockerComposeRuntimeAsync.ts",
@@ -261,7 +273,11 @@
       "dependencies": [],
       "exports": [
         "createInfraAdapter",
+        "createSubprocessDockerComposeCommandRunner",
         "DockerComposeAdapterOptions",
+        "DockerComposeCommandRequest",
+        "DockerComposeCommandResult",
+        "DockerComposeCommandRunner",
         "DockerComposeConfig",
         "DockerComposeControlPlane",
         "DockerComposeDesiredState",
@@ -293,6 +309,16 @@
       "isEntrypoint": false,
       "dependencies": ["src/index.ts"],
       "exports": ["FakeDockerComposeControlPlane"]
+    },
+    {
+      "path": "src/types/dockerComposeProcess.ts",
+      "isEntrypoint": false,
+      "dependencies": [],
+      "exports": [
+        "DockerComposeCommandRequest",
+        "DockerComposeCommandResult",
+        "DockerComposeCommandRunner"
+      ]
     },
     {
       "path": "src/types/dockerComposeRuntime.ts",
@@ -353,6 +379,31 @@
       "structuredRows": []
     },
     {
+      "name": "createSubprocessDockerComposeCommandRunner",
+      "description": "Create the concrete shell-free subprocess boundary used by Docker Compose operations.",
+      "isReadme": false,
+      "examples": [],
+      "kind": "function",
+      "modulePath": "src/features/compose-runtime/adapters/createSubprocessDockerComposeCommandRunner.ts",
+      "sourceLocation": {
+        "filePath": "src/features/compose-runtime/adapters/createSubprocessDockerComposeCommandRunner.ts",
+        "line": 10,
+        "column": 1
+      },
+      "exportPaths": ["src/index.ts"],
+      "relatedSymbols": ["DockerComposeCommandRunner"],
+      "signatures": [
+        {
+          "label": "() => DockerComposeCommandRunner",
+          "parameters": [],
+          "returnType": "DockerComposeCommandRunner",
+          "returnDescription": null
+        }
+      ],
+      "members": [],
+      "structuredRows": []
+    },
+    {
       "name": "DockerComposeAdapterOptions",
       "description": null,
       "isReadme": false,
@@ -372,6 +423,126 @@
           "name": "controlPlane",
           "kind": "property",
           "type": "DockerComposeControlPlane",
+          "required": true,
+          "description": null
+        }
+      ],
+      "structuredRows": []
+    },
+    {
+      "name": "DockerComposeCommandRequest",
+      "description": null,
+      "isReadme": false,
+      "examples": [],
+      "kind": "type",
+      "modulePath": "src/types/dockerComposeProcess.ts",
+      "sourceLocation": {
+        "filePath": "src/types/dockerComposeProcess.ts",
+        "line": 2,
+        "column": 1
+      },
+      "exportPaths": ["src/index.ts"],
+      "relatedSymbols": [],
+      "signatures": [],
+      "members": [
+        {
+          "name": "arguments",
+          "kind": "property",
+          "type": "readonly string[]",
+          "required": true,
+          "description": null
+        },
+        {
+          "name": "environment",
+          "kind": "property",
+          "type": "Readonly<Record<string, string>> | undefined",
+          "required": false,
+          "description": null
+        },
+        {
+          "name": "executable",
+          "kind": "property",
+          "type": "string",
+          "required": true,
+          "description": null
+        },
+        {
+          "name": "signal",
+          "kind": "property",
+          "type": "AbortSignal | undefined",
+          "required": false,
+          "description": null
+        },
+        {
+          "name": "stdin",
+          "kind": "property",
+          "type": "string | undefined",
+          "required": false,
+          "description": null
+        }
+      ],
+      "structuredRows": []
+    },
+    {
+      "name": "DockerComposeCommandResult",
+      "description": null,
+      "isReadme": false,
+      "examples": [],
+      "kind": "type",
+      "modulePath": "src/types/dockerComposeProcess.ts",
+      "sourceLocation": {
+        "filePath": "src/types/dockerComposeProcess.ts",
+        "line": 11,
+        "column": 1
+      },
+      "exportPaths": ["src/index.ts"],
+      "relatedSymbols": [],
+      "signatures": [],
+      "members": [
+        {
+          "name": "exitCode",
+          "kind": "property",
+          "type": "number",
+          "required": true,
+          "description": null
+        },
+        {
+          "name": "stderr",
+          "kind": "property",
+          "type": "string",
+          "required": true,
+          "description": null
+        },
+        {
+          "name": "stdout",
+          "kind": "property",
+          "type": "string",
+          "required": true,
+          "description": null
+        }
+      ],
+      "structuredRows": []
+    },
+    {
+      "name": "DockerComposeCommandRunner",
+      "description": null,
+      "isReadme": false,
+      "examples": [],
+      "kind": "type",
+      "modulePath": "src/types/dockerComposeProcess.ts",
+      "sourceLocation": {
+        "filePath": "src/types/dockerComposeProcess.ts",
+        "line": 18,
+        "column": 1
+      },
+      "exportPaths": ["src/index.ts"],
+      "relatedSymbols": ["DockerComposeCommandRequest", "DockerComposeCommandResult"],
+      "signatures": [],
+      "members": [
+        {
+          "name": "runAsync",
+          "kind": "method",
+          "type": "(request: DockerComposeCommandRequest) => Promise<DockerComposeCommandResult>",
           "required": true,
           "description": null
         }
@@ -1322,6 +1493,24 @@
       }
     },
     {
+      "name": "createSubprocessDockerComposeCommandRunner",
+      "description": "Create the concrete shell-free subprocess boundary used by Docker Compose operations.",
+      "sourceLocation": {
+        "filePath": "src/features/compose-runtime/adapters/createSubprocessDockerComposeCommandRunner.ts",
+        "line": 10,
+        "column": 1
+      }
+    },
+    {
+      "name": "runAsync",
+      "description": "Execute one argv-safe command while keeping stdin and execution-only environment values private.",
+      "sourceLocation": {
+        "filePath": "src/features/compose-runtime/adapters/createSubprocessDockerComposeCommandRunner.ts",
+        "line": 15,
+        "column": 1
+      }
+    },
+    {
       "name": "destroyDockerComposeRuntimeAsync",
       "description": "Delete only owned and authorized Compose resources in reverse dependency order.",
       "sourceLocation": {
@@ -1657,6 +1846,14 @@
     },
     {
       "kind": "export",
+      "name": "createSubprocessDockerComposeCommandRunner",
+      "sourcePath": "src/features/compose-runtime/adapters/createSubprocessDockerComposeCommandRunner.ts",
+      "symbolName": "createSubprocessDockerComposeCommandRunner",
+      "description": "Create the concrete shell-free subprocess boundary used by Docker Compose operations.",
+      "isReadme": false
+    },
+    {
+      "kind": "export",
       "name": "projectDockerComposeProject",
       "sourcePath": "src/features/compose-runtime/application/projectDockerComposeProject.ts",
       "symbolName": "projectDockerComposeProject",
@@ -1666,6 +1863,11 @@
   ],
   "graphs": {
     "imports": [
+      {
+        "fromPath": "src/dockerComposeProcess.test.ts",
+        "toPath": "src/index.ts",
+        "sourcePath": "src/dockerComposeProcess.test.ts"
+      },
       {
         "fromPath": "src/dockerComposeRuntime.test.ts",
         "toPath": "src/index.ts",
@@ -1683,12 +1885,22 @@
       },
       {
         "fromPath": "src/index.ts",
+        "toPath": "src/features/compose-runtime/adapters/createSubprocessDockerComposeCommandRunner.ts",
+        "sourcePath": "src/index.ts"
+      },
+      {
+        "fromPath": "src/index.ts",
         "toPath": "src/features/compose-runtime/application/projectDockerComposeProject.ts",
         "sourcePath": "src/index.ts"
       },
       {
         "fromPath": "src/index.ts",
         "toPath": "src/features/compose-runtime/composition/createInfraAdapter.ts",
+        "sourcePath": "src/index.ts"
+      },
+      {
+        "fromPath": "src/index.ts",
+        "toPath": "src/types/dockerComposeProcess.ts",
         "sourcePath": "src/index.ts"
       },
       {
@@ -1715,6 +1927,11 @@
         "fromPath": "examples/basic-usage/index.ts",
         "toPath": "dist/index.d.ts",
         "sourcePath": "examples/basic-usage/index.ts"
+      },
+      {
+        "fromPath": "src/features/compose-runtime/adapters/createSubprocessDockerComposeCommandRunner.ts",
+        "toPath": "src/types/dockerComposeProcess.ts",
+        "sourcePath": "src/features/compose-runtime/adapters/createSubprocessDockerComposeCommandRunner.ts"
       },
       {
         "fromPath": "src/features/compose-runtime/application/destroyDockerComposeRuntimeAsync.ts",
@@ -1944,6 +2161,30 @@
     ],
     "calls": [
       {
+        "fromSymbol": "src/dockerComposeProcess.test.ts",
+        "toSymbol": "it",
+        "callExpression": "it",
+        "sourcePath": "src/dockerComposeProcess.test.ts"
+      },
+      {
+        "fromSymbol": "src/dockerComposeProcess.test.ts",
+        "toSymbol": "createSubprocessDockerComposeCommandRunner",
+        "callExpression": "createSubprocessDockerComposeCommandRunner",
+        "sourcePath": "src/dockerComposeProcess.test.ts"
+      },
+      {
+        "fromSymbol": "src/dockerComposeProcess.test.ts",
+        "toSymbol": "runAsync",
+        "callExpression": "runner.runAsync",
+        "sourcePath": "src/dockerComposeProcess.test.ts"
+      },
+      {
+        "fromSymbol": "src/dockerComposeProcess.test.ts",
+        "toSymbol": "expect",
+        "callExpression": "expect",
+        "sourcePath": "src/dockerComposeProcess.test.ts"
+      },
+      {
         "fromSymbol": "src/dockerComposeRuntime.test.ts",
         "toSymbol": "it",
         "callExpression": "it",
@@ -2086,6 +2327,18 @@
         "toSymbol": "createInfraAdapter",
         "callExpression": "createInfraAdapter",
         "sourcePath": "examples/basic-usage/index.ts"
+      },
+      {
+        "fromSymbol": "src/features/compose-runtime/adapters/createSubprocessDockerComposeCommandRunner.ts",
+        "toSymbol": "spawn",
+        "callExpression": "spawn",
+        "sourcePath": "src/features/compose-runtime/adapters/createSubprocessDockerComposeCommandRunner.ts"
+      },
+      {
+        "fromSymbol": "src/features/compose-runtime/adapters/createSubprocessDockerComposeCommandRunner.ts",
+        "toSymbol": "resolve",
+        "callExpression": "resolve",
+        "sourcePath": "src/features/compose-runtime/adapters/createSubprocessDockerComposeCommandRunner.ts"
       },
       {
         "fromSymbol": "destroyDockerComposeRuntimeAsync",
@@ -2510,6 +2763,11 @@
     ],
     "typeReferences": [
       {
+        "fromSymbol": "createSubprocessDockerComposeCommandRunner",
+        "toType": "DockerComposeCommandRunner",
+        "sourcePath": "src/features/compose-runtime/adapters/createSubprocessDockerComposeCommandRunner.ts"
+      },
+      {
         "fromSymbol": "projectDockerComposeProject",
         "toType": "DockerComposeDesiredState",
         "sourcePath": "src/features/compose-runtime/application/projectDockerComposeProject.ts"
@@ -2543,6 +2801,26 @@
         "fromSymbol": "createInfraAdapter",
         "toType": "InfraRuntimeAdapter",
         "sourcePath": "src/features/compose-runtime/composition/createInfraAdapter.ts"
+      },
+      {
+        "fromSymbol": "DockerComposeCommandRequest",
+        "toType": "AbortSignal",
+        "sourcePath": "src/types/dockerComposeProcess.ts"
+      },
+      {
+        "fromSymbol": "DockerComposeCommandRequest",
+        "toType": "Readonly",
+        "sourcePath": "src/types/dockerComposeProcess.ts"
+      },
+      {
+        "fromSymbol": "DockerComposeCommandRunner",
+        "toType": "DockerComposeCommandRequest",
+        "sourcePath": "src/types/dockerComposeProcess.ts"
+      },
+      {
+        "fromSymbol": "DockerComposeCommandRunner",
+        "toType": "DockerComposeCommandResult",
+        "sourcePath": "src/types/dockerComposeProcess.ts"
       },
       {
         "fromSymbol": "DockerComposeAdapterOptions",

@@ -209,6 +209,16 @@
               <button
                 class="nav-button"
                 type="button"
+                data-target="src/features/compose-runtime/adapters/createSubprocessDockerComposeCommandRunner.ts"
+              >
+                src/features/compose-runtime/adapters/createSubprocessDockerComposeCommandRunner.ts
+                <small>2 functions</small>
+              </button>
+            </li>
+            <li>
+              <button
+                class="nav-button"
+                type="button"
                 data-target="src/features/compose-runtime/application/destroyDockerComposeRuntimeAsync.ts"
               >
                 src/features/compose-runtime/application/destroyDockerComposeRuntimeAsync.ts
@@ -399,9 +409,9 @@
           <section class="panel">
             <h2>Package overview</h2>
             <div class="summary">
-              <div><strong>20</strong><span class="muted">public exports</span></div>
+              <div><strong>24</strong><span class="muted">public exports</span></div>
               <div><strong>0</strong><span class="muted">components</span></div>
-              <div><strong>25</strong><span class="muted">modules</span></div>
+              <div><strong>28</strong><span class="muted">modules</span></div>
               <div><strong>1</strong><span class="muted">entrypoints</span></div>
             </div>
             <h3>Entrypoints</h3>
@@ -424,6 +434,12 @@
               <p><strong>Dependencies:</strong> <span class="empty">None</span></p>
               <p><strong>Exports:</strong> <code>infraAdapterDescriptor</code></p>
             </article>
+            <article class="item" data-search="src/dockerComposeProcess.test.ts src/index.ts">
+              <h3>src/dockerComposeProcess.test.ts</h3>
+              <p class="muted">Referenced module</p>
+              <p><strong>Dependencies:</strong> <code>src/index.ts</code></p>
+              <p><strong>Exports:</strong> <span class="empty">None</span></p>
+            </article>
             <article
               class="item"
               data-search="src/dockerComposeRuntime.test.ts src/index.ts src/runtimeFixtures.test.ts"
@@ -435,6 +451,19 @@
                 <code>src/runtimeFixtures.test.ts</code>
               </p>
               <p><strong>Exports:</strong> <span class="empty">None</span></p>
+            </article>
+            <article
+              class="item"
+              data-search="src/features/compose-runtime/adapters/createSubprocessDockerComposeCommandRunner.ts src/types/dockerComposeProcess.ts createSubprocessDockerComposeCommandRunner"
+            >
+              <h3>
+                src/features/compose-runtime/adapters/createSubprocessDockerComposeCommandRunner.ts
+              </h3>
+              <p class="muted">Referenced module</p>
+              <p><strong>Dependencies:</strong> <code>src/types/dockerComposeProcess.ts</code></p>
+              <p>
+                <strong>Exports:</strong> <code>createSubprocessDockerComposeCommandRunner</code>
+              </p>
             </article>
             <article
               class="item"
@@ -700,16 +729,18 @@
             </article>
             <article
               class="item"
-              data-search="src/index.ts createInfraAdapter DockerComposeAdapterOptions DockerComposeConfig DockerComposeControlPlane DockerComposeDesiredState DockerComposeExecutionProject DockerComposeMaterializedSecret DockerComposeNetwork DockerComposeOutput DockerComposeProject DockerComposeProjectIdentity DockerComposeProjectObservation DockerComposeResource DockerComposeResourceObservation DockerComposeSecret DockerComposeService DockerComposeTargetAccess DockerComposeVolume infraAdapterDescriptor projectDockerComposeProject"
+              data-search="src/index.ts createInfraAdapter createSubprocessDockerComposeCommandRunner DockerComposeAdapterOptions DockerComposeCommandRequest DockerComposeCommandResult DockerComposeCommandRunner DockerComposeConfig DockerComposeControlPlane DockerComposeDesiredState DockerComposeExecutionProject DockerComposeMaterializedSecret DockerComposeNetwork DockerComposeOutput DockerComposeProject DockerComposeProjectIdentity DockerComposeProjectObservation DockerComposeResource DockerComposeResourceObservation DockerComposeSecret DockerComposeService DockerComposeTargetAccess DockerComposeVolume infraAdapterDescriptor projectDockerComposeProject"
             >
               <h3>src/index.ts</h3>
               <p class="muted">Configured entrypoint</p>
               <p><strong>Dependencies:</strong> <span class="empty">None</span></p>
               <p>
                 <strong>Exports:</strong> <code>createInfraAdapter</code>,
-                <code>DockerComposeAdapterOptions</code>, <code>DockerComposeConfig</code>,
-                <code>DockerComposeControlPlane</code>, <code>DockerComposeDesiredState</code>,
-                <code>DockerComposeExecutionProject</code>,
+                <code>createSubprocessDockerComposeCommandRunner</code>,
+                <code>DockerComposeAdapterOptions</code>, <code>DockerComposeCommandRequest</code>,
+                <code>DockerComposeCommandResult</code>, <code>DockerComposeCommandRunner</code>,
+                <code>DockerComposeConfig</code>, <code>DockerComposeControlPlane</code>,
+                <code>DockerComposeDesiredState</code>, <code>DockerComposeExecutionProject</code>,
                 <code>DockerComposeMaterializedSecret</code>, <code>DockerComposeNetwork</code>,
                 <code>DockerComposeOutput</code>, <code>DockerComposeProject</code>,
                 <code>DockerComposeProjectIdentity</code>,
@@ -740,6 +771,18 @@
               <p class="muted">Referenced module</p>
               <p><strong>Dependencies:</strong> <code>src/index.ts</code></p>
               <p><strong>Exports:</strong> <code>FakeDockerComposeControlPlane</code></p>
+            </article>
+            <article
+              class="item"
+              data-search="src/types/dockerComposeProcess.ts DockerComposeCommandRequest DockerComposeCommandResult DockerComposeCommandRunner"
+            >
+              <h3>src/types/dockerComposeProcess.ts</h3>
+              <p class="muted">Referenced module</p>
+              <p><strong>Dependencies:</strong> <span class="empty">None</span></p>
+              <p>
+                <strong>Exports:</strong> <code>DockerComposeCommandRequest</code>,
+                <code>DockerComposeCommandResult</code>, <code>DockerComposeCommandRunner</code>
+              </p>
             </article>
             <article
               class="item"
@@ -777,6 +820,41 @@
 
                 <p><strong>Export paths:</strong> <code>src/index.ts</code></p>
                 <div><strong>Related symbols:</strong> <span class="empty">None</span></div>
+              </article>
+            </section>
+            <section>
+              <h3>
+                src/features/compose-runtime/adapters/createSubprocessDockerComposeCommandRunner.ts
+              </h3>
+              <article
+                class="item"
+                id="symbol-createsubprocessdockercomposecommandrunner"
+                data-search="createSubprocessDockerComposeCommandRunner function src/features/compose-runtime/adapters/createSubprocessDockerComposeCommandRunner.ts Create the concrete shell-free subprocess boundary used by Docker Compose operations. DockerComposeCommandRunner () =&gt; DockerComposeCommandRunner"
+              >
+                <h4>createSubprocessDockerComposeCommandRunner</h4>
+                <p class="muted">
+                  function •
+                  <code
+                    >src/features/compose-runtime/adapters/createSubprocessDockerComposeCommandRunner.ts:10:1</code
+                  >
+                </p>
+                <p>
+                  Create the concrete shell-free subprocess boundary used by Docker Compose
+                  operations.
+                </p>
+                <p><strong>Export paths:</strong> <code>src/index.ts</code></p>
+                <div>
+                  <strong>Related symbols:</strong>
+                  <ul class="chips">
+                    <li class="chip">DockerComposeCommandRunner</li>
+                  </ul>
+                </div>
+                <div>
+                  <h5>Signature</h5>
+                  <pre>() =&gt; DockerComposeCommandRunner</pre>
+
+                  <p><strong>Returns:</strong> <code>DockerComposeCommandRunner</code></p>
+                </div>
               </article>
             </section>
             <section>
@@ -898,6 +976,158 @@
                     <code>InfraRuntimeAdapter&lt;&quot;docker-compose&quot;&gt;</code>
                   </p>
                 </div>
+              </article>
+            </section>
+            <section>
+              <h3>src/types/dockerComposeProcess.ts</h3>
+              <article
+                class="item"
+                id="symbol-dockercomposecommandrequest"
+                data-search="DockerComposeCommandRequest type src/types/dockerComposeProcess.ts "
+              >
+                <h4>DockerComposeCommandRequest</h4>
+                <p class="muted">type • <code>src/types/dockerComposeProcess.ts:2:1</code></p>
+
+                <p><strong>Export paths:</strong> <code>src/index.ts</code></p>
+                <div><strong>Related symbols:</strong> <span class="empty">None</span></div>
+
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Member</th>
+                      <th>Kind</th>
+                      <th>Type</th>
+                      <th>Required</th>
+                      <th>Description</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><code>arguments</code></td>
+                      <td>property</td>
+                      <td><code>readonly string[]</code></td>
+                      <td>yes</td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <td><code>environment</code></td>
+                      <td>property</td>
+                      <td><code>Readonly&lt;Record&lt;string, string&gt;&gt; | undefined</code></td>
+                      <td>no</td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <td><code>executable</code></td>
+                      <td>property</td>
+                      <td><code>string</code></td>
+                      <td>yes</td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <td><code>signal</code></td>
+                      <td>property</td>
+                      <td><code>AbortSignal | undefined</code></td>
+                      <td>no</td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <td><code>stdin</code></td>
+                      <td>property</td>
+                      <td><code>string | undefined</code></td>
+                      <td>no</td>
+                      <td></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </article>
+              <article
+                class="item"
+                id="symbol-dockercomposecommandresult"
+                data-search="DockerComposeCommandResult type src/types/dockerComposeProcess.ts "
+              >
+                <h4>DockerComposeCommandResult</h4>
+                <p class="muted">type • <code>src/types/dockerComposeProcess.ts:11:1</code></p>
+
+                <p><strong>Export paths:</strong> <code>src/index.ts</code></p>
+                <div><strong>Related symbols:</strong> <span class="empty">None</span></div>
+
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Member</th>
+                      <th>Kind</th>
+                      <th>Type</th>
+                      <th>Required</th>
+                      <th>Description</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><code>exitCode</code></td>
+                      <td>property</td>
+                      <td><code>number</code></td>
+                      <td>yes</td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <td><code>stderr</code></td>
+                      <td>property</td>
+                      <td><code>string</code></td>
+                      <td>yes</td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <td><code>stdout</code></td>
+                      <td>property</td>
+                      <td><code>string</code></td>
+                      <td>yes</td>
+                      <td></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </article>
+              <article
+                class="item"
+                id="symbol-dockercomposecommandrunner"
+                data-search="DockerComposeCommandRunner type src/types/dockerComposeProcess.ts  DockerComposeCommandRequest DockerComposeCommandResult"
+              >
+                <h4>DockerComposeCommandRunner</h4>
+                <p class="muted">type • <code>src/types/dockerComposeProcess.ts:18:1</code></p>
+
+                <p><strong>Export paths:</strong> <code>src/index.ts</code></p>
+                <div>
+                  <strong>Related symbols:</strong>
+                  <ul class="chips">
+                    <li class="chip">DockerComposeCommandRequest</li>
+                    <li class="chip">DockerComposeCommandResult</li>
+                  </ul>
+                </div>
+
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Member</th>
+                      <th>Kind</th>
+                      <th>Type</th>
+                      <th>Required</th>
+                      <th>Description</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><code>runAsync</code></td>
+                      <td>method</td>
+                      <td>
+                        <code
+                          >(request: DockerComposeCommandRequest) =&gt;
+                          Promise&lt;DockerComposeCommandResult&gt;</code
+                        >
+                      </td>
+                      <td>yes</td>
+                      <td></td>
+                    </tr>
+                  </tbody>
+                </table>
               </article>
             </section>
             <section>
@@ -1939,10 +2169,18 @@
                 module_examples_basic_usage_index_ts --&gt; module_dist_index_d_ts
                 module_src_constants_infra_ts[&quot;src/constants/infra.ts&quot;]
                 package__ankhorage_docker_compose -.-&gt; module_src_constants_infra_ts
+                module_src_dockerComposeProcess_test_ts[&quot;src/dockerComposeProcess.test.ts&quot;]
+                package__ankhorage_docker_compose -.-&gt; module_src_dockerComposeProcess_test_ts
+                module_src_dockerComposeProcess_test_ts --&gt; module_src_index_ts
                 module_src_dockerComposeRuntime_test_ts[&quot;src/dockerComposeRuntime.test.ts&quot;]
                 package__ankhorage_docker_compose -.-&gt; module_src_dockerComposeRuntime_test_ts
                 module_src_dockerComposeRuntime_test_ts --&gt; module_src_index_ts
                 module_src_dockerComposeRuntime_test_ts --&gt; module_src_runtimeFixtures_test_ts
+                module_src_features_compose_runtime_adapters_createSubprocessDockerComposeCommandRunner_ts[&quot;src/features/compose-runtime/adapters/createSubprocessDockerComposeCommandRunner.ts&quot;]
+                package__ankhorage_docker_compose -.-&gt;
+                module_src_features_compose_runtime_adapters_createSubprocessDockerComposeCommandRunner_ts
+                module_src_features_compose_runtime_adapters_createSubprocessDockerComposeCommandRunner_ts
+                --&gt; module_src_types_dockerComposeProcess_ts
                 module_src_features_compose_runtime_application_destroyDockerComposeRuntimeAsync_ts[&quot;src/features/compose-runtime/application/destroyDockerComposeRuntimeAsync.ts&quot;]
                 package__ankhorage_docker_compose -.-&gt;
                 module_src_features_compose_runtime_application_destroyDockerComposeRuntimeAsync_ts
@@ -2102,6 +2340,8 @@
                 module_src_runtimeFixtures_test_ts[&quot;src/runtimeFixtures.test.ts&quot;]
                 package__ankhorage_docker_compose -.-&gt; module_src_runtimeFixtures_test_ts
                 module_src_runtimeFixtures_test_ts --&gt; module_src_index_ts
+                module_src_types_dockerComposeProcess_ts[&quot;src/types/dockerComposeProcess.ts&quot;]
+                package__ankhorage_docker_compose -.-&gt; module_src_types_dockerComposeProcess_ts
                 module_src_types_dockerComposeRuntime_ts[&quot;src/types/dockerComposeRuntime.ts&quot;]
                 package__ankhorage_docker_compose -.-&gt; module_src_types_dockerComposeRuntime_ts
               </div>
@@ -2117,10 +2357,16 @@ graph TD
   module_examples_basic_usage_index_ts --&gt; module_dist_index_d_ts
   module_src_constants_infra_ts[&quot;src/constants/infra.ts&quot;]
   package__ankhorage_docker_compose -.-&gt; module_src_constants_infra_ts
+  module_src_dockerComposeProcess_test_ts[&quot;src/dockerComposeProcess.test.ts&quot;]
+  package__ankhorage_docker_compose -.-&gt; module_src_dockerComposeProcess_test_ts
+  module_src_dockerComposeProcess_test_ts --&gt; module_src_index_ts
   module_src_dockerComposeRuntime_test_ts[&quot;src/dockerComposeRuntime.test.ts&quot;]
   package__ankhorage_docker_compose -.-&gt; module_src_dockerComposeRuntime_test_ts
   module_src_dockerComposeRuntime_test_ts --&gt; module_src_index_ts
   module_src_dockerComposeRuntime_test_ts --&gt; module_src_runtimeFixtures_test_ts
+  module_src_features_compose_runtime_adapters_createSubprocessDockerComposeCommandRunner_ts[&quot;src/features/compose-runtime/adapters/createSubprocessDockerComposeCommandRunner.ts&quot;]
+  package__ankhorage_docker_compose -.-&gt; module_src_features_compose_runtime_adapters_createSubprocessDockerComposeCommandRunner_ts
+  module_src_features_compose_runtime_adapters_createSubprocessDockerComposeCommandRunner_ts --&gt; module_src_types_dockerComposeProcess_ts
   module_src_features_compose_runtime_application_destroyDockerComposeRuntimeAsync_ts[&quot;src/features/compose-runtime/application/destroyDockerComposeRuntimeAsync.ts&quot;]
   package__ankhorage_docker_compose -.-&gt; module_src_features_compose_runtime_application_destroyDockerComposeRuntimeAsync_ts
   module_src_features_compose_runtime_application_destroyDockerComposeRuntimeAsync_ts --&gt; module_src_features_compose_runtime_utils_getDockerComposeProjectIdentity_ts
@@ -2210,6 +2456,8 @@ graph TD
   module_src_runtimeFixtures_test_ts[&quot;src/runtimeFixtures.test.ts&quot;]
   package__ankhorage_docker_compose -.-&gt; module_src_runtimeFixtures_test_ts
   module_src_runtimeFixtures_test_ts --&gt; module_src_index_ts
+  module_src_types_dockerComposeProcess_ts[&quot;src/types/dockerComposeProcess.ts&quot;]
+  package__ankhorage_docker_compose -.-&gt; module_src_types_dockerComposeProcess_ts
   module_src_types_dockerComposeRuntime_ts[&quot;src/types/dockerComposeRuntime.ts&quot;]
   package__ankhorage_docker_compose -.-&gt; module_src_types_dockerComposeRuntime_ts
 </pre>
@@ -2225,7 +2473,9 @@ graph TD
                 graph LR
                 module_examples_basic_usage_index_ts[&quot;examples/basic-usage/index.ts&quot;]
                 module_src_constants_infra_ts[&quot;src/constants/infra.ts&quot;]
+                module_src_dockerComposeProcess_test_ts[&quot;src/dockerComposeProcess.test.ts&quot;]
                 module_src_dockerComposeRuntime_test_ts[&quot;src/dockerComposeRuntime.test.ts&quot;]
+                module_src_features_compose_runtime_adapters_createSubprocessDockerComposeCommandRunner_ts[&quot;src/features/compose-runtime/adapters/createSubprocessDockerComposeCommandRunner.ts&quot;]
                 module_src_features_compose_runtime_application_destroyDockerComposeRuntimeAsync_ts[&quot;src/features/compose-runtime/application/destroyDockerComposeRuntimeAsync.ts&quot;]
                 module_src_features_compose_runtime_application_ensureDockerComposeRuntimeAsync_ts[&quot;src/features/compose-runtime/application/ensureDockerComposeRuntimeAsync.ts&quot;]
                 module_src_features_compose_runtime_application_getDockerComposeStatusAsync_ts[&quot;src/features/compose-runtime/application/getDockerComposeStatusAsync.ts&quot;]
@@ -2247,10 +2497,14 @@ graph TD
                 module_src_index_ts[&quot;src/index.ts&quot;]
                 module_src_infraAdapter_test_ts[&quot;src/infraAdapter.test.ts&quot;]
                 module_src_runtimeFixtures_test_ts[&quot;src/runtimeFixtures.test.ts&quot;]
+                module_src_types_dockerComposeProcess_ts[&quot;src/types/dockerComposeProcess.ts&quot;]
                 module_src_types_dockerComposeRuntime_ts[&quot;src/types/dockerComposeRuntime.ts&quot;]
                 module_examples_basic_usage_index_ts --&gt; module_dist_index_d_ts
+                module_src_dockerComposeProcess_test_ts --&gt; module_src_index_ts
                 module_src_dockerComposeRuntime_test_ts --&gt; module_src_index_ts
                 module_src_dockerComposeRuntime_test_ts --&gt; module_src_runtimeFixtures_test_ts
+                module_src_features_compose_runtime_adapters_createSubprocessDockerComposeCommandRunner_ts
+                --&gt; module_src_types_dockerComposeProcess_ts
                 module_src_features_compose_runtime_application_destroyDockerComposeRuntimeAsync_ts
                 --&gt; module_src_features_compose_runtime_utils_getDockerComposeProjectIdentity_ts
                 module_src_features_compose_runtime_application_destroyDockerComposeRuntimeAsync_ts
@@ -2358,7 +2612,9 @@ graph TD
 graph LR
   module_examples_basic_usage_index_ts[&quot;examples/basic-usage/index.ts&quot;]
   module_src_constants_infra_ts[&quot;src/constants/infra.ts&quot;]
+  module_src_dockerComposeProcess_test_ts[&quot;src/dockerComposeProcess.test.ts&quot;]
   module_src_dockerComposeRuntime_test_ts[&quot;src/dockerComposeRuntime.test.ts&quot;]
+  module_src_features_compose_runtime_adapters_createSubprocessDockerComposeCommandRunner_ts[&quot;src/features/compose-runtime/adapters/createSubprocessDockerComposeCommandRunner.ts&quot;]
   module_src_features_compose_runtime_application_destroyDockerComposeRuntimeAsync_ts[&quot;src/features/compose-runtime/application/destroyDockerComposeRuntimeAsync.ts&quot;]
   module_src_features_compose_runtime_application_ensureDockerComposeRuntimeAsync_ts[&quot;src/features/compose-runtime/application/ensureDockerComposeRuntimeAsync.ts&quot;]
   module_src_features_compose_runtime_application_getDockerComposeStatusAsync_ts[&quot;src/features/compose-runtime/application/getDockerComposeStatusAsync.ts&quot;]
@@ -2380,10 +2636,13 @@ graph LR
   module_src_index_ts[&quot;src/index.ts&quot;]
   module_src_infraAdapter_test_ts[&quot;src/infraAdapter.test.ts&quot;]
   module_src_runtimeFixtures_test_ts[&quot;src/runtimeFixtures.test.ts&quot;]
+  module_src_types_dockerComposeProcess_ts[&quot;src/types/dockerComposeProcess.ts&quot;]
   module_src_types_dockerComposeRuntime_ts[&quot;src/types/dockerComposeRuntime.ts&quot;]
   module_examples_basic_usage_index_ts --&gt; module_dist_index_d_ts
+  module_src_dockerComposeProcess_test_ts --&gt; module_src_index_ts
   module_src_dockerComposeRuntime_test_ts --&gt; module_src_index_ts
   module_src_dockerComposeRuntime_test_ts --&gt; module_src_runtimeFixtures_test_ts
+  module_src_features_compose_runtime_adapters_createSubprocessDockerComposeCommandRunner_ts --&gt; module_src_types_dockerComposeProcess_ts
   module_src_features_compose_runtime_application_destroyDockerComposeRuntimeAsync_ts --&gt; module_src_features_compose_runtime_utils_getDockerComposeProjectIdentity_ts
   module_src_features_compose_runtime_application_destroyDockerComposeRuntimeAsync_ts --&gt; module_src_features_compose_runtime_utils_getDockerComposeResources_ts
   module_src_features_compose_runtime_application_destroyDockerComposeRuntimeAsync_ts --&gt; module_src_types_dockerComposeRuntime_ts
@@ -2442,7 +2701,9 @@ graph LR
                 graph LR
                 module_examples_basic_usage_index_ts[&quot;examples/basic-usage/index.ts&quot;]
                 module_src_constants_infra_ts[&quot;src/constants/infra.ts&quot;]
+                module_src_dockerComposeProcess_test_ts[&quot;src/dockerComposeProcess.test.ts&quot;]
                 module_src_dockerComposeRuntime_test_ts[&quot;src/dockerComposeRuntime.test.ts&quot;]
+                module_src_features_compose_runtime_adapters_createSubprocessDockerComposeCommandRunner_ts[&quot;src/features/compose-runtime/adapters/createSubprocessDockerComposeCommandRunner.ts&quot;]
                 module_src_features_compose_runtime_application_destroyDockerComposeRuntimeAsync_ts[&quot;src/features/compose-runtime/application/destroyDockerComposeRuntimeAsync.ts&quot;]
                 module_src_features_compose_runtime_application_ensureDockerComposeRuntimeAsync_ts[&quot;src/features/compose-runtime/application/ensureDockerComposeRuntimeAsync.ts&quot;]
                 module_src_features_compose_runtime_application_getDockerComposeStatusAsync_ts[&quot;src/features/compose-runtime/application/getDockerComposeStatusAsync.ts&quot;]
@@ -2464,14 +2725,28 @@ graph LR
                 module_src_index_ts[&quot;src/index.ts&quot;]
                 module_src_infraAdapter_test_ts[&quot;src/infraAdapter.test.ts&quot;]
                 module_src_runtimeFixtures_test_ts[&quot;src/runtimeFixtures.test.ts&quot;]
+                module_src_types_dockerComposeProcess_ts[&quot;src/types/dockerComposeProcess.ts&quot;]
                 module_src_types_dockerComposeRuntime_ts[&quot;src/types/dockerComposeRuntime.ts&quot;]
                 export_createInfraAdapter[&quot;createInfraAdapter&quot;]
                 module_src_features_compose_runtime_composition_createInfraAdapter_ts --&gt;
                 export_createInfraAdapter export_createInfraAdapter -.-&gt;
                 export_DockerComposeAdapterOptions
+                export_createSubprocessDockerComposeCommandRunner[&quot;createSubprocessDockerComposeCommandRunner&quot;]
+                module_src_features_compose_runtime_adapters_createSubprocessDockerComposeCommandRunner_ts
+                --&gt; export_createSubprocessDockerComposeCommandRunner
+                export_createSubprocessDockerComposeCommandRunner -.-&gt;
+                export_DockerComposeCommandRunner
                 export_DockerComposeAdapterOptions[&quot;DockerComposeAdapterOptions&quot;]
                 module_src_types_dockerComposeRuntime_ts --&gt; export_DockerComposeAdapterOptions
                 export_DockerComposeAdapterOptions -.-&gt; export_DockerComposeControlPlane
+                export_DockerComposeCommandRequest[&quot;DockerComposeCommandRequest&quot;]
+                module_src_types_dockerComposeProcess_ts --&gt; export_DockerComposeCommandRequest
+                export_DockerComposeCommandResult[&quot;DockerComposeCommandResult&quot;]
+                module_src_types_dockerComposeProcess_ts --&gt; export_DockerComposeCommandResult
+                export_DockerComposeCommandRunner[&quot;DockerComposeCommandRunner&quot;]
+                module_src_types_dockerComposeProcess_ts --&gt; export_DockerComposeCommandRunner
+                export_DockerComposeCommandRunner -.-&gt; export_DockerComposeCommandRequest
+                export_DockerComposeCommandRunner -.-&gt; export_DockerComposeCommandResult
                 export_DockerComposeConfig[&quot;DockerComposeConfig&quot;]
                 module_src_types_dockerComposeRuntime_ts --&gt; export_DockerComposeConfig
                 export_DockerComposeControlPlane[&quot;DockerComposeControlPlane&quot;]
@@ -2540,7 +2815,9 @@ graph LR
 graph LR
   module_examples_basic_usage_index_ts[&quot;examples/basic-usage/index.ts&quot;]
   module_src_constants_infra_ts[&quot;src/constants/infra.ts&quot;]
+  module_src_dockerComposeProcess_test_ts[&quot;src/dockerComposeProcess.test.ts&quot;]
   module_src_dockerComposeRuntime_test_ts[&quot;src/dockerComposeRuntime.test.ts&quot;]
+  module_src_features_compose_runtime_adapters_createSubprocessDockerComposeCommandRunner_ts[&quot;src/features/compose-runtime/adapters/createSubprocessDockerComposeCommandRunner.ts&quot;]
   module_src_features_compose_runtime_application_destroyDockerComposeRuntimeAsync_ts[&quot;src/features/compose-runtime/application/destroyDockerComposeRuntimeAsync.ts&quot;]
   module_src_features_compose_runtime_application_ensureDockerComposeRuntimeAsync_ts[&quot;src/features/compose-runtime/application/ensureDockerComposeRuntimeAsync.ts&quot;]
   module_src_features_compose_runtime_application_getDockerComposeStatusAsync_ts[&quot;src/features/compose-runtime/application/getDockerComposeStatusAsync.ts&quot;]
@@ -2562,13 +2839,25 @@ graph LR
   module_src_index_ts[&quot;src/index.ts&quot;]
   module_src_infraAdapter_test_ts[&quot;src/infraAdapter.test.ts&quot;]
   module_src_runtimeFixtures_test_ts[&quot;src/runtimeFixtures.test.ts&quot;]
+  module_src_types_dockerComposeProcess_ts[&quot;src/types/dockerComposeProcess.ts&quot;]
   module_src_types_dockerComposeRuntime_ts[&quot;src/types/dockerComposeRuntime.ts&quot;]
   export_createInfraAdapter[&quot;createInfraAdapter&quot;]
   module_src_features_compose_runtime_composition_createInfraAdapter_ts --&gt; export_createInfraAdapter
   export_createInfraAdapter -.-&gt; export_DockerComposeAdapterOptions
+  export_createSubprocessDockerComposeCommandRunner[&quot;createSubprocessDockerComposeCommandRunner&quot;]
+  module_src_features_compose_runtime_adapters_createSubprocessDockerComposeCommandRunner_ts --&gt; export_createSubprocessDockerComposeCommandRunner
+  export_createSubprocessDockerComposeCommandRunner -.-&gt; export_DockerComposeCommandRunner
   export_DockerComposeAdapterOptions[&quot;DockerComposeAdapterOptions&quot;]
   module_src_types_dockerComposeRuntime_ts --&gt; export_DockerComposeAdapterOptions
   export_DockerComposeAdapterOptions -.-&gt; export_DockerComposeControlPlane
+  export_DockerComposeCommandRequest[&quot;DockerComposeCommandRequest&quot;]
+  module_src_types_dockerComposeProcess_ts --&gt; export_DockerComposeCommandRequest
+  export_DockerComposeCommandResult[&quot;DockerComposeCommandResult&quot;]
+  module_src_types_dockerComposeProcess_ts --&gt; export_DockerComposeCommandResult
+  export_DockerComposeCommandRunner[&quot;DockerComposeCommandRunner&quot;]
+  module_src_types_dockerComposeProcess_ts --&gt; export_DockerComposeCommandRunner
+  export_DockerComposeCommandRunner -.-&gt; export_DockerComposeCommandRequest
+  export_DockerComposeCommandRunner -.-&gt; export_DockerComposeCommandResult
   export_DockerComposeConfig[&quot;DockerComposeConfig&quot;]
   module_src_types_dockerComposeRuntime_ts --&gt; export_DockerComposeConfig
   export_DockerComposeControlPlane[&quot;DockerComposeControlPlane&quot;]
@@ -2664,6 +2953,48 @@ graph LR
               <h3>createDestroyRequest</h3>
               <p class="muted"><code>src/dockerComposeRuntime.test.ts:184:1</code></p>
               <p class="empty">No description available.</p>
+            </article>
+          </section>
+        </section>
+        <section
+          id="view-src-features-compose-runtime-adapters-createsubprocessdockercomposecommandrunner-ts"
+          class="view"
+          data-view="src/features/compose-runtime/adapters/createSubprocessDockerComposeCommandRunner.ts"
+          hidden
+        >
+          <section class="panel">
+            <h2>
+              src/features/compose-runtime/adapters/createSubprocessDockerComposeCommandRunner.ts
+            </h2>
+            <article
+              class="item"
+              data-search="createSubprocessDockerComposeCommandRunner src/features/compose-runtime/adapters/createSubprocessDockerComposeCommandRunner.ts Create the concrete shell-free subprocess boundary used by Docker Compose operations."
+            >
+              <h3>createSubprocessDockerComposeCommandRunner</h3>
+              <p class="muted">
+                <code
+                  >src/features/compose-runtime/adapters/createSubprocessDockerComposeCommandRunner.ts:10:1</code
+                >
+              </p>
+              <p>
+                Create the concrete shell-free subprocess boundary used by Docker Compose
+                operations.
+              </p>
+            </article>
+            <article
+              class="item"
+              data-search="runAsync src/features/compose-runtime/adapters/createSubprocessDockerComposeCommandRunner.ts Execute one argv-safe command while keeping stdin and execution-only environment values private."
+            >
+              <h3>runAsync</h3>
+              <p class="muted">
+                <code
+                  >src/features/compose-runtime/adapters/createSubprocessDockerComposeCommandRunner.ts:15:1</code
+                >
+              </p>
+              <p>
+                Execute one argv-safe command while keeping stdin and execution-only environment
+                values private.
+              </p>
             </article>
           </section>
         </section>

@@ -7,10 +7,16 @@ graph TD
   module_examples_basic_usage_index_ts --> module_dist_index_d_ts
   module_src_constants_infra_ts["src/constants/infra.ts"]
   package__ankhorage_docker_compose -.-> module_src_constants_infra_ts
+  module_src_dockerComposeProcess_test_ts["src/dockerComposeProcess.test.ts"]
+  package__ankhorage_docker_compose -.-> module_src_dockerComposeProcess_test_ts
+  module_src_dockerComposeProcess_test_ts --> module_src_index_ts
   module_src_dockerComposeRuntime_test_ts["src/dockerComposeRuntime.test.ts"]
   package__ankhorage_docker_compose -.-> module_src_dockerComposeRuntime_test_ts
   module_src_dockerComposeRuntime_test_ts --> module_src_index_ts
   module_src_dockerComposeRuntime_test_ts --> module_src_runtimeFixtures_test_ts
+  module_src_features_compose_runtime_adapters_createSubprocessDockerComposeCommandRunner_ts["src/features/compose-runtime/adapters/createSubprocessDockerComposeCommandRunner.ts"]
+  package__ankhorage_docker_compose -.-> module_src_features_compose_runtime_adapters_createSubprocessDockerComposeCommandRunner_ts
+  module_src_features_compose_runtime_adapters_createSubprocessDockerComposeCommandRunner_ts --> module_src_types_dockerComposeProcess_ts
   module_src_features_compose_runtime_application_destroyDockerComposeRuntimeAsync_ts["src/features/compose-runtime/application/destroyDockerComposeRuntimeAsync.ts"]
   package__ankhorage_docker_compose -.-> module_src_features_compose_runtime_application_destroyDockerComposeRuntimeAsync_ts
   module_src_features_compose_runtime_application_destroyDockerComposeRuntimeAsync_ts --> module_src_features_compose_runtime_utils_getDockerComposeProjectIdentity_ts
@@ -100,5 +106,7 @@ graph TD
   module_src_runtimeFixtures_test_ts["src/runtimeFixtures.test.ts"]
   package__ankhorage_docker_compose -.-> module_src_runtimeFixtures_test_ts
   module_src_runtimeFixtures_test_ts --> module_src_index_ts
+  module_src_types_dockerComposeProcess_ts["src/types/dockerComposeProcess.ts"]
+  package__ankhorage_docker_compose -.-> module_src_types_dockerComposeProcess_ts
   module_src_types_dockerComposeRuntime_ts["src/types/dockerComposeRuntime.ts"]
   package__ankhorage_docker_compose -.-> module_src_types_dockerComposeRuntime_ts
