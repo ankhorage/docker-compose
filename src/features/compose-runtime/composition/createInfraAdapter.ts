@@ -1,38 +1,33 @@
-import type { InfraResult, InfraRuntimeAdapter } from '@ankhorage/contracts/infra';
+import type { InfraRuntimeAdapter } from '@ankhorage/contracts/infra';
 
 import { infraAdapterDescriptor } from '../../../constants/infra';
+import type { DockerComposeAdapterOptions } from '../../../types/dockerComposeRuntime';
+import { destroyDockerComposeRuntimeAsync } from '../application/destroyDockerComposeRuntimeAsync';
+import { ensureDockerComposeRuntimeAsync } from '../application/ensureDockerComposeRuntimeAsync';
+import { getDockerComposeStatusAsync } from '../application/getDockerComposeStatusAsync';
+import { planDockerComposeRuntimeAsync } from '../application/planDockerComposeRuntimeAsync';
+import { suspendDockerComposeRuntimeAsync } from '../application/suspendDockerComposeRuntimeAsync';
+import { validateDockerComposeRuntimeAsync } from '../application/validateDockerComposeRuntimeAsync';
 
 /***
  * Create the canonical Docker Compose runtime adapter entrypoint.
  *
- * The foundation exposes the released Contracts boundary and fails lifecycle calls explicitly
- * until the provider implementation phase supplies its external adapters.
+ * The caller supplies a Docker Compose control-plane boundary. Portable workloads are projected
+ * into Compose services, networks, volumes, configs and execution-only secrets.
  *
  * @readme
  */
-export function createInfraAdapter(): InfraRuntimeAdapter<'docker-compose'> {
+export function createInfraAdapter(
+  options: DockerComposeAdapterOptions,
+): InfraRuntimeAdapter<'docker-compose'> {
   return {
     descriptor: infraAdapterDescriptor,
-    validateAsync: () => notImplementedAsync(),
-    planAsync: () => notImplementedAsync(),
-    ensureAsync: () => notImplementedAsync(),
-    statusAsync: () => notImplementedAsync(),
-    suspendAsync: () => notImplementedAsync(),
-    destroyAsync: () => notImplementedAsync(),
+    validateAsync: (context, desired) =>
+      validateDockerComposeRuntimeAsync(options, context, desired),
+    planAsync: (context, desired) => planDockerComposeRuntimeAsync(options, context, desired),
+    ensureAsync: (context, desired) => ensureDockerComposeRuntimeAsync(options, context, desired),
+    statusAsync: (context) => getDockerComposeStatusAsync(options, context),
+    suspendAsync: (context) => suspendDockerComposeRuntimeAsync(options, context),
+    destroyAsync: (context, request) => destroyDockerComposeRuntimeAsync(options, context, request),
   };
-}
-
-/*** Reject lifecycle execution until this package's provider phase is implemented. */
-function notImplementedAsync<T>(): Promise<InfraResult<T>> {
-  return Promise.resolve({
-    ok: false,
-    diagnostics: [
-      {
-        severity: 'error',
-        code: 'docker-compose_adapter_not_implemented',
-        message:
-          'The Docker Compose runtime adapter foundation is installed, but its lifecycle is not implemented yet.',
-      },
-    ],
-  });
 }

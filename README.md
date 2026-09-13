@@ -3,7 +3,7 @@
 
 # @ankhorage/docker-compose
 
-![license: MIT](././paradox/badges/license.svg) ![npm: v0.0.0](././paradox/badges/npm.svg) ![runtime: bun](././paradox/badges/runtime.svg) ![typescript: strict](././paradox/badges/typescript.svg) ![eslint: checked](././paradox/badges/eslint.svg) ![prettier: checked](././paradox/badges/prettier.svg) ![build: checked](././paradox/badges/build.svg) ![tests: checked](././paradox/badges/tests.svg) ![docs: paradox](././paradox/badges/docs.svg)
+![license: MIT](././paradox/badges/license.svg) ![npm: v0.1.0](././paradox/badges/npm.svg) ![runtime: bun](././paradox/badges/runtime.svg) ![typescript: strict](././paradox/badges/typescript.svg) ![eslint: checked](././paradox/badges/eslint.svg) ![prettier: checked](././paradox/badges/prettier.svg) ![build: checked](././paradox/badges/build.svg) ![tests: checked](././paradox/badges/tests.svg) ![docs: paradox](././paradox/badges/docs.svg)
 
 Docker Compose runtime adapter for provider-neutral Ankhorage infrastructure.
 
@@ -24,15 +24,32 @@ Docker Compose runtime adapter for provider-neutral Ankhorage infrastructure.
 <summary>createInfraAdapter</summary>
 
 ```ts
-createInfraAdapter() => InfraRuntimeAdapter<"docker-compose">
+createInfraAdapter(options: DockerComposeAdapterOptions) => InfraRuntimeAdapter<"docker-compose">
 ```
 
 Create the canonical Docker Compose runtime adapter entrypoint.
 
-The foundation exposes the released Contracts boundary and fails lifecycle calls explicitly
-until the provider implementation phase supplies its external adapters.
+The caller supplies a Docker Compose control-plane boundary. Portable workloads are projected
+into Compose services, networks, volumes, configs and execution-only secrets.
 
 Module: `src/features/compose-runtime/composition/createInfraAdapter.ts`
-Source: `src/features/compose-runtime/composition/createInfraAdapter.ts:13:1`
+Source: `src/features/compose-runtime/composition/createInfraAdapter.ts:20:1`
+Related symbols: `DockerComposeAdapterOptions`
+
+</details>
+
+<details>
+<summary>projectDockerComposeProject</summary>
+
+```ts
+projectDockerComposeProject(context: InfraExecutionContext, desired: DockerComposeDesiredState, identity: DockerComposeProjectIdentity) => InfraResult<DockerComposeProject>
+```
+
+Project portable workloads into deterministic Compose services, networks, volumes, configs and
+secret references without Kubernetes-specific concepts or resolved secret values.
+
+Module: `src/features/compose-runtime/application/projectDockerComposeProject.ts`
+Source: `src/features/compose-runtime/application/projectDockerComposeProject.ts:22:1`
+Related symbols: `DockerComposeDesiredState`, `DockerComposeProject`, `DockerComposeProjectIdentity`
 
 </details>

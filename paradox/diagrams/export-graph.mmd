@@ -1,10 +1,89 @@
 graph LR
   module_examples_basic_usage_index_ts["examples/basic-usage/index.ts"]
   module_src_constants_infra_ts["src/constants/infra.ts"]
+  module_src_dockerComposeRuntime_test_ts["src/dockerComposeRuntime.test.ts"]
+  module_src_features_compose_runtime_application_destroyDockerComposeRuntimeAsync_ts["src/features/compose-runtime/application/destroyDockerComposeRuntimeAsync.ts"]
+  module_src_features_compose_runtime_application_ensureDockerComposeRuntimeAsync_ts["src/features/compose-runtime/application/ensureDockerComposeRuntimeAsync.ts"]
+  module_src_features_compose_runtime_application_getDockerComposeStatusAsync_ts["src/features/compose-runtime/application/getDockerComposeStatusAsync.ts"]
+  module_src_features_compose_runtime_application_materializeDockerComposeSecretsAsync_ts["src/features/compose-runtime/application/materializeDockerComposeSecretsAsync.ts"]
+  module_src_features_compose_runtime_application_planDockerComposeRuntimeAsync_ts["src/features/compose-runtime/application/planDockerComposeRuntimeAsync.ts"]
+  module_src_features_compose_runtime_application_prepareDockerComposeRuntimeAsync_ts["src/features/compose-runtime/application/prepareDockerComposeRuntimeAsync.ts"]
+  module_src_features_compose_runtime_application_projectDockerComposeProject_ts["src/features/compose-runtime/application/projectDockerComposeProject.ts"]
+  module_src_features_compose_runtime_application_projectDockerComposeWorkload_ts["src/features/compose-runtime/application/projectDockerComposeWorkload.ts"]
+  module_src_features_compose_runtime_application_readDockerComposeOutputs_ts["src/features/compose-runtime/application/readDockerComposeOutputs.ts"]
+  module_src_features_compose_runtime_application_resolveDockerComposeValue_ts["src/features/compose-runtime/application/resolveDockerComposeValue.ts"]
+  module_src_features_compose_runtime_application_suspendDockerComposeRuntimeAsync_ts["src/features/compose-runtime/application/suspendDockerComposeRuntimeAsync.ts"]
+  module_src_features_compose_runtime_application_validateDockerComposeRuntimeAsync_ts["src/features/compose-runtime/application/validateDockerComposeRuntimeAsync.ts"]
+  module_src_features_compose_runtime_application_validateDockerComposeWorkloads_ts["src/features/compose-runtime/application/validateDockerComposeWorkloads.ts"]
   module_src_features_compose_runtime_composition_createInfraAdapter_ts["src/features/compose-runtime/composition/createInfraAdapter.ts"]
+  module_src_features_compose_runtime_utils_dockerComposeResourceFactories_ts["src/features/compose-runtime/utils/dockerComposeResourceFactories.ts"]
+  module_src_features_compose_runtime_utils_getDockerComposeProjectIdentity_ts["src/features/compose-runtime/utils/getDockerComposeProjectIdentity.ts"]
+  module_src_features_compose_runtime_utils_getDockerComposeResources_ts["src/features/compose-runtime/utils/getDockerComposeResources.ts"]
+  module_src_features_compose_runtime_utils_resolveDockerComposeTargetAsync_ts["src/features/compose-runtime/utils/resolveDockerComposeTargetAsync.ts"]
   module_src_index_ts["src/index.ts"]
   module_src_infraAdapter_test_ts["src/infraAdapter.test.ts"]
+  module_src_runtimeFixtures_test_ts["src/runtimeFixtures.test.ts"]
+  module_src_types_dockerComposeRuntime_ts["src/types/dockerComposeRuntime.ts"]
   export_createInfraAdapter["createInfraAdapter"]
   module_src_features_compose_runtime_composition_createInfraAdapter_ts --> export_createInfraAdapter
+  export_createInfraAdapter -.-> export_DockerComposeAdapterOptions
+  export_DockerComposeAdapterOptions["DockerComposeAdapterOptions"]
+  module_src_types_dockerComposeRuntime_ts --> export_DockerComposeAdapterOptions
+  export_DockerComposeAdapterOptions -.-> export_DockerComposeControlPlane
+  export_DockerComposeConfig["DockerComposeConfig"]
+  module_src_types_dockerComposeRuntime_ts --> export_DockerComposeConfig
+  export_DockerComposeControlPlane["DockerComposeControlPlane"]
+  module_src_types_dockerComposeRuntime_ts --> export_DockerComposeControlPlane
+  export_DockerComposeControlPlane -.-> export_DockerComposeExecutionProject
+  export_DockerComposeControlPlane -.-> export_DockerComposeProject
+  export_DockerComposeControlPlane -.-> export_DockerComposeProjectIdentity
+  export_DockerComposeControlPlane -.-> export_DockerComposeProjectObservation
+  export_DockerComposeControlPlane -.-> export_DockerComposeTargetAccess
+  export_DockerComposeDesiredState["DockerComposeDesiredState"]
+  module_src_types_dockerComposeRuntime_ts --> export_DockerComposeDesiredState
+  export_DockerComposeExecutionProject["DockerComposeExecutionProject"]
+  module_src_types_dockerComposeRuntime_ts --> export_DockerComposeExecutionProject
+  export_DockerComposeExecutionProject -.-> export_DockerComposeConfig
+  export_DockerComposeExecutionProject -.-> export_DockerComposeMaterializedSecret
+  export_DockerComposeExecutionProject -.-> export_DockerComposeNetwork
+  export_DockerComposeExecutionProject -.-> export_DockerComposeProjectIdentity
+  export_DockerComposeExecutionProject -.-> export_DockerComposeService
+  export_DockerComposeExecutionProject -.-> export_DockerComposeVolume
+  export_DockerComposeMaterializedSecret["DockerComposeMaterializedSecret"]
+  module_src_types_dockerComposeRuntime_ts --> export_DockerComposeMaterializedSecret
+  export_DockerComposeNetwork["DockerComposeNetwork"]
+  module_src_types_dockerComposeRuntime_ts --> export_DockerComposeNetwork
+  export_DockerComposeOutput["DockerComposeOutput"]
+  module_src_types_dockerComposeRuntime_ts --> export_DockerComposeOutput
+  export_DockerComposeProject["DockerComposeProject"]
+  module_src_types_dockerComposeRuntime_ts --> export_DockerComposeProject
+  export_DockerComposeProject -.-> export_DockerComposeConfig
+  export_DockerComposeProject -.-> export_DockerComposeNetwork
+  export_DockerComposeProject -.-> export_DockerComposeProjectIdentity
+  export_DockerComposeProject -.-> export_DockerComposeSecret
+  export_DockerComposeProject -.-> export_DockerComposeService
+  export_DockerComposeProject -.-> export_DockerComposeVolume
+  export_DockerComposeProjectIdentity["DockerComposeProjectIdentity"]
+  module_src_types_dockerComposeRuntime_ts --> export_DockerComposeProjectIdentity
+  export_DockerComposeProjectObservation["DockerComposeProjectObservation"]
+  module_src_types_dockerComposeRuntime_ts --> export_DockerComposeProjectObservation
+  export_DockerComposeProjectObservation -.-> export_DockerComposeResourceObservation
+  export_DockerComposeResource["DockerComposeResource"]
+  module_src_types_dockerComposeRuntime_ts --> export_DockerComposeResource
+  export_DockerComposeResourceObservation["DockerComposeResourceObservation"]
+  module_src_types_dockerComposeRuntime_ts --> export_DockerComposeResourceObservation
+  export_DockerComposeSecret["DockerComposeSecret"]
+  module_src_types_dockerComposeRuntime_ts --> export_DockerComposeSecret
+  export_DockerComposeService["DockerComposeService"]
+  module_src_types_dockerComposeRuntime_ts --> export_DockerComposeService
+  export_DockerComposeTargetAccess["DockerComposeTargetAccess"]
+  module_src_types_dockerComposeRuntime_ts --> export_DockerComposeTargetAccess
+  export_DockerComposeVolume["DockerComposeVolume"]
+  module_src_types_dockerComposeRuntime_ts --> export_DockerComposeVolume
   export_infraAdapterDescriptor["infraAdapterDescriptor"]
   module_src_constants_infra_ts --> export_infraAdapterDescriptor
+  export_projectDockerComposeProject["projectDockerComposeProject"]
+  module_src_features_compose_runtime_application_projectDockerComposeProject_ts --> export_projectDockerComposeProject
+  export_projectDockerComposeProject -.-> export_DockerComposeDesiredState
+  export_projectDockerComposeProject -.-> export_DockerComposeProject
+  export_projectDockerComposeProject -.-> export_DockerComposeProjectIdentity
