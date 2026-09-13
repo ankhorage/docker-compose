@@ -7,6 +7,7 @@ export type {
   DockerComposeCommandRequest,
   DockerComposeCommandResult,
   DockerComposeCommandRunner,
+  DockerComposeEngineSession,
 } from './types/dockerComposeProcess';
 export type {
   DockerComposeAdapterOptions,

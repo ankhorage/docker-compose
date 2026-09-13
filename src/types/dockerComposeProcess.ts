@@ -19,6 +19,14 @@ export interface DockerComposeCommandRunner {
   runAsync(request: DockerComposeCommandRequest): Promise<DockerComposeCommandResult>;
 }
 
+/** One resolved local or verified-SSH Docker engine execution session. */
+export interface DockerComposeEngineSession {
+  readonly runner: DockerComposeCommandRunner;
+  readonly executable: string;
+  readonly environment?: Readonly<Record<string, string>>;
+  readonly endpointHost: string;
+}
+
 /** Serialized Compose input and its execution-only interpolation environment. */
 export interface DockerComposeCliInput {
   readonly document: string;

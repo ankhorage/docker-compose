@@ -13,6 +13,7 @@ import type {
 } from '../../../types/dockerComposeRuntime';
 import { getDockerComposeProjectIdentity } from '../utils/getDockerComposeProjectIdentity';
 import { createObservedDockerComposeOwner } from '../utils/getDockerComposeResources';
+import { orderDockerComposeResourceIdsForRemoval } from '../utils/orderDockerComposeResourceIdsForRemoval';
 
 /*** Delete only owned and authorized Compose resources in reverse dependency order. */
 export async function destroyDockerComposeRuntimeAsync(
@@ -39,7 +40,7 @@ export async function destroyDockerComposeRuntimeAsync(
   );
   const destroyed = await options.controlPlane.destroyAsync(
     identity.value,
-    orderForRemoval(deletable),
+    orderDockerComposeResourceIdsForRemoval(deletable),
     context.signal,
   );
   if (!destroyed.ok) return destroyed;
@@ -70,28 +71,6 @@ function canDelete(
         identity.resourceId === resource.resourceId,
     )
   );
-}
-
-function orderForRemoval(
-  resources: readonly DockerComposeResourceObservation[],
-): readonly string[] {
-  const byId = new Map(resources.map((resource) => [resource.resourceId, resource]));
-  const visited = new Set<string>();
-  const dependencyFirst: string[] = [];
-  const visit = (resourceId: string): void => {
-    if (visited.has(resourceId)) return;
-    const resource = byId.get(resourceId);
-    if (resource === undefined) return;
-    visited.add(resourceId);
-    for (const dependency of resource.dependsOnResourceIds) visit(dependency);
-    dependencyFirst.push(resourceId);
-  };
-  for (const resource of [...resources].sort(({ resourceId: left }, { resourceId: right }) =>
-    left.localeCompare(right),
-  )) {
-    visit(resource.resourceId);
-  }
-  return dependencyFirst.reverse();
 }
 
 function isConfirmed(context: InfraExecutionContext, request: InfraDestroyRequest): boolean {

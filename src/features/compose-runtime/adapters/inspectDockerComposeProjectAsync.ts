@@ -1,19 +1,12 @@
 import type { InfraResult } from '@ankhorage/contracts/infra';
 
-import type { DockerComposeCommandRunner } from '../../../types/dockerComposeProcess';
+import type { DockerComposeEngineSession } from '../../../types/dockerComposeProcess';
 import type {
   DockerComposeProjectIdentity,
   DockerComposeProjectObservation,
 } from '../../../types/dockerComposeRuntime';
-import { DOCKER_COMPOSE_LABELS } from '../utils/dockerComposeLabels';
+import { getDockerComposeOwnershipFilters } from '../utils/getDockerComposeOwnershipFilters';
 import { parseDockerComposeInspection } from './parseDockerComposeInspection';
-
-interface DockerComposeEngineSession {
-  readonly runner: DockerComposeCommandRunner;
-  readonly executable: string;
-  readonly environment?: Readonly<Record<string, string>>;
-  readonly endpointHost: string;
-}
 
 /*** Inspect only Docker resources carrying the exact project/environment/adapter ownership scope. */
 export async function inspectDockerComposeProjectAsync(
@@ -21,7 +14,7 @@ export async function inspectDockerComposeProjectAsync(
   identity: DockerComposeProjectIdentity,
   signal?: AbortSignal,
 ): Promise<InfraResult<DockerComposeProjectObservation>> {
-  const filters = ownershipFilters(identity);
+  const filters = getDockerComposeOwnershipFilters(identity);
   const [containerIds, networkIds, volumeNames] = await Promise.all([
     listAsync(session, ['container', 'ls', '--all', ...filters, '--format', '{{.ID}}'], signal),
     listAsync(session, ['network', 'ls', ...filters, '--format', '{{.ID}}'], signal),
@@ -45,17 +38,6 @@ export async function inspectDockerComposeProjectAsync(
     networks: networks.value,
     volumes: volumes.value,
   });
-}
-
-function ownershipFilters(identity: DockerComposeProjectIdentity): readonly string[] {
-  return [
-    '--filter',
-    `label=${DOCKER_COMPOSE_LABELS.project}=${identity.projectId}`,
-    '--filter',
-    `label=${DOCKER_COMPOSE_LABELS.environment}=${identity.environment}`,
-    '--filter',
-    `label=${DOCKER_COMPOSE_LABELS.adapter}=docker-compose`,
-  ];
 }
 
 async function listAsync(
