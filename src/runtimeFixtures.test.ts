@@ -14,6 +14,7 @@ import type {
 export class FakeDockerComposeControlPlane implements DockerComposeControlPlane {
   readonly calls: string[] = [];
   lastAccess?: DockerComposeTargetAccess;
+  lastEnvironmentValues: Readonly<Record<string, string>> = {};
   lastSecretValues: readonly string[] = [];
   state: DockerComposeProjectObservation['state'] = 'absent';
   resources: DockerComposeResourceObservation[] = [];
@@ -39,6 +40,9 @@ export class FakeDockerComposeControlPlane implements DockerComposeControlPlane 
   ): Promise<InfraResult<DockerComposeProjectObservation>> {
     this.calls.push(`up:${project.identity.projectName}`);
     this.lastAccess = access;
+    this.lastEnvironmentValues = Object.fromEntries(
+      project.services.flatMap(({ environment }) => Object.entries(environment)),
+    );
     this.lastSecretValues = project.secrets.map(({ value }) => value);
     const desired = [
       project.network,

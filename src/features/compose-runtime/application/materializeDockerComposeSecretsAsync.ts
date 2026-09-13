@@ -4,6 +4,7 @@ import type {
   DockerComposeExecutionProject,
   DockerComposeMaterializedSecret,
   DockerComposeProject,
+  DockerComposeSecretValueSegment,
 } from '../../../types/dockerComposeRuntime';
 
 /*** Resolve secret references immediately before Compose reconciliation. */
@@ -13,21 +14,39 @@ export async function materializeDockerComposeSecretsAsync(
 ): Promise<InfraResult<DockerComposeExecutionProject>> {
   const secrets: DockerComposeMaterializedSecret[] = [];
   for (const secret of project.secrets) {
-    const resolved =
-      secret.reference.source === 'secret-store'
-        ? await context.secrets.resolveAsync(secret.reference)
-        : await resolveCredentialValueAsync(context, secret.reference);
+    const resolved = await materializeSegmentsAsync(context, secret.segments);
     if (!resolved.ok) return resolved;
-    const { reference: _reference, ...publicSecret } = secret;
+    const { segments: _segments, ...publicSecret } = secret;
     secrets.push({ ...publicSecret, value: resolved.value });
   }
   return { ok: true, value: { ...project, secrets }, diagnostics: [] };
 }
 
+/*** Resolve and concatenate one ordered execution-only secret value. */
+async function materializeSegmentsAsync(
+  context: InfraExecutionContext,
+  segments: DockerComposeProject['secrets'][number]['segments'],
+): Promise<InfraResult<string>> {
+  const values: string[] = [];
+  for (const segment of segments) {
+    if (segment.kind === 'literal') {
+      values.push(segment.value);
+      continue;
+    }
+    const resolved =
+      segment.reference.source === 'secret-store'
+        ? await context.secrets.resolveAsync(segment.reference)
+        : await resolveCredentialValueAsync(context, segment.reference);
+    if (!resolved.ok) return resolved;
+    values.push(resolved.value);
+  }
+  return { ok: true, value: values.join(''), diagnostics: [] };
+}
+
 async function resolveCredentialValueAsync(
   context: InfraExecutionContext,
   reference: Extract<
-    DockerComposeProject['secrets'][number]['reference'],
+    Extract<DockerComposeSecretValueSegment, { readonly kind: 'reference' }>['reference'],
     { source: 'control-plane' }
   >,
 ): Promise<InfraResult<string>> {

@@ -89,7 +89,7 @@ export function createDockerComposeSecret(
   identity: DockerComposeProjectIdentity,
   workloadId: string,
   suffix: string,
-  reference: DockerComposeSecret['reference'],
+  segments: DockerComposeSecret['segments'],
   target: DockerComposeSecret['target'],
 ): DockerComposeSecret {
   const owner = createDockerComposeOwner(
@@ -103,7 +103,7 @@ export function createDockerComposeSecret(
     kind: 'secret' as const,
     owner,
     name: toComposeName(`${identity.projectName}-${workloadId}-secret-${suffix}`),
-    reference,
+    segments,
     target,
   };
   return { ...spec, configurationHash: hashDockerComposeResource(spec) };

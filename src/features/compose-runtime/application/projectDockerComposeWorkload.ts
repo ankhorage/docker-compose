@@ -117,7 +117,7 @@ function projectEnvironment(
         request.identity,
         request.workload.id,
         `env-${index}`,
-        resolved.value.reference,
+        resolved.value.segments,
         { kind: 'environment', name },
       );
       secrets.push(secret);
@@ -157,7 +157,7 @@ function projectFiles(request: WorkloadProjectionRequest): InfraResult<FileProje
         request.identity,
         request.workload.id,
         `file-${index}`,
-        resolved.value.reference,
+        resolved.value.segments,
         { kind: 'file', path: file.path },
       );
       secrets.push(secret);

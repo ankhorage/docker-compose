@@ -10,6 +10,7 @@ graph LR
   module_src_dockerComposeInspection_test_ts["src/dockerComposeInspection.test.ts"]
   module_src_dockerComposeProcess_test_ts["src/dockerComposeProcess.test.ts"]
   module_src_dockerComposeRuntime_test_ts["src/dockerComposeRuntime.test.ts"]
+  module_src_dockerComposeTemplates_test_ts["src/dockerComposeTemplates.test.ts"]
   module_src_features_compose_runtime_adapters_createDockerComposeCliControlPlane_ts["src/features/compose-runtime/adapters/createDockerComposeCliControlPlane.ts"]
   module_src_features_compose_runtime_adapters_createLocalDockerComposeSessionResolver_ts["src/features/compose-runtime/adapters/createLocalDockerComposeSessionResolver.ts"]
   module_src_features_compose_runtime_adapters_createSubprocessDockerComposeCommandRunner_ts["src/features/compose-runtime/adapters/createSubprocessDockerComposeCommandRunner.ts"]
@@ -68,6 +69,8 @@ graph LR
   module_src_dockerComposeProcess_test_ts --> module_src_index_ts
   module_src_dockerComposeRuntime_test_ts --> module_src_index_ts
   module_src_dockerComposeRuntime_test_ts --> module_src_runtimeFixtures_test_ts
+  module_src_dockerComposeTemplates_test_ts --> module_src_index_ts
+  module_src_dockerComposeTemplates_test_ts --> module_src_runtimeFixtures_test_ts
   module_src_features_compose_runtime_adapters_createDockerComposeCliControlPlane_ts --> module_src_features_compose_runtime_adapters_createLocalDockerComposeSessionResolver_ts
   module_src_features_compose_runtime_adapters_createDockerComposeCliControlPlane_ts --> module_src_features_compose_runtime_adapters_inspectDockerComposeProjectAsync_ts
   module_src_features_compose_runtime_adapters_createDockerComposeCliControlPlane_ts --> module_src_features_compose_runtime_adapters_reconcileDockerComposeProjectAsync_ts

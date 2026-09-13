@@ -27,6 +27,7 @@ export type {
   DockerComposeResource,
   DockerComposeResourceObservation,
   DockerComposeSecret,
+  DockerComposeSecretValueSegment,
   DockerComposeService,
   DockerComposeTargetAccess,
   DockerComposeVolume,
