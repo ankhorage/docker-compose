@@ -1,30 +1,87 @@
 [
   {
+    "name": "createDockerComposeCliControlPlane",
+    "description": null,
+    "isReadme": false,
+    "examples": [],
+    "kind": "function",
+    "modulePath": "src/features/compose-runtime/adapters/createDockerComposeCliControlPlane.ts",
+    "sourceLocation": {
+      "filePath": "src/features/compose-runtime/adapters/createDockerComposeCliControlPlane.ts",
+      "line": 17,
+      "column": 1
+    },
+    "exportPaths": ["src/index.ts"],
+    "relatedSymbols": ["DockerComposeControlPlane", "DockerComposeSessionResolver"],
+    "signatures": [
+      {
+        "label": "(resolver?: DockerComposeSessionResolver) => DockerComposeControlPlane",
+        "parameters": [
+          {
+            "name": "resolver",
+            "type": "DockerComposeSessionResolver",
+            "required": false,
+            "description": null
+          }
+        ],
+        "returnType": "DockerComposeControlPlane",
+        "returnDescription": null
+      }
+    ],
+    "members": [],
+    "structuredRows": []
+  },
+  {
     "name": "createInfraAdapter",
-    "description": "Create the canonical Docker Compose runtime adapter entrypoint.\n\nThe caller supplies a Docker Compose control-plane boundary. Portable workloads are projected\ninto Compose services, networks, volumes, configs and execution-only secrets.",
+    "description": "Create the canonical Docker Compose runtime adapter entrypoint.\n\nThe default composition operates the local Docker CLI. Callers may inject a control plane for a\nverified remote engine. Portable workloads become services, networks, volumes, configs and\nexecution-only secrets.",
     "isReadme": true,
     "examples": [],
     "kind": "function",
     "modulePath": "src/features/compose-runtime/composition/createInfraAdapter.ts",
     "sourceLocation": {
       "filePath": "src/features/compose-runtime/composition/createInfraAdapter.ts",
-      "line": 20,
+      "line": 22,
       "column": 1
     },
     "exportPaths": ["src/index.ts"],
     "relatedSymbols": ["DockerComposeAdapterOptions"],
     "signatures": [
       {
-        "label": "(options: DockerComposeAdapterOptions) => InfraRuntimeAdapter<\"docker-compose\">",
+        "label": "(options?: DockerComposeAdapterOptions | undefined) => InfraRuntimeAdapter<\"docker-compose\">",
         "parameters": [
           {
             "name": "options",
-            "type": "DockerComposeAdapterOptions",
-            "required": true,
+            "type": "DockerComposeAdapterOptions | undefined",
+            "required": false,
             "description": null
           }
         ],
         "returnType": "InfraRuntimeAdapter<\"docker-compose\">",
+        "returnDescription": null
+      }
+    ],
+    "members": [],
+    "structuredRows": []
+  },
+  {
+    "name": "createLocalDockerComposeSessionResolver",
+    "description": null,
+    "isReadme": false,
+    "examples": [],
+    "kind": "function",
+    "modulePath": "src/features/compose-runtime/adapters/createLocalDockerComposeSessionResolver.ts",
+    "sourceLocation": {
+      "filePath": "src/features/compose-runtime/adapters/createLocalDockerComposeSessionResolver.ts",
+      "line": 10,
+      "column": 1
+    },
+    "exportPaths": ["src/index.ts"],
+    "relatedSymbols": ["DockerComposeSessionResolver"],
+    "signatures": [
+      {
+        "label": "() => DockerComposeSessionResolver",
+        "parameters": [],
+        "returnType": "DockerComposeSessionResolver",
         "returnDescription": null
       }
     ],
@@ -65,7 +122,7 @@
     "modulePath": "src/types/dockerComposeRuntime.ts",
     "sourceLocation": {
       "filePath": "src/types/dockerComposeRuntime.ts",
-      "line": 14,
+      "line": 15,
       "column": 1
     },
     "exportPaths": ["src/index.ts"],
@@ -91,7 +148,7 @@
     "modulePath": "src/types/dockerComposeProcess.ts",
     "sourceLocation": {
       "filePath": "src/types/dockerComposeProcess.ts",
-      "line": 2,
+      "line": 6,
       "column": 1
     },
     "exportPaths": ["src/index.ts"],
@@ -145,7 +202,7 @@
     "modulePath": "src/types/dockerComposeProcess.ts",
     "sourceLocation": {
       "filePath": "src/types/dockerComposeProcess.ts",
-      "line": 11,
+      "line": 15,
       "column": 1
     },
     "exportPaths": ["src/index.ts"],
@@ -185,7 +242,7 @@
     "modulePath": "src/types/dockerComposeProcess.ts",
     "sourceLocation": {
       "filePath": "src/types/dockerComposeProcess.ts",
-      "line": 18,
+      "line": 22,
       "column": 1
     },
     "exportPaths": ["src/index.ts"],
@@ -211,7 +268,7 @@
     "modulePath": "src/types/dockerComposeRuntime.ts",
     "sourceLocation": {
       "filePath": "src/types/dockerComposeRuntime.ts",
-      "line": 57,
+      "line": 58,
       "column": 1
     },
     "exportPaths": ["src/index.ts"],
@@ -265,7 +322,7 @@
     "modulePath": "src/types/dockerComposeRuntime.ts",
     "sourceLocation": {
       "filePath": "src/types/dockerComposeRuntime.ts",
-      "line": 133,
+      "line": 135,
       "column": 1
     },
     "exportPaths": ["src/index.ts"],
@@ -281,21 +338,21 @@
       {
         "name": "destroyAsync",
         "kind": "method",
-        "type": "(identity: DockerComposeProjectIdentity, resourceIds: readonly string[], signal?: AbortSignal) => Promise<InfraResult<null>>",
+        "type": "(identity: DockerComposeProjectIdentity, access: DockerComposeTargetAccess, resourceIds: readonly string[], signal?: AbortSignal) => Promise<InfraResult<null>>",
         "required": true,
         "description": null
       },
       {
         "name": "downAsync",
         "kind": "method",
-        "type": "(identity: DockerComposeProjectIdentity, signal?: AbortSignal) => Promise<InfraResult<null>>",
+        "type": "(identity: DockerComposeProjectIdentity, access: DockerComposeTargetAccess, signal?: AbortSignal) => Promise<InfraResult<null>>",
         "required": true,
         "description": null
       },
       {
         "name": "inspectAsync",
         "kind": "method",
-        "type": "(identity: DockerComposeProjectIdentity, signal?: AbortSignal) => Promise<InfraResult<DockerComposeProjectObservation>>",
+        "type": "(identity: DockerComposeProjectIdentity, access: DockerComposeTargetAccess, signal?: AbortSignal) => Promise<InfraResult<DockerComposeProjectObservation>>",
         "required": true,
         "description": null
       },
@@ -316,7 +373,7 @@
       {
         "name": "waitUntilReadyAsync",
         "kind": "method",
-        "type": "(identity: DockerComposeProjectIdentity, signal?: AbortSignal) => Promise<InfraResult<DockerComposeProjectObservation>>",
+        "type": "(identity: DockerComposeProjectIdentity, access: DockerComposeTargetAccess, signal?: AbortSignal) => Promise<InfraResult<DockerComposeProjectObservation>>",
         "required": true,
         "description": null
       }
@@ -332,13 +389,60 @@
     "modulePath": "src/types/dockerComposeRuntime.ts",
     "sourceLocation": {
       "filePath": "src/types/dockerComposeRuntime.ts",
-      "line": 164,
+      "line": 170,
       "column": 1
     },
     "exportPaths": ["src/index.ts"],
     "relatedSymbols": [],
     "signatures": [],
     "members": [],
+    "structuredRows": []
+  },
+  {
+    "name": "DockerComposeEngineSession",
+    "description": null,
+    "isReadme": false,
+    "examples": [],
+    "kind": "type",
+    "modulePath": "src/types/dockerComposeProcess.ts",
+    "sourceLocation": {
+      "filePath": "src/types/dockerComposeProcess.ts",
+      "line": 27,
+      "column": 1
+    },
+    "exportPaths": ["src/index.ts"],
+    "relatedSymbols": ["DockerComposeCommandRunner"],
+    "signatures": [],
+    "members": [
+      {
+        "name": "endpointHost",
+        "kind": "property",
+        "type": "string",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "environment",
+        "kind": "property",
+        "type": "Readonly<Record<string, string>> | undefined",
+        "required": false,
+        "description": null
+      },
+      {
+        "name": "executable",
+        "kind": "property",
+        "type": "string",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "runner",
+        "kind": "property",
+        "type": "DockerComposeCommandRunner",
+        "required": true,
+        "description": null
+      }
+    ],
     "structuredRows": []
   },
   {
@@ -350,7 +454,7 @@
     "modulePath": "src/types/dockerComposeRuntime.ts",
     "sourceLocation": {
       "filePath": "src/types/dockerComposeRuntime.ts",
-      "line": 111,
+      "line": 113,
       "column": 1
     },
     "exportPaths": ["src/index.ts"],
@@ -418,7 +522,7 @@
     "modulePath": "src/types/dockerComposeRuntime.ts",
     "sourceLocation": {
       "filePath": "src/types/dockerComposeRuntime.ts",
-      "line": 106,
+      "line": 108,
       "column": 1
     },
     "exportPaths": ["src/index.ts"],
@@ -479,7 +583,7 @@
     "modulePath": "src/types/dockerComposeRuntime.ts",
     "sourceLocation": {
       "filePath": "src/types/dockerComposeRuntime.ts",
-      "line": 46,
+      "line": 47,
       "column": 1
     },
     "exportPaths": ["src/index.ts"],
@@ -526,7 +630,7 @@
     "modulePath": "src/types/dockerComposeRuntime.ts",
     "sourceLocation": {
       "filePath": "src/types/dockerComposeRuntime.ts",
-      "line": 165,
+      "line": 171,
       "column": 1
     },
     "exportPaths": ["src/index.ts"],
@@ -544,7 +648,7 @@
     "modulePath": "src/types/dockerComposeRuntime.ts",
     "sourceLocation": {
       "filePath": "src/types/dockerComposeRuntime.ts",
-      "line": 97,
+      "line": 99,
       "column": 1
     },
     "exportPaths": ["src/index.ts"],
@@ -612,7 +716,7 @@
     "modulePath": "src/types/dockerComposeRuntime.ts",
     "sourceLocation": {
       "filePath": "src/types/dockerComposeRuntime.ts",
-      "line": 18,
+      "line": 19,
       "column": 1
     },
     "exportPaths": ["src/index.ts"],
@@ -652,7 +756,7 @@
     "modulePath": "src/types/dockerComposeRuntime.ts",
     "sourceLocation": {
       "filePath": "src/types/dockerComposeRuntime.ts",
-      "line": 127,
+      "line": 129,
       "column": 1
     },
     "exportPaths": ["src/index.ts"],
@@ -685,7 +789,7 @@
     "modulePath": "src/types/dockerComposeRuntime.ts",
     "sourceLocation": {
       "filePath": "src/types/dockerComposeRuntime.ts",
-      "line": 166,
+      "line": 172,
       "column": 1
     },
     "exportPaths": ["src/index.ts"],
@@ -703,7 +807,7 @@
     "modulePath": "src/types/dockerComposeRuntime.ts",
     "sourceLocation": {
       "filePath": "src/types/dockerComposeRuntime.ts",
-      "line": 115,
+      "line": 117,
       "column": 1
     },
     "exportPaths": ["src/index.ts"],
@@ -785,7 +889,7 @@
     "modulePath": "src/types/dockerComposeRuntime.ts",
     "sourceLocation": {
       "filePath": "src/types/dockerComposeRuntime.ts",
-      "line": 63,
+      "line": 64,
       "column": 1
     },
     "exportPaths": ["src/index.ts"],
@@ -823,7 +927,7 @@
       {
         "name": "reference",
         "kind": "property",
-        "type": "InfraSecretReference",
+        "type": "InfraSecretReference | (InfraControlPlaneCredentialRef & { readonly key: string; })",
         "required": true,
         "description": null
       },
@@ -846,7 +950,7 @@
     "modulePath": "src/types/dockerComposeRuntime.ts",
     "sourceLocation": {
       "filePath": "src/types/dockerComposeRuntime.ts",
-      "line": 72,
+      "line": 74,
       "column": 1
     },
     "exportPaths": ["src/index.ts"],
@@ -969,6 +1073,32 @@
     "structuredRows": []
   },
   {
+    "name": "DockerComposeSessionResolver",
+    "description": null,
+    "isReadme": false,
+    "examples": [],
+    "kind": "type",
+    "modulePath": "src/types/dockerComposeProcess.ts",
+    "sourceLocation": {
+      "filePath": "src/types/dockerComposeProcess.ts",
+      "line": 35,
+      "column": 1
+    },
+    "exportPaths": ["src/index.ts"],
+    "relatedSymbols": ["DockerComposeEngineSession", "DockerComposeTargetAccess"],
+    "signatures": [],
+    "members": [
+      {
+        "name": "resolveAsync",
+        "kind": "method",
+        "type": "(access: DockerComposeTargetAccess, signal?: AbortSignal) => Promise<InfraResult<DockerComposeEngineSession>>",
+        "required": true,
+        "description": null
+      }
+    ],
+    "structuredRows": []
+  },
+  {
     "name": "DockerComposeTargetAccess",
     "description": null,
     "isReadme": false,
@@ -977,7 +1107,7 @@
     "modulePath": "src/types/dockerComposeRuntime.ts",
     "sourceLocation": {
       "filePath": "src/types/dockerComposeRuntime.ts",
-      "line": 24,
+      "line": 25,
       "column": 1
     },
     "exportPaths": ["src/index.ts"],
@@ -995,7 +1125,7 @@
     "modulePath": "src/types/dockerComposeRuntime.ts",
     "sourceLocation": {
       "filePath": "src/types/dockerComposeRuntime.ts",
-      "line": 51,
+      "line": 52,
       "column": 1
     },
     "exportPaths": ["src/index.ts"],

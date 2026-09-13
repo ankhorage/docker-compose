@@ -81,6 +81,12 @@
       "exports": ["infraAdapterDescriptor"]
     },
     {
+      "path": "src/dockerComposeCliControlPlane.test.ts",
+      "isEntrypoint": false,
+      "dependencies": ["src/index.ts"],
+      "exports": []
+    },
+    {
       "path": "src/dockerComposeCliInput.test.ts",
       "isEntrypoint": false,
       "dependencies": [
@@ -94,6 +100,34 @@
       "isEntrypoint": false,
       "dependencies": [
         "src/features/compose-runtime/adapters/inspectDockerComposeProjectAsync.ts",
+        "src/index.ts"
+      ],
+      "exports": []
+    },
+    {
+      "path": "src/dockerComposeEngineLifecycle.test.ts",
+      "isEntrypoint": false,
+      "dependencies": [
+        "src/features/compose-runtime/adapters/stopDockerComposeProjectAsync.ts",
+        "src/features/compose-runtime/adapters/waitForDockerComposeProjectAsync.ts",
+        "src/index.ts"
+      ],
+      "exports": []
+    },
+    {
+      "path": "src/dockerComposeEngineReconcile.test.ts",
+      "isEntrypoint": false,
+      "dependencies": [
+        "src/features/compose-runtime/adapters/reconcileDockerComposeProjectAsync.ts",
+        "src/index.ts"
+      ],
+      "exports": []
+    },
+    {
+      "path": "src/dockerComposeEngineRemoval.test.ts",
+      "isEntrypoint": false,
+      "dependencies": [
+        "src/features/compose-runtime/adapters/removeDockerComposeResourcesAsync.ts",
         "src/index.ts"
       ],
       "exports": []
@@ -120,6 +154,31 @@
       "exports": []
     },
     {
+      "path": "src/features/compose-runtime/adapters/createDockerComposeCliControlPlane.ts",
+      "isEntrypoint": false,
+      "dependencies": [
+        "src/features/compose-runtime/adapters/createLocalDockerComposeSessionResolver.ts",
+        "src/features/compose-runtime/adapters/inspectDockerComposeProjectAsync.ts",
+        "src/features/compose-runtime/adapters/reconcileDockerComposeProjectAsync.ts",
+        "src/features/compose-runtime/adapters/removeDockerComposeResourcesAsync.ts",
+        "src/features/compose-runtime/adapters/runDockerComposeCommandAsync.ts",
+        "src/features/compose-runtime/adapters/stopDockerComposeProjectAsync.ts",
+        "src/features/compose-runtime/adapters/waitForDockerComposeProjectAsync.ts",
+        "src/types/dockerComposeProcess.ts",
+        "src/types/dockerComposeRuntime.ts"
+      ],
+      "exports": ["createDockerComposeCliControlPlane"]
+    },
+    {
+      "path": "src/features/compose-runtime/adapters/createLocalDockerComposeSessionResolver.ts",
+      "isEntrypoint": false,
+      "dependencies": [
+        "src/features/compose-runtime/adapters/createSubprocessDockerComposeCommandRunner.ts",
+        "src/types/dockerComposeProcess.ts"
+      ],
+      "exports": ["createLocalDockerComposeSessionResolver"]
+    },
+    {
       "path": "src/features/compose-runtime/adapters/createSubprocessDockerComposeCommandRunner.ts",
       "isEntrypoint": false,
       "dependencies": ["src/types/dockerComposeProcess.ts"],
@@ -130,7 +189,7 @@
       "isEntrypoint": false,
       "dependencies": [
         "src/features/compose-runtime/adapters/parseDockerComposeInspection.ts",
-        "src/features/compose-runtime/utils/dockerComposeLabels.ts",
+        "src/features/compose-runtime/utils/getDockerComposeOwnershipFilters.ts",
         "src/types/dockerComposeProcess.ts",
         "src/types/dockerComposeRuntime.ts"
       ],
@@ -142,10 +201,36 @@
       "dependencies": [
         "src/features/compose-runtime/utils/dockerComposeLabels.ts",
         "src/features/compose-runtime/utils/dockerJson.ts",
+        "src/features/compose-runtime/utils/mergeDockerComposeServiceReplicas.ts",
         "src/features/compose-runtime/utils/parseDockerComposeInventory.ts",
         "src/types/dockerComposeRuntime.ts"
       ],
       "exports": ["parseDockerComposeInspection"]
+    },
+    {
+      "path": "src/features/compose-runtime/adapters/reconcileDockerComposeProjectAsync.ts",
+      "isEntrypoint": false,
+      "dependencies": [
+        "src/features/compose-runtime/adapters/inspectDockerComposeProjectAsync.ts",
+        "src/features/compose-runtime/adapters/removeDockerComposeResourcesAsync.ts",
+        "src/features/compose-runtime/adapters/renderDockerComposeCliInput.ts",
+        "src/features/compose-runtime/adapters/runDockerComposeCommandAsync.ts",
+        "src/features/compose-runtime/utils/orderDockerComposeResourceIdsForRemoval.ts",
+        "src/types/dockerComposeProcess.ts",
+        "src/types/dockerComposeRuntime.ts"
+      ],
+      "exports": ["reconcileDockerComposeProjectAsync"]
+    },
+    {
+      "path": "src/features/compose-runtime/adapters/removeDockerComposeResourcesAsync.ts",
+      "isEntrypoint": false,
+      "dependencies": [
+        "src/features/compose-runtime/adapters/runDockerComposeCommandAsync.ts",
+        "src/features/compose-runtime/utils/getDockerComposeOwnershipFilters.ts",
+        "src/types/dockerComposeProcess.ts",
+        "src/types/dockerComposeRuntime.ts"
+      ],
+      "exports": ["removeDockerComposeResourcesAsync"]
     },
     {
       "path": "src/features/compose-runtime/adapters/renderDockerComposeCliInput.ts",
@@ -159,11 +244,39 @@
       "exports": ["renderDockerComposeCliInput"]
     },
     {
+      "path": "src/features/compose-runtime/adapters/runDockerComposeCommandAsync.ts",
+      "isEntrypoint": false,
+      "dependencies": ["src/types/dockerComposeProcess.ts"],
+      "exports": ["runDockerComposeCommandAsync"]
+    },
+    {
+      "path": "src/features/compose-runtime/adapters/stopDockerComposeProjectAsync.ts",
+      "isEntrypoint": false,
+      "dependencies": [
+        "src/features/compose-runtime/adapters/runDockerComposeCommandAsync.ts",
+        "src/features/compose-runtime/utils/getDockerComposeOwnershipFilters.ts",
+        "src/types/dockerComposeProcess.ts",
+        "src/types/dockerComposeRuntime.ts"
+      ],
+      "exports": ["stopDockerComposeProjectAsync"]
+    },
+    {
+      "path": "src/features/compose-runtime/adapters/waitForDockerComposeProjectAsync.ts",
+      "isEntrypoint": false,
+      "dependencies": [
+        "src/features/compose-runtime/adapters/inspectDockerComposeProjectAsync.ts",
+        "src/types/dockerComposeProcess.ts",
+        "src/types/dockerComposeRuntime.ts"
+      ],
+      "exports": ["waitForDockerComposeProjectAsync"]
+    },
+    {
       "path": "src/features/compose-runtime/application/destroyDockerComposeRuntimeAsync.ts",
       "isEntrypoint": false,
       "dependencies": [
-        "src/features/compose-runtime/utils/getDockerComposeProjectIdentity.ts",
         "src/features/compose-runtime/utils/getDockerComposeResources.ts",
+        "src/features/compose-runtime/utils/orderDockerComposeResourceIdsForRemoval.ts",
+        "src/features/compose-runtime/utils/resolveDockerComposeTargetAsync.ts",
         "src/types/dockerComposeRuntime.ts"
       ],
       "exports": ["destroyDockerComposeRuntimeAsync"]
@@ -184,7 +297,7 @@
       "path": "src/features/compose-runtime/application/getDockerComposeStatusAsync.ts",
       "isEntrypoint": false,
       "dependencies": [
-        "src/features/compose-runtime/utils/getDockerComposeProjectIdentity.ts",
+        "src/features/compose-runtime/utils/resolveDockerComposeTargetAsync.ts",
         "src/types/dockerComposeRuntime.ts"
       ],
       "exports": ["getDockerComposeStatusAsync"]
@@ -246,15 +359,15 @@
     {
       "path": "src/features/compose-runtime/application/resolveDockerComposeValue.ts",
       "isEntrypoint": false,
-      "dependencies": [],
+      "dependencies": ["src/types/dockerComposeRuntime.ts"],
       "exports": ["ResolvedDockerComposeValue", "resolveDockerComposeValue"]
     },
     {
       "path": "src/features/compose-runtime/application/suspendDockerComposeRuntimeAsync.ts",
       "isEntrypoint": false,
       "dependencies": [
-        "src/features/compose-runtime/utils/getDockerComposeProjectIdentity.ts",
         "src/features/compose-runtime/utils/getDockerComposeResources.ts",
+        "src/features/compose-runtime/utils/resolveDockerComposeTargetAsync.ts",
         "src/types/dockerComposeRuntime.ts"
       ],
       "exports": ["suspendDockerComposeRuntimeAsync"]
@@ -279,6 +392,7 @@
       "isEntrypoint": false,
       "dependencies": [
         "src/constants/infra.ts",
+        "src/features/compose-runtime/adapters/createDockerComposeCliControlPlane.ts",
         "src/features/compose-runtime/application/destroyDockerComposeRuntimeAsync.ts",
         "src/features/compose-runtime/application/ensureDockerComposeRuntimeAsync.ts",
         "src/features/compose-runtime/application/getDockerComposeStatusAsync.ts",
@@ -335,6 +449,15 @@
       ]
     },
     {
+      "path": "src/features/compose-runtime/utils/getDockerComposeOwnershipFilters.ts",
+      "isEntrypoint": false,
+      "dependencies": [
+        "src/features/compose-runtime/utils/dockerComposeLabels.ts",
+        "src/types/dockerComposeRuntime.ts"
+      ],
+      "exports": ["getDockerComposeOwnershipFilters"]
+    },
+    {
       "path": "src/features/compose-runtime/utils/getDockerComposeProjectIdentity.ts",
       "isEntrypoint": false,
       "dependencies": ["src/types/dockerComposeRuntime.ts"],
@@ -345,6 +468,18 @@
       "isEntrypoint": false,
       "dependencies": ["src/types/dockerComposeRuntime.ts"],
       "exports": ["createObservedDockerComposeOwner", "getDockerComposeResources"]
+    },
+    {
+      "path": "src/features/compose-runtime/utils/mergeDockerComposeServiceReplicas.ts",
+      "isEntrypoint": false,
+      "dependencies": ["src/types/dockerComposeRuntime.ts"],
+      "exports": ["mergeDockerComposeServiceReplicas"]
+    },
+    {
+      "path": "src/features/compose-runtime/utils/orderDockerComposeResourceIdsForRemoval.ts",
+      "isEntrypoint": false,
+      "dependencies": ["src/types/dockerComposeRuntime.ts"],
+      "exports": ["orderDockerComposeResourceIdsForRemoval"]
     },
     {
       "path": "src/features/compose-runtime/utils/parseDockerComposeInventory.ts",
@@ -373,7 +508,9 @@
       "isEntrypoint": true,
       "dependencies": [],
       "exports": [
+        "createDockerComposeCliControlPlane",
         "createInfraAdapter",
+        "createLocalDockerComposeSessionResolver",
         "createSubprocessDockerComposeCommandRunner",
         "DockerComposeAdapterOptions",
         "DockerComposeCommandRequest",
@@ -382,6 +519,7 @@
         "DockerComposeConfig",
         "DockerComposeControlPlane",
         "DockerComposeDesiredState",
+        "DockerComposeEngineSession",
         "DockerComposeExecutionProject",
         "DockerComposeMaterializedSecret",
         "DockerComposeNetwork",
@@ -393,6 +531,7 @@
         "DockerComposeResourceObservation",
         "DockerComposeSecret",
         "DockerComposeService",
+        "DockerComposeSessionResolver",
         "DockerComposeTargetAccess",
         "DockerComposeVolume",
         "infraAdapterDescriptor",
@@ -414,12 +553,14 @@
     {
       "path": "src/types/dockerComposeProcess.ts",
       "isEntrypoint": false,
-      "dependencies": [],
+      "dependencies": ["src/types/dockerComposeRuntime.ts"],
       "exports": [
         "DockerComposeCliInput",
         "DockerComposeCommandRequest",
         "DockerComposeCommandResult",
-        "DockerComposeCommandRunner"
+        "DockerComposeCommandRunner",
+        "DockerComposeEngineSession",
+        "DockerComposeSessionResolver"
       ]
     },
     {
@@ -449,31 +590,88 @@
   ],
   "exports": [
     {
+      "name": "createDockerComposeCliControlPlane",
+      "description": null,
+      "isReadme": false,
+      "examples": [],
+      "kind": "function",
+      "modulePath": "src/features/compose-runtime/adapters/createDockerComposeCliControlPlane.ts",
+      "sourceLocation": {
+        "filePath": "src/features/compose-runtime/adapters/createDockerComposeCliControlPlane.ts",
+        "line": 17,
+        "column": 1
+      },
+      "exportPaths": ["src/index.ts"],
+      "relatedSymbols": ["DockerComposeControlPlane", "DockerComposeSessionResolver"],
+      "signatures": [
+        {
+          "label": "(resolver?: DockerComposeSessionResolver) => DockerComposeControlPlane",
+          "parameters": [
+            {
+              "name": "resolver",
+              "type": "DockerComposeSessionResolver",
+              "required": false,
+              "description": null
+            }
+          ],
+          "returnType": "DockerComposeControlPlane",
+          "returnDescription": null
+        }
+      ],
+      "members": [],
+      "structuredRows": []
+    },
+    {
       "name": "createInfraAdapter",
-      "description": "Create the canonical Docker Compose runtime adapter entrypoint.\n\nThe caller supplies a Docker Compose control-plane boundary. Portable workloads are projected\ninto Compose services, networks, volumes, configs and execution-only secrets.",
+      "description": "Create the canonical Docker Compose runtime adapter entrypoint.\n\nThe default composition operates the local Docker CLI. Callers may inject a control plane for a\nverified remote engine. Portable workloads become services, networks, volumes, configs and\nexecution-only secrets.",
       "isReadme": true,
       "examples": [],
       "kind": "function",
       "modulePath": "src/features/compose-runtime/composition/createInfraAdapter.ts",
       "sourceLocation": {
         "filePath": "src/features/compose-runtime/composition/createInfraAdapter.ts",
-        "line": 20,
+        "line": 22,
         "column": 1
       },
       "exportPaths": ["src/index.ts"],
       "relatedSymbols": ["DockerComposeAdapterOptions"],
       "signatures": [
         {
-          "label": "(options: DockerComposeAdapterOptions) => InfraRuntimeAdapter<\"docker-compose\">",
+          "label": "(options?: DockerComposeAdapterOptions | undefined) => InfraRuntimeAdapter<\"docker-compose\">",
           "parameters": [
             {
               "name": "options",
-              "type": "DockerComposeAdapterOptions",
-              "required": true,
+              "type": "DockerComposeAdapterOptions | undefined",
+              "required": false,
               "description": null
             }
           ],
           "returnType": "InfraRuntimeAdapter<\"docker-compose\">",
+          "returnDescription": null
+        }
+      ],
+      "members": [],
+      "structuredRows": []
+    },
+    {
+      "name": "createLocalDockerComposeSessionResolver",
+      "description": null,
+      "isReadme": false,
+      "examples": [],
+      "kind": "function",
+      "modulePath": "src/features/compose-runtime/adapters/createLocalDockerComposeSessionResolver.ts",
+      "sourceLocation": {
+        "filePath": "src/features/compose-runtime/adapters/createLocalDockerComposeSessionResolver.ts",
+        "line": 10,
+        "column": 1
+      },
+      "exportPaths": ["src/index.ts"],
+      "relatedSymbols": ["DockerComposeSessionResolver"],
+      "signatures": [
+        {
+          "label": "() => DockerComposeSessionResolver",
+          "parameters": [],
+          "returnType": "DockerComposeSessionResolver",
           "returnDescription": null
         }
       ],
@@ -514,7 +712,7 @@
       "modulePath": "src/types/dockerComposeRuntime.ts",
       "sourceLocation": {
         "filePath": "src/types/dockerComposeRuntime.ts",
-        "line": 14,
+        "line": 15,
         "column": 1
       },
       "exportPaths": ["src/index.ts"],
@@ -540,7 +738,7 @@
       "modulePath": "src/types/dockerComposeProcess.ts",
       "sourceLocation": {
         "filePath": "src/types/dockerComposeProcess.ts",
-        "line": 2,
+        "line": 6,
         "column": 1
       },
       "exportPaths": ["src/index.ts"],
@@ -594,7 +792,7 @@
       "modulePath": "src/types/dockerComposeProcess.ts",
       "sourceLocation": {
         "filePath": "src/types/dockerComposeProcess.ts",
-        "line": 11,
+        "line": 15,
         "column": 1
       },
       "exportPaths": ["src/index.ts"],
@@ -634,7 +832,7 @@
       "modulePath": "src/types/dockerComposeProcess.ts",
       "sourceLocation": {
         "filePath": "src/types/dockerComposeProcess.ts",
-        "line": 18,
+        "line": 22,
         "column": 1
       },
       "exportPaths": ["src/index.ts"],
@@ -660,7 +858,7 @@
       "modulePath": "src/types/dockerComposeRuntime.ts",
       "sourceLocation": {
         "filePath": "src/types/dockerComposeRuntime.ts",
-        "line": 57,
+        "line": 58,
         "column": 1
       },
       "exportPaths": ["src/index.ts"],
@@ -714,7 +912,7 @@
       "modulePath": "src/types/dockerComposeRuntime.ts",
       "sourceLocation": {
         "filePath": "src/types/dockerComposeRuntime.ts",
-        "line": 133,
+        "line": 135,
         "column": 1
       },
       "exportPaths": ["src/index.ts"],
@@ -730,21 +928,21 @@
         {
           "name": "destroyAsync",
           "kind": "method",
-          "type": "(identity: DockerComposeProjectIdentity, resourceIds: readonly string[], signal?: AbortSignal) => Promise<InfraResult<null>>",
+          "type": "(identity: DockerComposeProjectIdentity, access: DockerComposeTargetAccess, resourceIds: readonly string[], signal?: AbortSignal) => Promise<InfraResult<null>>",
           "required": true,
           "description": null
         },
         {
           "name": "downAsync",
           "kind": "method",
-          "type": "(identity: DockerComposeProjectIdentity, signal?: AbortSignal) => Promise<InfraResult<null>>",
+          "type": "(identity: DockerComposeProjectIdentity, access: DockerComposeTargetAccess, signal?: AbortSignal) => Promise<InfraResult<null>>",
           "required": true,
           "description": null
         },
         {
           "name": "inspectAsync",
           "kind": "method",
-          "type": "(identity: DockerComposeProjectIdentity, signal?: AbortSignal) => Promise<InfraResult<DockerComposeProjectObservation>>",
+          "type": "(identity: DockerComposeProjectIdentity, access: DockerComposeTargetAccess, signal?: AbortSignal) => Promise<InfraResult<DockerComposeProjectObservation>>",
           "required": true,
           "description": null
         },
@@ -765,7 +963,7 @@
         {
           "name": "waitUntilReadyAsync",
           "kind": "method",
-          "type": "(identity: DockerComposeProjectIdentity, signal?: AbortSignal) => Promise<InfraResult<DockerComposeProjectObservation>>",
+          "type": "(identity: DockerComposeProjectIdentity, access: DockerComposeTargetAccess, signal?: AbortSignal) => Promise<InfraResult<DockerComposeProjectObservation>>",
           "required": true,
           "description": null
         }
@@ -781,13 +979,60 @@
       "modulePath": "src/types/dockerComposeRuntime.ts",
       "sourceLocation": {
         "filePath": "src/types/dockerComposeRuntime.ts",
-        "line": 164,
+        "line": 170,
         "column": 1
       },
       "exportPaths": ["src/index.ts"],
       "relatedSymbols": [],
       "signatures": [],
       "members": [],
+      "structuredRows": []
+    },
+    {
+      "name": "DockerComposeEngineSession",
+      "description": null,
+      "isReadme": false,
+      "examples": [],
+      "kind": "type",
+      "modulePath": "src/types/dockerComposeProcess.ts",
+      "sourceLocation": {
+        "filePath": "src/types/dockerComposeProcess.ts",
+        "line": 27,
+        "column": 1
+      },
+      "exportPaths": ["src/index.ts"],
+      "relatedSymbols": ["DockerComposeCommandRunner"],
+      "signatures": [],
+      "members": [
+        {
+          "name": "endpointHost",
+          "kind": "property",
+          "type": "string",
+          "required": true,
+          "description": null
+        },
+        {
+          "name": "environment",
+          "kind": "property",
+          "type": "Readonly<Record<string, string>> | undefined",
+          "required": false,
+          "description": null
+        },
+        {
+          "name": "executable",
+          "kind": "property",
+          "type": "string",
+          "required": true,
+          "description": null
+        },
+        {
+          "name": "runner",
+          "kind": "property",
+          "type": "DockerComposeCommandRunner",
+          "required": true,
+          "description": null
+        }
+      ],
       "structuredRows": []
     },
     {
@@ -799,7 +1044,7 @@
       "modulePath": "src/types/dockerComposeRuntime.ts",
       "sourceLocation": {
         "filePath": "src/types/dockerComposeRuntime.ts",
-        "line": 111,
+        "line": 113,
         "column": 1
       },
       "exportPaths": ["src/index.ts"],
@@ -867,7 +1112,7 @@
       "modulePath": "src/types/dockerComposeRuntime.ts",
       "sourceLocation": {
         "filePath": "src/types/dockerComposeRuntime.ts",
-        "line": 106,
+        "line": 108,
         "column": 1
       },
       "exportPaths": ["src/index.ts"],
@@ -928,7 +1173,7 @@
       "modulePath": "src/types/dockerComposeRuntime.ts",
       "sourceLocation": {
         "filePath": "src/types/dockerComposeRuntime.ts",
-        "line": 46,
+        "line": 47,
         "column": 1
       },
       "exportPaths": ["src/index.ts"],
@@ -975,7 +1220,7 @@
       "modulePath": "src/types/dockerComposeRuntime.ts",
       "sourceLocation": {
         "filePath": "src/types/dockerComposeRuntime.ts",
-        "line": 165,
+        "line": 171,
         "column": 1
       },
       "exportPaths": ["src/index.ts"],
@@ -993,7 +1238,7 @@
       "modulePath": "src/types/dockerComposeRuntime.ts",
       "sourceLocation": {
         "filePath": "src/types/dockerComposeRuntime.ts",
-        "line": 97,
+        "line": 99,
         "column": 1
       },
       "exportPaths": ["src/index.ts"],
@@ -1061,7 +1306,7 @@
       "modulePath": "src/types/dockerComposeRuntime.ts",
       "sourceLocation": {
         "filePath": "src/types/dockerComposeRuntime.ts",
-        "line": 18,
+        "line": 19,
         "column": 1
       },
       "exportPaths": ["src/index.ts"],
@@ -1101,7 +1346,7 @@
       "modulePath": "src/types/dockerComposeRuntime.ts",
       "sourceLocation": {
         "filePath": "src/types/dockerComposeRuntime.ts",
-        "line": 127,
+        "line": 129,
         "column": 1
       },
       "exportPaths": ["src/index.ts"],
@@ -1134,7 +1379,7 @@
       "modulePath": "src/types/dockerComposeRuntime.ts",
       "sourceLocation": {
         "filePath": "src/types/dockerComposeRuntime.ts",
-        "line": 166,
+        "line": 172,
         "column": 1
       },
       "exportPaths": ["src/index.ts"],
@@ -1152,7 +1397,7 @@
       "modulePath": "src/types/dockerComposeRuntime.ts",
       "sourceLocation": {
         "filePath": "src/types/dockerComposeRuntime.ts",
-        "line": 115,
+        "line": 117,
         "column": 1
       },
       "exportPaths": ["src/index.ts"],
@@ -1234,7 +1479,7 @@
       "modulePath": "src/types/dockerComposeRuntime.ts",
       "sourceLocation": {
         "filePath": "src/types/dockerComposeRuntime.ts",
-        "line": 63,
+        "line": 64,
         "column": 1
       },
       "exportPaths": ["src/index.ts"],
@@ -1272,7 +1517,7 @@
         {
           "name": "reference",
           "kind": "property",
-          "type": "InfraSecretReference",
+          "type": "InfraSecretReference | (InfraControlPlaneCredentialRef & { readonly key: string; })",
           "required": true,
           "description": null
         },
@@ -1295,7 +1540,7 @@
       "modulePath": "src/types/dockerComposeRuntime.ts",
       "sourceLocation": {
         "filePath": "src/types/dockerComposeRuntime.ts",
-        "line": 72,
+        "line": 74,
         "column": 1
       },
       "exportPaths": ["src/index.ts"],
@@ -1418,6 +1663,32 @@
       "structuredRows": []
     },
     {
+      "name": "DockerComposeSessionResolver",
+      "description": null,
+      "isReadme": false,
+      "examples": [],
+      "kind": "type",
+      "modulePath": "src/types/dockerComposeProcess.ts",
+      "sourceLocation": {
+        "filePath": "src/types/dockerComposeProcess.ts",
+        "line": 35,
+        "column": 1
+      },
+      "exportPaths": ["src/index.ts"],
+      "relatedSymbols": ["DockerComposeEngineSession", "DockerComposeTargetAccess"],
+      "signatures": [],
+      "members": [
+        {
+          "name": "resolveAsync",
+          "kind": "method",
+          "type": "(access: DockerComposeTargetAccess, signal?: AbortSignal) => Promise<InfraResult<DockerComposeEngineSession>>",
+          "required": true,
+          "description": null
+        }
+      ],
+      "structuredRows": []
+    },
+    {
       "name": "DockerComposeTargetAccess",
       "description": null,
       "isReadme": false,
@@ -1426,7 +1697,7 @@
       "modulePath": "src/types/dockerComposeRuntime.ts",
       "sourceLocation": {
         "filePath": "src/types/dockerComposeRuntime.ts",
-        "line": 24,
+        "line": 25,
         "column": 1
       },
       "exportPaths": ["src/index.ts"],
@@ -1444,7 +1715,7 @@
       "modulePath": "src/types/dockerComposeRuntime.ts",
       "sourceLocation": {
         "filePath": "src/types/dockerComposeRuntime.ts",
-        "line": 51,
+        "line": 52,
         "column": 1
       },
       "exportPaths": ["src/index.ts"],
@@ -1559,6 +1830,24 @@
   "components": [],
   "sourceFunctions": [
     {
+      "name": "createProject",
+      "description": null,
+      "sourceLocation": {
+        "filePath": "src/dockerComposeCliControlPlane.test.ts",
+        "line": 74,
+        "column": 1
+      }
+    },
+    {
+      "name": "success",
+      "description": null,
+      "sourceLocation": {
+        "filePath": "src/dockerComposeCliControlPlane.test.ts",
+        "line": 100,
+        "column": 1
+      }
+    },
+    {
       "name": "createExecutionProject",
       "description": null,
       "sourceLocation": {
@@ -1613,11 +1902,65 @@
       }
     },
     {
+      "name": "success",
+      "description": null,
+      "sourceLocation": {
+        "filePath": "src/dockerComposeEngineLifecycle.test.ts",
+        "line": 69,
+        "column": 1
+      }
+    },
+    {
+      "name": "createProject",
+      "description": null,
+      "sourceLocation": {
+        "filePath": "src/dockerComposeEngineReconcile.test.ts",
+        "line": 48,
+        "column": 1
+      }
+    },
+    {
+      "name": "success",
+      "description": null,
+      "sourceLocation": {
+        "filePath": "src/dockerComposeEngineReconcile.test.ts",
+        "line": 87,
+        "column": 1
+      }
+    },
+    {
+      "name": "listArguments",
+      "description": null,
+      "sourceLocation": {
+        "filePath": "src/dockerComposeEngineRemoval.test.ts",
+        "line": 50,
+        "column": 1
+      }
+    },
+    {
+      "name": "success",
+      "description": null,
+      "sourceLocation": {
+        "filePath": "src/dockerComposeEngineRemoval.test.ts",
+        "line": 81,
+        "column": 1
+      }
+    },
+    {
       "name": "inventoryEntry",
       "description": null,
       "sourceLocation": {
         "filePath": "src/dockerComposeInspection.test.ts",
-        "line": 115,
+        "line": 109,
+        "column": 1
+      }
+    },
+    {
+      "name": "serviceContainer",
+      "description": null,
+      "sourceLocation": {
+        "filePath": "src/dockerComposeInspection.test.ts",
+        "line": 126,
         "column": 1
       }
     },
@@ -1626,7 +1969,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/dockerComposeInspection.test.ts",
-        "line": 132,
+        "line": 135,
         "column": 1
       }
     },
@@ -1635,7 +1978,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/dockerComposeInspection.test.ts",
-        "line": 146,
+        "line": 149,
         "column": 1
       }
     },
@@ -1644,7 +1987,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/dockerComposeRuntime.test.ts",
-        "line": 99,
+        "line": 129,
         "column": 1
       }
     },
@@ -1653,7 +1996,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/dockerComposeRuntime.test.ts",
-        "line": 141,
+        "line": 171,
         "column": 1
       }
     },
@@ -1662,7 +2005,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/dockerComposeRuntime.test.ts",
-        "line": 160,
+        "line": 190,
         "column": 1
       }
     },
@@ -1671,7 +2014,43 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/dockerComposeRuntime.test.ts",
-        "line": 184,
+        "line": 223,
+        "column": 1
+      }
+    },
+    {
+      "name": "createDockerComposeCliControlPlane",
+      "description": null,
+      "sourceLocation": {
+        "filePath": "src/features/compose-runtime/adapters/createDockerComposeCliControlPlane.ts",
+        "line": 17,
+        "column": 1
+      }
+    },
+    {
+      "name": "validateCommandAsync",
+      "description": null,
+      "sourceLocation": {
+        "filePath": "src/features/compose-runtime/adapters/createDockerComposeCliControlPlane.ts",
+        "line": 59,
+        "column": 1
+      }
+    },
+    {
+      "name": "createLocalDockerComposeSessionResolver",
+      "description": null,
+      "sourceLocation": {
+        "filePath": "src/features/compose-runtime/adapters/createLocalDockerComposeSessionResolver.ts",
+        "line": 10,
+        "column": 1
+      }
+    },
+    {
+      "name": "remoteResolverRequired",
+      "description": null,
+      "sourceLocation": {
+        "filePath": "src/features/compose-runtime/adapters/createLocalDockerComposeSessionResolver.ts",
+        "line": 25,
         "column": 1
       }
     },
@@ -1698,16 +2077,7 @@
       "description": "Inspect only Docker resources carrying the exact project/environment/adapter ownership scope.",
       "sourceLocation": {
         "filePath": "src/features/compose-runtime/adapters/inspectDockerComposeProjectAsync.ts",
-        "line": 19,
-        "column": 1
-      }
-    },
-    {
-      "name": "ownershipFilters",
-      "description": null,
-      "sourceLocation": {
-        "filePath": "src/features/compose-runtime/adapters/inspectDockerComposeProjectAsync.ts",
-        "line": 50,
+        "line": 12,
         "column": 1
       }
     },
@@ -1716,7 +2086,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/features/compose-runtime/adapters/inspectDockerComposeProjectAsync.ts",
-        "line": 61,
+        "line": 43,
         "column": 1
       }
     },
@@ -1725,7 +2095,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/features/compose-runtime/adapters/inspectDockerComposeProjectAsync.ts",
-        "line": 83,
+        "line": 65,
         "column": 1
       }
     },
@@ -1734,7 +2104,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/features/compose-runtime/adapters/inspectDockerComposeProjectAsync.ts",
-        "line": 101,
+        "line": 83,
         "column": 1
       }
     },
@@ -1743,7 +2113,7 @@
       "description": "Parse Docker inspect responses into exact owned, provider-neutral project observations.",
       "sourceLocation": {
         "filePath": "src/features/compose-runtime/adapters/parseDockerComposeInspection.ts",
-        "line": 43,
+        "line": 44,
         "column": 1
       }
     },
@@ -1752,7 +2122,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/features/compose-runtime/adapters/parseDockerComposeInspection.ts",
-        "line": 75,
+        "line": 76,
         "column": 1
       }
     },
@@ -1761,7 +2131,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/features/compose-runtime/adapters/parseDockerComposeInspection.ts",
-        "line": 83,
+        "line": 84,
         "column": 1
       }
     },
@@ -1770,7 +2140,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/features/compose-runtime/adapters/parseDockerComposeInspection.ts",
-        "line": 94,
+        "line": 95,
         "column": 1
       }
     },
@@ -1779,7 +2149,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/features/compose-runtime/adapters/parseDockerComposeInspection.ts",
-        "line": 115,
+        "line": 119,
         "column": 1
       }
     },
@@ -1788,7 +2158,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/features/compose-runtime/adapters/parseDockerComposeInspection.ts",
-        "line": 141,
+        "line": 148,
         "column": 1
       }
     },
@@ -1797,7 +2167,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/features/compose-runtime/adapters/parseDockerComposeInspection.ts",
-        "line": 172,
+        "line": 179,
         "column": 1
       }
     },
@@ -1806,7 +2176,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/features/compose-runtime/adapters/parseDockerComposeInspection.ts",
-        "line": 189,
+        "line": 196,
         "column": 1
       }
     },
@@ -1815,7 +2185,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/features/compose-runtime/adapters/parseDockerComposeInspection.ts",
-        "line": 207,
+        "line": 214,
         "column": 1
       }
     },
@@ -1824,7 +2194,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/features/compose-runtime/adapters/parseDockerComposeInspection.ts",
-        "line": 231,
+        "line": 238,
         "column": 1
       }
     },
@@ -1833,7 +2203,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/features/compose-runtime/adapters/parseDockerComposeInspection.ts",
-        "line": 246,
+        "line": 253,
         "column": 1
       }
     },
@@ -1842,7 +2212,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/features/compose-runtime/adapters/parseDockerComposeInspection.ts",
-        "line": 257,
+        "line": 264,
         "column": 1
       }
     },
@@ -1851,7 +2221,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/features/compose-runtime/adapters/parseDockerComposeInspection.ts",
-        "line": 261,
+        "line": 268,
         "column": 1
       }
     },
@@ -1860,7 +2230,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/features/compose-runtime/adapters/parseDockerComposeInspection.ts",
-        "line": 268,
+        "line": 275,
         "column": 1
       }
     },
@@ -1869,7 +2239,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/features/compose-runtime/adapters/parseDockerComposeInspection.ts",
-        "line": 276,
+        "line": 283,
         "column": 1
       }
     },
@@ -1878,7 +2248,61 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/features/compose-runtime/adapters/parseDockerComposeInspection.ts",
-        "line": 280,
+        "line": 287,
+        "column": 1
+      }
+    },
+    {
+      "name": "reconcileDockerComposeProjectAsync",
+      "description": "Converge one exact Compose project from stdin and remove only explicitly selected stale resources.",
+      "sourceLocation": {
+        "filePath": "src/features/compose-runtime/adapters/reconcileDockerComposeProjectAsync.ts",
+        "line": 15,
+        "column": 1
+      }
+    },
+    {
+      "name": "removeDockerComposeResourcesAsync",
+      "description": "Remove only exact owned resource IDs, preserving the caller's dependency-safe ordering.",
+      "sourceLocation": {
+        "filePath": "src/features/compose-runtime/adapters/removeDockerComposeResourcesAsync.ts",
+        "line": 9,
+        "column": 1
+      }
+    },
+    {
+      "name": "listResourceNamesAsync",
+      "description": null,
+      "sourceLocation": {
+        "filePath": "src/features/compose-runtime/adapters/removeDockerComposeResourcesAsync.ts",
+        "line": 33,
+        "column": 1
+      }
+    },
+    {
+      "name": "removeArguments",
+      "description": null,
+      "sourceLocation": {
+        "filePath": "src/features/compose-runtime/adapters/removeDockerComposeResourcesAsync.ts",
+        "line": 65,
+        "column": 1
+      }
+    },
+    {
+      "name": "getEngineKind",
+      "description": null,
+      "sourceLocation": {
+        "filePath": "src/features/compose-runtime/adapters/removeDockerComposeResourcesAsync.ts",
+        "line": 74,
+        "column": 1
+      }
+    },
+    {
+      "name": "invalidResourceId",
+      "description": null,
+      "sourceLocation": {
+        "filePath": "src/features/compose-runtime/adapters/removeDockerComposeResourcesAsync.ts",
+        "line": 84,
         "column": 1
       }
     },
@@ -2018,11 +2442,65 @@
       }
     },
     {
+      "name": "runDockerComposeCommandAsync",
+      "description": "Run one Docker command and reduce all provider/process failures to a safe canonical diagnostic.",
+      "sourceLocation": {
+        "filePath": "src/features/compose-runtime/adapters/runDockerComposeCommandAsync.ts",
+        "line": 15,
+        "column": 1
+      }
+    },
+    {
+      "name": "failure",
+      "description": null,
+      "sourceLocation": {
+        "filePath": "src/features/compose-runtime/adapters/runDockerComposeCommandAsync.ts",
+        "line": 36,
+        "column": 1
+      }
+    },
+    {
+      "name": "stopDockerComposeProjectAsync",
+      "description": "Stop only running service containers in the exact ownership scope.",
+      "sourceLocation": {
+        "filePath": "src/features/compose-runtime/adapters/stopDockerComposeProjectAsync.ts",
+        "line": 9,
+        "column": 1
+      }
+    },
+    {
+      "name": "waitForDockerComposeProjectAsync",
+      "description": "Poll exact owned Compose state until ready, failed, aborted or timed out.",
+      "sourceLocation": {
+        "filePath": "src/features/compose-runtime/adapters/waitForDockerComposeProjectAsync.ts",
+        "line": 11,
+        "column": 1
+      }
+    },
+    {
+      "name": "waitAsync",
+      "description": null,
+      "sourceLocation": {
+        "filePath": "src/features/compose-runtime/adapters/waitForDockerComposeProjectAsync.ts",
+        "line": 30,
+        "column": 1
+      }
+    },
+    {
+      "name": "readinessFailure",
+      "description": null,
+      "sourceLocation": {
+        "filePath": "src/features/compose-runtime/adapters/waitForDockerComposeProjectAsync.ts",
+        "line": 34,
+        "column": 1
+      }
+    },
+    {
       "name": "destroyDockerComposeRuntimeAsync",
       "description": "Delete only owned and authorized Compose resources in reverse dependency order.",
       "sourceLocation": {
         "filePath": "src/features/compose-runtime/application/destroyDockerComposeRuntimeAsync.ts",
-        "line": 18,
+        "line": 20,
         "column": 1
       }
     },
@@ -2031,26 +2509,8 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/features/compose-runtime/application/destroyDockerComposeRuntimeAsync.ts",
-        "line": 56,
+        "line": 64,
         "column": 1
-      }
-    },
-    {
-      "name": "orderForRemoval",
-      "description": null,
-      "sourceLocation": {
-        "filePath": "src/features/compose-runtime/application/destroyDockerComposeRuntimeAsync.ts",
-        "line": 75,
-        "column": 1
-      }
-    },
-    {
-      "name": "visit",
-      "description": null,
-      "sourceLocation": {
-        "filePath": "src/features/compose-runtime/application/destroyDockerComposeRuntimeAsync.ts",
-        "line": 81,
-        "column": 9
       }
     },
     {
@@ -2058,7 +2518,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/features/compose-runtime/application/destroyDockerComposeRuntimeAsync.ts",
-        "line": 97,
+        "line": 83,
         "column": 1
       }
     },
@@ -2067,7 +2527,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/features/compose-runtime/application/destroyDockerComposeRuntimeAsync.ts",
-        "line": 106,
+        "line": 92,
         "column": 1
       }
     },
@@ -2085,7 +2545,7 @@
       "description": "Return status for every resource owned by the exact Compose project.",
       "sourceLocation": {
         "filePath": "src/features/compose-runtime/application/getDockerComposeStatusAsync.ts",
-        "line": 12,
+        "line": 15,
         "column": 1
       }
     },
@@ -2095,6 +2555,15 @@
       "sourceLocation": {
         "filePath": "src/features/compose-runtime/application/materializeDockerComposeSecretsAsync.ts",
         "line": 10,
+        "column": 1
+      }
+    },
+    {
+      "name": "resolveCredentialValueAsync",
+      "description": null,
+      "sourceLocation": {
+        "filePath": "src/features/compose-runtime/application/materializeDockerComposeSecretsAsync.ts",
+        "line": 27,
         "column": 1
       }
     },
@@ -2112,7 +2581,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/features/compose-runtime/application/planDockerComposeRuntimeAsync.ts",
-        "line": 40,
+        "line": 41,
         "column": 1
       }
     },
@@ -2193,7 +2662,7 @@
       "description": "Stop Compose services while retaining networks, configs, secrets and volumes.",
       "sourceLocation": {
         "filePath": "src/features/compose-runtime/application/suspendDockerComposeRuntimeAsync.ts",
-        "line": 13,
+        "line": 16,
         "column": 1
       }
     },
@@ -2217,10 +2686,10 @@
     },
     {
       "name": "createInfraAdapter",
-      "description": "Create the canonical Docker Compose runtime adapter entrypoint.\n\nThe caller supplies a Docker Compose control-plane boundary. Portable workloads are projected\ninto Compose services, networks, volumes, configs and execution-only secrets.",
+      "description": "Create the canonical Docker Compose runtime adapter entrypoint.\n\nThe default composition operates the local Docker CLI. Callers may inject a control plane for a\nverified remote engine. Portable workloads become services, networks, volumes, configs and\nexecution-only secrets.",
       "sourceLocation": {
         "filePath": "src/features/compose-runtime/composition/createInfraAdapter.ts",
-        "line": 20,
+        "line": 22,
         "column": 1
       }
     },
@@ -2229,7 +2698,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/features/compose-runtime/utils/dockerComposeResourceFactories.ts",
-        "line": 19,
+        "line": 18,
         "column": 1
       }
     },
@@ -2238,7 +2707,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/features/compose-runtime/utils/dockerComposeResourceFactories.ts",
-        "line": 34,
+        "line": 33,
         "column": 1
       }
     },
@@ -2247,7 +2716,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/features/compose-runtime/utils/dockerComposeResourceFactories.ts",
-        "line": 56,
+        "line": 55,
         "column": 1
       }
     },
@@ -2256,7 +2725,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/features/compose-runtime/utils/dockerComposeResourceFactories.ts",
-        "line": 64,
+        "line": 63,
         "column": 1
       }
     },
@@ -2265,7 +2734,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/features/compose-runtime/utils/dockerComposeResourceFactories.ts",
-        "line": 88,
+        "line": 87,
         "column": 1
       }
     },
@@ -2274,7 +2743,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/features/compose-runtime/utils/dockerComposeResourceFactories.ts",
-        "line": 113,
+        "line": 112,
         "column": 1
       }
     },
@@ -2283,7 +2752,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/features/compose-runtime/utils/dockerComposeResourceFactories.ts",
-        "line": 133,
+        "line": 132,
         "column": 1
       }
     },
@@ -2423,6 +2892,15 @@
       }
     },
     {
+      "name": "getDockerComposeOwnershipFilters",
+      "description": null,
+      "sourceLocation": {
+        "filePath": "src/features/compose-runtime/utils/getDockerComposeOwnershipFilters.ts",
+        "line": 5,
+        "column": 1
+      }
+    },
+    {
       "name": "getDockerComposeProjectIdentity",
       "description": null,
       "sourceLocation": {
@@ -2456,6 +2934,60 @@
         "filePath": "src/features/compose-runtime/utils/getDockerComposeResources.ts",
         "line": 22,
         "column": 1
+      }
+    },
+    {
+      "name": "mergeDockerComposeServiceReplicas",
+      "description": null,
+      "sourceLocation": {
+        "filePath": "src/features/compose-runtime/utils/mergeDockerComposeServiceReplicas.ts",
+        "line": 4,
+        "column": 1
+      }
+    },
+    {
+      "name": "aggregateReplicaState",
+      "description": null,
+      "sourceLocation": {
+        "filePath": "src/features/compose-runtime/utils/mergeDockerComposeServiceReplicas.ts",
+        "line": 17,
+        "column": 1
+      }
+    },
+    {
+      "name": "mergePublicOutputs",
+      "description": null,
+      "sourceLocation": {
+        "filePath": "src/features/compose-runtime/utils/mergeDockerComposeServiceReplicas.ts",
+        "line": 28,
+        "column": 1
+      }
+    },
+    {
+      "name": "findOutput",
+      "description": null,
+      "sourceLocation": {
+        "filePath": "src/features/compose-runtime/utils/mergeDockerComposeServiceReplicas.ts",
+        "line": 44,
+        "column": 1
+      }
+    },
+    {
+      "name": "orderDockerComposeResourceIdsForRemoval",
+      "description": null,
+      "sourceLocation": {
+        "filePath": "src/features/compose-runtime/utils/orderDockerComposeResourceIdsForRemoval.ts",
+        "line": 4,
+        "column": 1
+      }
+    },
+    {
+      "name": "visit",
+      "description": null,
+      "sourceLocation": {
+        "filePath": "src/features/compose-runtime/utils/orderDockerComposeResourceIdsForRemoval.ts",
+        "line": 10,
+        "column": 9
       }
     },
     {
@@ -2517,7 +3049,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/runtimeFixtures.test.ts",
-        "line": 100,
+        "line": 101,
         "column": 1
       }
     }
@@ -2525,11 +3057,27 @@
   "sequenceScenarios": [
     {
       "kind": "export",
+      "name": "createDockerComposeCliControlPlane",
+      "sourcePath": "src/features/compose-runtime/adapters/createDockerComposeCliControlPlane.ts",
+      "symbolName": "createDockerComposeCliControlPlane",
+      "description": null,
+      "isReadme": false
+    },
+    {
+      "kind": "export",
       "name": "createInfraAdapter",
       "sourcePath": "src/features/compose-runtime/composition/createInfraAdapter.ts",
       "symbolName": "createInfraAdapter",
-      "description": "Create the canonical Docker Compose runtime adapter entrypoint.\n\nThe caller supplies a Docker Compose control-plane boundary. Portable workloads are projected\ninto Compose services, networks, volumes, configs and execution-only secrets.",
+      "description": "Create the canonical Docker Compose runtime adapter entrypoint.\n\nThe default composition operates the local Docker CLI. Callers may inject a control plane for a\nverified remote engine. Portable workloads become services, networks, volumes, configs and\nexecution-only secrets.",
       "isReadme": true
+    },
+    {
+      "kind": "export",
+      "name": "createLocalDockerComposeSessionResolver",
+      "sourcePath": "src/features/compose-runtime/adapters/createLocalDockerComposeSessionResolver.ts",
+      "symbolName": "createLocalDockerComposeSessionResolver",
+      "description": null,
+      "isReadme": false
     },
     {
       "kind": "export",
@@ -2551,6 +3099,11 @@
   "graphs": {
     "imports": [
       {
+        "fromPath": "src/dockerComposeCliControlPlane.test.ts",
+        "toPath": "src/index.ts",
+        "sourcePath": "src/dockerComposeCliControlPlane.test.ts"
+      },
+      {
         "fromPath": "src/dockerComposeCliInput.test.ts",
         "toPath": "src/features/compose-runtime/adapters/renderDockerComposeCliInput.ts",
         "sourcePath": "src/dockerComposeCliInput.test.ts"
@@ -2569,6 +3122,41 @@
         "fromPath": "src/dockerComposeEngineInspection.test.ts",
         "toPath": "src/index.ts",
         "sourcePath": "src/dockerComposeEngineInspection.test.ts"
+      },
+      {
+        "fromPath": "src/dockerComposeEngineLifecycle.test.ts",
+        "toPath": "src/features/compose-runtime/adapters/stopDockerComposeProjectAsync.ts",
+        "sourcePath": "src/dockerComposeEngineLifecycle.test.ts"
+      },
+      {
+        "fromPath": "src/dockerComposeEngineLifecycle.test.ts",
+        "toPath": "src/features/compose-runtime/adapters/waitForDockerComposeProjectAsync.ts",
+        "sourcePath": "src/dockerComposeEngineLifecycle.test.ts"
+      },
+      {
+        "fromPath": "src/dockerComposeEngineLifecycle.test.ts",
+        "toPath": "src/index.ts",
+        "sourcePath": "src/dockerComposeEngineLifecycle.test.ts"
+      },
+      {
+        "fromPath": "src/dockerComposeEngineReconcile.test.ts",
+        "toPath": "src/features/compose-runtime/adapters/reconcileDockerComposeProjectAsync.ts",
+        "sourcePath": "src/dockerComposeEngineReconcile.test.ts"
+      },
+      {
+        "fromPath": "src/dockerComposeEngineReconcile.test.ts",
+        "toPath": "src/index.ts",
+        "sourcePath": "src/dockerComposeEngineReconcile.test.ts"
+      },
+      {
+        "fromPath": "src/dockerComposeEngineRemoval.test.ts",
+        "toPath": "src/features/compose-runtime/adapters/removeDockerComposeResourcesAsync.ts",
+        "sourcePath": "src/dockerComposeEngineRemoval.test.ts"
+      },
+      {
+        "fromPath": "src/dockerComposeEngineRemoval.test.ts",
+        "toPath": "src/index.ts",
+        "sourcePath": "src/dockerComposeEngineRemoval.test.ts"
       },
       {
         "fromPath": "src/dockerComposeInspection.test.ts",
@@ -2598,6 +3186,16 @@
       {
         "fromPath": "src/index.ts",
         "toPath": "src/constants/infra.ts",
+        "sourcePath": "src/index.ts"
+      },
+      {
+        "fromPath": "src/index.ts",
+        "toPath": "src/features/compose-runtime/adapters/createDockerComposeCliControlPlane.ts",
+        "sourcePath": "src/index.ts"
+      },
+      {
+        "fromPath": "src/index.ts",
+        "toPath": "src/features/compose-runtime/adapters/createLocalDockerComposeSessionResolver.ts",
         "sourcePath": "src/index.ts"
       },
       {
@@ -2646,6 +3244,66 @@
         "sourcePath": "examples/basic-usage/index.ts"
       },
       {
+        "fromPath": "src/types/dockerComposeProcess.ts",
+        "toPath": "src/types/dockerComposeRuntime.ts",
+        "sourcePath": "src/types/dockerComposeProcess.ts"
+      },
+      {
+        "fromPath": "src/features/compose-runtime/adapters/createDockerComposeCliControlPlane.ts",
+        "toPath": "src/types/dockerComposeProcess.ts",
+        "sourcePath": "src/features/compose-runtime/adapters/createDockerComposeCliControlPlane.ts"
+      },
+      {
+        "fromPath": "src/features/compose-runtime/adapters/createDockerComposeCliControlPlane.ts",
+        "toPath": "src/types/dockerComposeRuntime.ts",
+        "sourcePath": "src/features/compose-runtime/adapters/createDockerComposeCliControlPlane.ts"
+      },
+      {
+        "fromPath": "src/features/compose-runtime/adapters/createDockerComposeCliControlPlane.ts",
+        "toPath": "src/features/compose-runtime/adapters/createLocalDockerComposeSessionResolver.ts",
+        "sourcePath": "src/features/compose-runtime/adapters/createDockerComposeCliControlPlane.ts"
+      },
+      {
+        "fromPath": "src/features/compose-runtime/adapters/createDockerComposeCliControlPlane.ts",
+        "toPath": "src/features/compose-runtime/adapters/inspectDockerComposeProjectAsync.ts",
+        "sourcePath": "src/features/compose-runtime/adapters/createDockerComposeCliControlPlane.ts"
+      },
+      {
+        "fromPath": "src/features/compose-runtime/adapters/createDockerComposeCliControlPlane.ts",
+        "toPath": "src/features/compose-runtime/adapters/reconcileDockerComposeProjectAsync.ts",
+        "sourcePath": "src/features/compose-runtime/adapters/createDockerComposeCliControlPlane.ts"
+      },
+      {
+        "fromPath": "src/features/compose-runtime/adapters/createDockerComposeCliControlPlane.ts",
+        "toPath": "src/features/compose-runtime/adapters/removeDockerComposeResourcesAsync.ts",
+        "sourcePath": "src/features/compose-runtime/adapters/createDockerComposeCliControlPlane.ts"
+      },
+      {
+        "fromPath": "src/features/compose-runtime/adapters/createDockerComposeCliControlPlane.ts",
+        "toPath": "src/features/compose-runtime/adapters/runDockerComposeCommandAsync.ts",
+        "sourcePath": "src/features/compose-runtime/adapters/createDockerComposeCliControlPlane.ts"
+      },
+      {
+        "fromPath": "src/features/compose-runtime/adapters/createDockerComposeCliControlPlane.ts",
+        "toPath": "src/features/compose-runtime/adapters/stopDockerComposeProjectAsync.ts",
+        "sourcePath": "src/features/compose-runtime/adapters/createDockerComposeCliControlPlane.ts"
+      },
+      {
+        "fromPath": "src/features/compose-runtime/adapters/createDockerComposeCliControlPlane.ts",
+        "toPath": "src/features/compose-runtime/adapters/waitForDockerComposeProjectAsync.ts",
+        "sourcePath": "src/features/compose-runtime/adapters/createDockerComposeCliControlPlane.ts"
+      },
+      {
+        "fromPath": "src/features/compose-runtime/adapters/createLocalDockerComposeSessionResolver.ts",
+        "toPath": "src/types/dockerComposeProcess.ts",
+        "sourcePath": "src/features/compose-runtime/adapters/createLocalDockerComposeSessionResolver.ts"
+      },
+      {
+        "fromPath": "src/features/compose-runtime/adapters/createLocalDockerComposeSessionResolver.ts",
+        "toPath": "src/features/compose-runtime/adapters/createSubprocessDockerComposeCommandRunner.ts",
+        "sourcePath": "src/features/compose-runtime/adapters/createLocalDockerComposeSessionResolver.ts"
+      },
+      {
         "fromPath": "src/features/compose-runtime/adapters/createSubprocessDockerComposeCommandRunner.ts",
         "toPath": "src/types/dockerComposeProcess.ts",
         "sourcePath": "src/features/compose-runtime/adapters/createSubprocessDockerComposeCommandRunner.ts"
@@ -2662,7 +3320,7 @@
       },
       {
         "fromPath": "src/features/compose-runtime/adapters/inspectDockerComposeProjectAsync.ts",
-        "toPath": "src/features/compose-runtime/utils/dockerComposeLabels.ts",
+        "toPath": "src/features/compose-runtime/utils/getDockerComposeOwnershipFilters.ts",
         "sourcePath": "src/features/compose-runtime/adapters/inspectDockerComposeProjectAsync.ts"
       },
       {
@@ -2687,8 +3345,68 @@
       },
       {
         "fromPath": "src/features/compose-runtime/adapters/parseDockerComposeInspection.ts",
+        "toPath": "src/features/compose-runtime/utils/mergeDockerComposeServiceReplicas.ts",
+        "sourcePath": "src/features/compose-runtime/adapters/parseDockerComposeInspection.ts"
+      },
+      {
+        "fromPath": "src/features/compose-runtime/adapters/parseDockerComposeInspection.ts",
         "toPath": "src/features/compose-runtime/utils/parseDockerComposeInventory.ts",
         "sourcePath": "src/features/compose-runtime/adapters/parseDockerComposeInspection.ts"
+      },
+      {
+        "fromPath": "src/features/compose-runtime/adapters/reconcileDockerComposeProjectAsync.ts",
+        "toPath": "src/types/dockerComposeProcess.ts",
+        "sourcePath": "src/features/compose-runtime/adapters/reconcileDockerComposeProjectAsync.ts"
+      },
+      {
+        "fromPath": "src/features/compose-runtime/adapters/reconcileDockerComposeProjectAsync.ts",
+        "toPath": "src/types/dockerComposeRuntime.ts",
+        "sourcePath": "src/features/compose-runtime/adapters/reconcileDockerComposeProjectAsync.ts"
+      },
+      {
+        "fromPath": "src/features/compose-runtime/adapters/reconcileDockerComposeProjectAsync.ts",
+        "toPath": "src/features/compose-runtime/utils/orderDockerComposeResourceIdsForRemoval.ts",
+        "sourcePath": "src/features/compose-runtime/adapters/reconcileDockerComposeProjectAsync.ts"
+      },
+      {
+        "fromPath": "src/features/compose-runtime/adapters/reconcileDockerComposeProjectAsync.ts",
+        "toPath": "src/features/compose-runtime/adapters/inspectDockerComposeProjectAsync.ts",
+        "sourcePath": "src/features/compose-runtime/adapters/reconcileDockerComposeProjectAsync.ts"
+      },
+      {
+        "fromPath": "src/features/compose-runtime/adapters/reconcileDockerComposeProjectAsync.ts",
+        "toPath": "src/features/compose-runtime/adapters/removeDockerComposeResourcesAsync.ts",
+        "sourcePath": "src/features/compose-runtime/adapters/reconcileDockerComposeProjectAsync.ts"
+      },
+      {
+        "fromPath": "src/features/compose-runtime/adapters/reconcileDockerComposeProjectAsync.ts",
+        "toPath": "src/features/compose-runtime/adapters/renderDockerComposeCliInput.ts",
+        "sourcePath": "src/features/compose-runtime/adapters/reconcileDockerComposeProjectAsync.ts"
+      },
+      {
+        "fromPath": "src/features/compose-runtime/adapters/reconcileDockerComposeProjectAsync.ts",
+        "toPath": "src/features/compose-runtime/adapters/runDockerComposeCommandAsync.ts",
+        "sourcePath": "src/features/compose-runtime/adapters/reconcileDockerComposeProjectAsync.ts"
+      },
+      {
+        "fromPath": "src/features/compose-runtime/adapters/removeDockerComposeResourcesAsync.ts",
+        "toPath": "src/types/dockerComposeProcess.ts",
+        "sourcePath": "src/features/compose-runtime/adapters/removeDockerComposeResourcesAsync.ts"
+      },
+      {
+        "fromPath": "src/features/compose-runtime/adapters/removeDockerComposeResourcesAsync.ts",
+        "toPath": "src/types/dockerComposeRuntime.ts",
+        "sourcePath": "src/features/compose-runtime/adapters/removeDockerComposeResourcesAsync.ts"
+      },
+      {
+        "fromPath": "src/features/compose-runtime/adapters/removeDockerComposeResourcesAsync.ts",
+        "toPath": "src/features/compose-runtime/utils/getDockerComposeOwnershipFilters.ts",
+        "sourcePath": "src/features/compose-runtime/adapters/removeDockerComposeResourcesAsync.ts"
+      },
+      {
+        "fromPath": "src/features/compose-runtime/adapters/removeDockerComposeResourcesAsync.ts",
+        "toPath": "src/features/compose-runtime/adapters/runDockerComposeCommandAsync.ts",
+        "sourcePath": "src/features/compose-runtime/adapters/removeDockerComposeResourcesAsync.ts"
       },
       {
         "fromPath": "src/features/compose-runtime/adapters/renderDockerComposeCliInput.ts",
@@ -2711,18 +3429,63 @@
         "sourcePath": "src/features/compose-runtime/adapters/renderDockerComposeCliInput.ts"
       },
       {
+        "fromPath": "src/features/compose-runtime/adapters/runDockerComposeCommandAsync.ts",
+        "toPath": "src/types/dockerComposeProcess.ts",
+        "sourcePath": "src/features/compose-runtime/adapters/runDockerComposeCommandAsync.ts"
+      },
+      {
+        "fromPath": "src/features/compose-runtime/adapters/stopDockerComposeProjectAsync.ts",
+        "toPath": "src/types/dockerComposeProcess.ts",
+        "sourcePath": "src/features/compose-runtime/adapters/stopDockerComposeProjectAsync.ts"
+      },
+      {
+        "fromPath": "src/features/compose-runtime/adapters/stopDockerComposeProjectAsync.ts",
+        "toPath": "src/types/dockerComposeRuntime.ts",
+        "sourcePath": "src/features/compose-runtime/adapters/stopDockerComposeProjectAsync.ts"
+      },
+      {
+        "fromPath": "src/features/compose-runtime/adapters/stopDockerComposeProjectAsync.ts",
+        "toPath": "src/features/compose-runtime/utils/getDockerComposeOwnershipFilters.ts",
+        "sourcePath": "src/features/compose-runtime/adapters/stopDockerComposeProjectAsync.ts"
+      },
+      {
+        "fromPath": "src/features/compose-runtime/adapters/stopDockerComposeProjectAsync.ts",
+        "toPath": "src/features/compose-runtime/adapters/runDockerComposeCommandAsync.ts",
+        "sourcePath": "src/features/compose-runtime/adapters/stopDockerComposeProjectAsync.ts"
+      },
+      {
+        "fromPath": "src/features/compose-runtime/adapters/waitForDockerComposeProjectAsync.ts",
+        "toPath": "src/types/dockerComposeProcess.ts",
+        "sourcePath": "src/features/compose-runtime/adapters/waitForDockerComposeProjectAsync.ts"
+      },
+      {
+        "fromPath": "src/features/compose-runtime/adapters/waitForDockerComposeProjectAsync.ts",
+        "toPath": "src/types/dockerComposeRuntime.ts",
+        "sourcePath": "src/features/compose-runtime/adapters/waitForDockerComposeProjectAsync.ts"
+      },
+      {
+        "fromPath": "src/features/compose-runtime/adapters/waitForDockerComposeProjectAsync.ts",
+        "toPath": "src/features/compose-runtime/adapters/inspectDockerComposeProjectAsync.ts",
+        "sourcePath": "src/features/compose-runtime/adapters/waitForDockerComposeProjectAsync.ts"
+      },
+      {
         "fromPath": "src/features/compose-runtime/application/destroyDockerComposeRuntimeAsync.ts",
         "toPath": "src/types/dockerComposeRuntime.ts",
         "sourcePath": "src/features/compose-runtime/application/destroyDockerComposeRuntimeAsync.ts"
       },
       {
         "fromPath": "src/features/compose-runtime/application/destroyDockerComposeRuntimeAsync.ts",
-        "toPath": "src/features/compose-runtime/utils/getDockerComposeProjectIdentity.ts",
+        "toPath": "src/features/compose-runtime/utils/getDockerComposeResources.ts",
         "sourcePath": "src/features/compose-runtime/application/destroyDockerComposeRuntimeAsync.ts"
       },
       {
         "fromPath": "src/features/compose-runtime/application/destroyDockerComposeRuntimeAsync.ts",
-        "toPath": "src/features/compose-runtime/utils/getDockerComposeResources.ts",
+        "toPath": "src/features/compose-runtime/utils/orderDockerComposeResourceIdsForRemoval.ts",
+        "sourcePath": "src/features/compose-runtime/application/destroyDockerComposeRuntimeAsync.ts"
+      },
+      {
+        "fromPath": "src/features/compose-runtime/application/destroyDockerComposeRuntimeAsync.ts",
+        "toPath": "src/features/compose-runtime/utils/resolveDockerComposeTargetAsync.ts",
         "sourcePath": "src/features/compose-runtime/application/destroyDockerComposeRuntimeAsync.ts"
       },
       {
@@ -2757,7 +3520,7 @@
       },
       {
         "fromPath": "src/features/compose-runtime/application/getDockerComposeStatusAsync.ts",
-        "toPath": "src/features/compose-runtime/utils/getDockerComposeProjectIdentity.ts",
+        "toPath": "src/features/compose-runtime/utils/resolveDockerComposeTargetAsync.ts",
         "sourcePath": "src/features/compose-runtime/application/getDockerComposeStatusAsync.ts"
       },
       {
@@ -2841,18 +3604,23 @@
         "sourcePath": "src/features/compose-runtime/application/readDockerComposeOutputs.ts"
       },
       {
+        "fromPath": "src/features/compose-runtime/application/resolveDockerComposeValue.ts",
+        "toPath": "src/types/dockerComposeRuntime.ts",
+        "sourcePath": "src/features/compose-runtime/application/resolveDockerComposeValue.ts"
+      },
+      {
         "fromPath": "src/features/compose-runtime/application/suspendDockerComposeRuntimeAsync.ts",
         "toPath": "src/types/dockerComposeRuntime.ts",
         "sourcePath": "src/features/compose-runtime/application/suspendDockerComposeRuntimeAsync.ts"
       },
       {
         "fromPath": "src/features/compose-runtime/application/suspendDockerComposeRuntimeAsync.ts",
-        "toPath": "src/features/compose-runtime/utils/getDockerComposeProjectIdentity.ts",
+        "toPath": "src/features/compose-runtime/utils/getDockerComposeResources.ts",
         "sourcePath": "src/features/compose-runtime/application/suspendDockerComposeRuntimeAsync.ts"
       },
       {
         "fromPath": "src/features/compose-runtime/application/suspendDockerComposeRuntimeAsync.ts",
-        "toPath": "src/features/compose-runtime/utils/getDockerComposeResources.ts",
+        "toPath": "src/features/compose-runtime/utils/resolveDockerComposeTargetAsync.ts",
         "sourcePath": "src/features/compose-runtime/application/suspendDockerComposeRuntimeAsync.ts"
       },
       {
@@ -2873,6 +3641,11 @@
       {
         "fromPath": "src/features/compose-runtime/composition/createInfraAdapter.ts",
         "toPath": "src/types/dockerComposeRuntime.ts",
+        "sourcePath": "src/features/compose-runtime/composition/createInfraAdapter.ts"
+      },
+      {
+        "fromPath": "src/features/compose-runtime/composition/createInfraAdapter.ts",
+        "toPath": "src/features/compose-runtime/adapters/createDockerComposeCliControlPlane.ts",
         "sourcePath": "src/features/compose-runtime/composition/createInfraAdapter.ts"
       },
       {
@@ -2916,6 +3689,16 @@
         "sourcePath": "src/features/compose-runtime/utils/dockerComposeResourceFactories.ts"
       },
       {
+        "fromPath": "src/features/compose-runtime/utils/getDockerComposeOwnershipFilters.ts",
+        "toPath": "src/types/dockerComposeRuntime.ts",
+        "sourcePath": "src/features/compose-runtime/utils/getDockerComposeOwnershipFilters.ts"
+      },
+      {
+        "fromPath": "src/features/compose-runtime/utils/getDockerComposeOwnershipFilters.ts",
+        "toPath": "src/features/compose-runtime/utils/dockerComposeLabels.ts",
+        "sourcePath": "src/features/compose-runtime/utils/getDockerComposeOwnershipFilters.ts"
+      },
+      {
         "fromPath": "src/features/compose-runtime/utils/getDockerComposeProjectIdentity.ts",
         "toPath": "src/types/dockerComposeRuntime.ts",
         "sourcePath": "src/features/compose-runtime/utils/getDockerComposeProjectIdentity.ts"
@@ -2924,6 +3707,16 @@
         "fromPath": "src/features/compose-runtime/utils/getDockerComposeResources.ts",
         "toPath": "src/types/dockerComposeRuntime.ts",
         "sourcePath": "src/features/compose-runtime/utils/getDockerComposeResources.ts"
+      },
+      {
+        "fromPath": "src/features/compose-runtime/utils/mergeDockerComposeServiceReplicas.ts",
+        "toPath": "src/types/dockerComposeRuntime.ts",
+        "sourcePath": "src/features/compose-runtime/utils/mergeDockerComposeServiceReplicas.ts"
+      },
+      {
+        "fromPath": "src/features/compose-runtime/utils/orderDockerComposeResourceIdsForRemoval.ts",
+        "toPath": "src/types/dockerComposeRuntime.ts",
+        "sourcePath": "src/features/compose-runtime/utils/orderDockerComposeResourceIdsForRemoval.ts"
       },
       {
         "fromPath": "src/features/compose-runtime/utils/parseDockerComposeInventory.ts",
@@ -2947,6 +3740,54 @@
       }
     ],
     "calls": [
+      {
+        "fromSymbol": "src/dockerComposeCliControlPlane.test.ts",
+        "toSymbol": "it",
+        "callExpression": "it",
+        "sourcePath": "src/dockerComposeCliControlPlane.test.ts"
+      },
+      {
+        "fromSymbol": "resolveAsync",
+        "toSymbol": "success",
+        "callExpression": "success",
+        "sourcePath": "src/dockerComposeCliControlPlane.test.ts"
+      },
+      {
+        "fromSymbol": "src/dockerComposeCliControlPlane.test.ts",
+        "toSymbol": "validateAsync",
+        "callExpression": "createDockerComposeCliControlPlane(resolver).validateAsync",
+        "sourcePath": "src/dockerComposeCliControlPlane.test.ts"
+      },
+      {
+        "fromSymbol": "src/dockerComposeCliControlPlane.test.ts",
+        "toSymbol": "createDockerComposeCliControlPlane",
+        "callExpression": "createDockerComposeCliControlPlane",
+        "sourcePath": "src/dockerComposeCliControlPlane.test.ts"
+      },
+      {
+        "fromSymbol": "src/dockerComposeCliControlPlane.test.ts",
+        "toSymbol": "createProject",
+        "callExpression": "createProject",
+        "sourcePath": "src/dockerComposeCliControlPlane.test.ts"
+      },
+      {
+        "fromSymbol": "src/dockerComposeCliControlPlane.test.ts",
+        "toSymbol": "expect",
+        "callExpression": "expect",
+        "sourcePath": "src/dockerComposeCliControlPlane.test.ts"
+      },
+      {
+        "fromSymbol": "src/dockerComposeCliControlPlane.test.ts",
+        "toSymbol": "resolveAsync",
+        "callExpression": "createLocalDockerComposeSessionResolver().resolveAsync",
+        "sourcePath": "src/dockerComposeCliControlPlane.test.ts"
+      },
+      {
+        "fromSymbol": "src/dockerComposeCliControlPlane.test.ts",
+        "toSymbol": "createLocalDockerComposeSessionResolver",
+        "callExpression": "createLocalDockerComposeSessionResolver",
+        "sourcePath": "src/dockerComposeCliControlPlane.test.ts"
+      },
       {
         "fromSymbol": "src/dockerComposeCliInput.test.ts",
         "toSymbol": "it",
@@ -3044,6 +3885,96 @@
         "sourcePath": "src/dockerComposeEngineInspection.test.ts"
       },
       {
+        "fromSymbol": "src/dockerComposeEngineLifecycle.test.ts",
+        "toSymbol": "it",
+        "callExpression": "it",
+        "sourcePath": "src/dockerComposeEngineLifecycle.test.ts"
+      },
+      {
+        "fromSymbol": "src/dockerComposeEngineLifecycle.test.ts",
+        "toSymbol": "success",
+        "callExpression": "success",
+        "sourcePath": "src/dockerComposeEngineLifecycle.test.ts"
+      },
+      {
+        "fromSymbol": "src/dockerComposeEngineLifecycle.test.ts",
+        "toSymbol": "stopDockerComposeProjectAsync",
+        "callExpression": "stopDockerComposeProjectAsync",
+        "sourcePath": "src/dockerComposeEngineLifecycle.test.ts"
+      },
+      {
+        "fromSymbol": "src/dockerComposeEngineLifecycle.test.ts",
+        "toSymbol": "expect",
+        "callExpression": "expect",
+        "sourcePath": "src/dockerComposeEngineLifecycle.test.ts"
+      },
+      {
+        "fromSymbol": "src/dockerComposeEngineLifecycle.test.ts",
+        "toSymbol": "waitForDockerComposeProjectAsync",
+        "callExpression": "waitForDockerComposeProjectAsync",
+        "sourcePath": "src/dockerComposeEngineLifecycle.test.ts"
+      },
+      {
+        "fromSymbol": "src/dockerComposeEngineReconcile.test.ts",
+        "toSymbol": "it",
+        "callExpression": "it",
+        "sourcePath": "src/dockerComposeEngineReconcile.test.ts"
+      },
+      {
+        "fromSymbol": "src/dockerComposeEngineReconcile.test.ts",
+        "toSymbol": "success",
+        "callExpression": "success",
+        "sourcePath": "src/dockerComposeEngineReconcile.test.ts"
+      },
+      {
+        "fromSymbol": "src/dockerComposeEngineReconcile.test.ts",
+        "toSymbol": "reconcileDockerComposeProjectAsync",
+        "callExpression": "reconcileDockerComposeProjectAsync",
+        "sourcePath": "src/dockerComposeEngineReconcile.test.ts"
+      },
+      {
+        "fromSymbol": "src/dockerComposeEngineReconcile.test.ts",
+        "toSymbol": "createProject",
+        "callExpression": "createProject",
+        "sourcePath": "src/dockerComposeEngineReconcile.test.ts"
+      },
+      {
+        "fromSymbol": "src/dockerComposeEngineReconcile.test.ts",
+        "toSymbol": "expect",
+        "callExpression": "expect",
+        "sourcePath": "src/dockerComposeEngineReconcile.test.ts"
+      },
+      {
+        "fromSymbol": "src/dockerComposeEngineRemoval.test.ts",
+        "toSymbol": "it",
+        "callExpression": "it",
+        "sourcePath": "src/dockerComposeEngineRemoval.test.ts"
+      },
+      {
+        "fromSymbol": "src/dockerComposeEngineRemoval.test.ts",
+        "toSymbol": "success",
+        "callExpression": "success",
+        "sourcePath": "src/dockerComposeEngineRemoval.test.ts"
+      },
+      {
+        "fromSymbol": "src/dockerComposeEngineRemoval.test.ts",
+        "toSymbol": "removeDockerComposeResourcesAsync",
+        "callExpression": "removeDockerComposeResourcesAsync",
+        "sourcePath": "src/dockerComposeEngineRemoval.test.ts"
+      },
+      {
+        "fromSymbol": "src/dockerComposeEngineRemoval.test.ts",
+        "toSymbol": "expect",
+        "callExpression": "expect",
+        "sourcePath": "src/dockerComposeEngineRemoval.test.ts"
+      },
+      {
+        "fromSymbol": "src/dockerComposeEngineRemoval.test.ts",
+        "toSymbol": "listArguments",
+        "callExpression": "listArguments",
+        "sourcePath": "src/dockerComposeEngineRemoval.test.ts"
+      },
+      {
         "fromSymbol": "src/dockerComposeInspection.test.ts",
         "toSymbol": "it",
         "callExpression": "it",
@@ -3069,14 +4000,20 @@
       },
       {
         "fromSymbol": "src/dockerComposeInspection.test.ts",
-        "toSymbol": "labels",
-        "callExpression": "labels",
+        "toSymbol": "serviceContainer",
+        "callExpression": "serviceContainer",
         "sourcePath": "src/dockerComposeInspection.test.ts"
       },
       {
         "fromSymbol": "src/dockerComposeInspection.test.ts",
         "toSymbol": "expect",
         "callExpression": "expect",
+        "sourcePath": "src/dockerComposeInspection.test.ts"
+      },
+      {
+        "fromSymbol": "serviceContainer",
+        "toSymbol": "labels",
+        "callExpression": "labels",
         "sourcePath": "src/dockerComposeInspection.test.ts"
       },
       {
@@ -3254,6 +4191,102 @@
         "sourcePath": "examples/basic-usage/index.ts"
       },
       {
+        "fromSymbol": "createDockerComposeCliControlPlane",
+        "toSymbol": "createLocalDockerComposeSessionResolver",
+        "callExpression": "createLocalDockerComposeSessionResolver",
+        "sourcePath": "src/features/compose-runtime/adapters/createDockerComposeCliControlPlane.ts"
+      },
+      {
+        "fromSymbol": "validateAsync",
+        "toSymbol": "resolveAsync",
+        "callExpression": "resolver.resolveAsync",
+        "sourcePath": "src/features/compose-runtime/adapters/createDockerComposeCliControlPlane.ts"
+      },
+      {
+        "fromSymbol": "validateAsync",
+        "toSymbol": "validateCommandAsync",
+        "callExpression": "validateCommandAsync",
+        "sourcePath": "src/features/compose-runtime/adapters/createDockerComposeCliControlPlane.ts"
+      },
+      {
+        "fromSymbol": "inspectAsync",
+        "toSymbol": "resolveAsync",
+        "callExpression": "resolver.resolveAsync",
+        "sourcePath": "src/features/compose-runtime/adapters/createDockerComposeCliControlPlane.ts"
+      },
+      {
+        "fromSymbol": "inspectAsync",
+        "toSymbol": "inspectDockerComposeProjectAsync",
+        "callExpression": "inspectDockerComposeProjectAsync",
+        "sourcePath": "src/features/compose-runtime/adapters/createDockerComposeCliControlPlane.ts"
+      },
+      {
+        "fromSymbol": "reconcileAsync",
+        "toSymbol": "resolveAsync",
+        "callExpression": "resolver.resolveAsync",
+        "sourcePath": "src/features/compose-runtime/adapters/createDockerComposeCliControlPlane.ts"
+      },
+      {
+        "fromSymbol": "reconcileAsync",
+        "toSymbol": "reconcileDockerComposeProjectAsync",
+        "callExpression": "reconcileDockerComposeProjectAsync",
+        "sourcePath": "src/features/compose-runtime/adapters/createDockerComposeCliControlPlane.ts"
+      },
+      {
+        "fromSymbol": "waitUntilReadyAsync",
+        "toSymbol": "resolveAsync",
+        "callExpression": "resolver.resolveAsync",
+        "sourcePath": "src/features/compose-runtime/adapters/createDockerComposeCliControlPlane.ts"
+      },
+      {
+        "fromSymbol": "waitUntilReadyAsync",
+        "toSymbol": "waitForDockerComposeProjectAsync",
+        "callExpression": "waitForDockerComposeProjectAsync",
+        "sourcePath": "src/features/compose-runtime/adapters/createDockerComposeCliControlPlane.ts"
+      },
+      {
+        "fromSymbol": "downAsync",
+        "toSymbol": "resolveAsync",
+        "callExpression": "resolver.resolveAsync",
+        "sourcePath": "src/features/compose-runtime/adapters/createDockerComposeCliControlPlane.ts"
+      },
+      {
+        "fromSymbol": "downAsync",
+        "toSymbol": "stopDockerComposeProjectAsync",
+        "callExpression": "stopDockerComposeProjectAsync",
+        "sourcePath": "src/features/compose-runtime/adapters/createDockerComposeCliControlPlane.ts"
+      },
+      {
+        "fromSymbol": "destroyAsync",
+        "toSymbol": "resolveAsync",
+        "callExpression": "resolver.resolveAsync",
+        "sourcePath": "src/features/compose-runtime/adapters/createDockerComposeCliControlPlane.ts"
+      },
+      {
+        "fromSymbol": "destroyAsync",
+        "toSymbol": "removeDockerComposeResourcesAsync",
+        "callExpression": "removeDockerComposeResourcesAsync",
+        "sourcePath": "src/features/compose-runtime/adapters/createDockerComposeCliControlPlane.ts"
+      },
+      {
+        "fromSymbol": "validateCommandAsync",
+        "toSymbol": "runDockerComposeCommandAsync",
+        "callExpression": "runDockerComposeCommandAsync",
+        "sourcePath": "src/features/compose-runtime/adapters/createDockerComposeCliControlPlane.ts"
+      },
+      {
+        "fromSymbol": "createLocalDockerComposeSessionResolver",
+        "toSymbol": "createSubprocessDockerComposeCommandRunner",
+        "callExpression": "createSubprocessDockerComposeCommandRunner",
+        "sourcePath": "src/features/compose-runtime/adapters/createLocalDockerComposeSessionResolver.ts"
+      },
+      {
+        "fromSymbol": "resolveAsync",
+        "toSymbol": "remoteResolverRequired",
+        "callExpression": "remoteResolverRequired",
+        "sourcePath": "src/features/compose-runtime/adapters/createLocalDockerComposeSessionResolver.ts"
+      },
+      {
         "fromSymbol": "src/features/compose-runtime/adapters/createSubprocessDockerComposeCommandRunner.ts",
         "toSymbol": "spawn",
         "callExpression": "spawn",
@@ -3267,8 +4300,8 @@
       },
       {
         "fromSymbol": "inspectDockerComposeProjectAsync",
-        "toSymbol": "ownershipFilters",
-        "callExpression": "ownershipFilters",
+        "toSymbol": "getDockerComposeOwnershipFilters",
+        "callExpression": "getDockerComposeOwnershipFilters",
         "sourcePath": "src/features/compose-runtime/adapters/inspectDockerComposeProjectAsync.ts"
       },
       {
@@ -3383,6 +4416,12 @@
         "fromSymbol": "readActualResources",
         "toSymbol": "requireLabel",
         "callExpression": "requireLabel",
+        "sourcePath": "src/features/compose-runtime/adapters/parseDockerComposeInspection.ts"
+      },
+      {
+        "fromSymbol": "readActualResources",
+        "toSymbol": "mergeDockerComposeServiceReplicas",
+        "callExpression": "mergeDockerComposeServiceReplicas",
         "sourcePath": "src/features/compose-runtime/adapters/parseDockerComposeInspection.ts"
       },
       {
@@ -3524,6 +4563,78 @@
         "sourcePath": "src/features/compose-runtime/adapters/parseDockerComposeInspection.ts"
       },
       {
+        "fromSymbol": "reconcileDockerComposeProjectAsync",
+        "toSymbol": "inspectDockerComposeProjectAsync",
+        "callExpression": "inspectDockerComposeProjectAsync",
+        "sourcePath": "src/features/compose-runtime/adapters/reconcileDockerComposeProjectAsync.ts"
+      },
+      {
+        "fromSymbol": "reconcileDockerComposeProjectAsync",
+        "toSymbol": "removeDockerComposeResourcesAsync",
+        "callExpression": "removeDockerComposeResourcesAsync",
+        "sourcePath": "src/features/compose-runtime/adapters/reconcileDockerComposeProjectAsync.ts"
+      },
+      {
+        "fromSymbol": "reconcileDockerComposeProjectAsync",
+        "toSymbol": "orderDockerComposeResourceIdsForRemoval",
+        "callExpression": "orderDockerComposeResourceIdsForRemoval",
+        "sourcePath": "src/features/compose-runtime/adapters/reconcileDockerComposeProjectAsync.ts"
+      },
+      {
+        "fromSymbol": "reconcileDockerComposeProjectAsync",
+        "toSymbol": "renderDockerComposeCliInput",
+        "callExpression": "renderDockerComposeCliInput",
+        "sourcePath": "src/features/compose-runtime/adapters/reconcileDockerComposeProjectAsync.ts"
+      },
+      {
+        "fromSymbol": "reconcileDockerComposeProjectAsync",
+        "toSymbol": "runDockerComposeCommandAsync",
+        "callExpression": "runDockerComposeCommandAsync",
+        "sourcePath": "src/features/compose-runtime/adapters/reconcileDockerComposeProjectAsync.ts"
+      },
+      {
+        "fromSymbol": "removeDockerComposeResourcesAsync",
+        "toSymbol": "getEngineKind",
+        "callExpression": "getEngineKind",
+        "sourcePath": "src/features/compose-runtime/adapters/removeDockerComposeResourcesAsync.ts"
+      },
+      {
+        "fromSymbol": "removeDockerComposeResourcesAsync",
+        "toSymbol": "invalidResourceId",
+        "callExpression": "invalidResourceId",
+        "sourcePath": "src/features/compose-runtime/adapters/removeDockerComposeResourcesAsync.ts"
+      },
+      {
+        "fromSymbol": "removeDockerComposeResourcesAsync",
+        "toSymbol": "listResourceNamesAsync",
+        "callExpression": "listResourceNamesAsync",
+        "sourcePath": "src/features/compose-runtime/adapters/removeDockerComposeResourcesAsync.ts"
+      },
+      {
+        "fromSymbol": "removeDockerComposeResourcesAsync",
+        "toSymbol": "runDockerComposeCommandAsync",
+        "callExpression": "runDockerComposeCommandAsync",
+        "sourcePath": "src/features/compose-runtime/adapters/removeDockerComposeResourcesAsync.ts"
+      },
+      {
+        "fromSymbol": "removeDockerComposeResourcesAsync",
+        "toSymbol": "removeArguments",
+        "callExpression": "removeArguments",
+        "sourcePath": "src/features/compose-runtime/adapters/removeDockerComposeResourcesAsync.ts"
+      },
+      {
+        "fromSymbol": "listResourceNamesAsync",
+        "toSymbol": "runDockerComposeCommandAsync",
+        "callExpression": "runDockerComposeCommandAsync",
+        "sourcePath": "src/features/compose-runtime/adapters/removeDockerComposeResourcesAsync.ts"
+      },
+      {
+        "fromSymbol": "listResourceNamesAsync",
+        "toSymbol": "getDockerComposeOwnershipFilters",
+        "callExpression": "getDockerComposeOwnershipFilters",
+        "sourcePath": "src/features/compose-runtime/adapters/removeDockerComposeResourcesAsync.ts"
+      },
+      {
         "fromSymbol": "renderDockerComposeCliInput",
         "toSymbol": "getResources",
         "callExpression": "getResources",
@@ -3620,6 +4731,48 @@
         "sourcePath": "src/features/compose-runtime/adapters/renderDockerComposeCliInput.ts"
       },
       {
+        "fromSymbol": "runDockerComposeCommandAsync",
+        "toSymbol": "runAsync",
+        "callExpression": "session.runner.runAsync",
+        "sourcePath": "src/features/compose-runtime/adapters/runDockerComposeCommandAsync.ts"
+      },
+      {
+        "fromSymbol": "runDockerComposeCommandAsync",
+        "toSymbol": "failure",
+        "callExpression": "failure",
+        "sourcePath": "src/features/compose-runtime/adapters/runDockerComposeCommandAsync.ts"
+      },
+      {
+        "fromSymbol": "stopDockerComposeProjectAsync",
+        "toSymbol": "runDockerComposeCommandAsync",
+        "callExpression": "runDockerComposeCommandAsync",
+        "sourcePath": "src/features/compose-runtime/adapters/stopDockerComposeProjectAsync.ts"
+      },
+      {
+        "fromSymbol": "stopDockerComposeProjectAsync",
+        "toSymbol": "getDockerComposeOwnershipFilters",
+        "callExpression": "getDockerComposeOwnershipFilters",
+        "sourcePath": "src/features/compose-runtime/adapters/stopDockerComposeProjectAsync.ts"
+      },
+      {
+        "fromSymbol": "waitForDockerComposeProjectAsync",
+        "toSymbol": "readinessFailure",
+        "callExpression": "readinessFailure",
+        "sourcePath": "src/features/compose-runtime/adapters/waitForDockerComposeProjectAsync.ts"
+      },
+      {
+        "fromSymbol": "waitForDockerComposeProjectAsync",
+        "toSymbol": "inspectDockerComposeProjectAsync",
+        "callExpression": "inspectDockerComposeProjectAsync",
+        "sourcePath": "src/features/compose-runtime/adapters/waitForDockerComposeProjectAsync.ts"
+      },
+      {
+        "fromSymbol": "waitForDockerComposeProjectAsync",
+        "toSymbol": "waitAsync",
+        "callExpression": "waitAsync",
+        "sourcePath": "src/features/compose-runtime/adapters/waitForDockerComposeProjectAsync.ts"
+      },
+      {
         "fromSymbol": "destroyDockerComposeRuntimeAsync",
         "toSymbol": "isConfirmed",
         "callExpression": "isConfirmed",
@@ -3633,8 +4786,8 @@
       },
       {
         "fromSymbol": "destroyDockerComposeRuntimeAsync",
-        "toSymbol": "getDockerComposeProjectIdentity",
-        "callExpression": "getDockerComposeProjectIdentity",
+        "toSymbol": "resolveDockerComposeTargetAsync",
+        "callExpression": "resolveDockerComposeTargetAsync",
         "sourcePath": "src/features/compose-runtime/application/destroyDockerComposeRuntimeAsync.ts"
       },
       {
@@ -3657,26 +4810,14 @@
       },
       {
         "fromSymbol": "destroyDockerComposeRuntimeAsync",
-        "toSymbol": "orderForRemoval",
-        "callExpression": "orderForRemoval",
+        "toSymbol": "orderDockerComposeResourceIdsForRemoval",
+        "callExpression": "orderDockerComposeResourceIdsForRemoval",
         "sourcePath": "src/features/compose-runtime/application/destroyDockerComposeRuntimeAsync.ts"
       },
       {
         "fromSymbol": "src/features/compose-runtime/application/destroyDockerComposeRuntimeAsync.ts",
         "toSymbol": "createObservedDockerComposeOwner",
         "callExpression": "createObservedDockerComposeOwner",
-        "sourcePath": "src/features/compose-runtime/application/destroyDockerComposeRuntimeAsync.ts"
-      },
-      {
-        "fromSymbol": "visit",
-        "toSymbol": "visit",
-        "callExpression": "visit",
-        "sourcePath": "src/features/compose-runtime/application/destroyDockerComposeRuntimeAsync.ts"
-      },
-      {
-        "fromSymbol": "orderForRemoval",
-        "toSymbol": "visit",
-        "callExpression": "visit",
         "sourcePath": "src/features/compose-runtime/application/destroyDockerComposeRuntimeAsync.ts"
       },
       {
@@ -3729,8 +4870,8 @@
       },
       {
         "fromSymbol": "getDockerComposeStatusAsync",
-        "toSymbol": "getDockerComposeProjectIdentity",
-        "callExpression": "getDockerComposeProjectIdentity",
+        "toSymbol": "resolveDockerComposeTargetAsync",
+        "callExpression": "resolveDockerComposeTargetAsync",
         "sourcePath": "src/features/compose-runtime/application/getDockerComposeStatusAsync.ts"
       },
       {
@@ -3738,6 +4879,12 @@
         "toSymbol": "inspectAsync",
         "callExpression": "options.controlPlane.inspectAsync",
         "sourcePath": "src/features/compose-runtime/application/getDockerComposeStatusAsync.ts"
+      },
+      {
+        "fromSymbol": "materializeDockerComposeSecretsAsync",
+        "toSymbol": "resolveCredentialValueAsync",
+        "callExpression": "resolveCredentialValueAsync",
+        "sourcePath": "src/features/compose-runtime/application/materializeDockerComposeSecretsAsync.ts"
       },
       {
         "fromSymbol": "planDockerComposeRuntimeAsync",
@@ -3885,8 +5032,8 @@
       },
       {
         "fromSymbol": "suspendDockerComposeRuntimeAsync",
-        "toSymbol": "getDockerComposeProjectIdentity",
-        "callExpression": "getDockerComposeProjectIdentity",
+        "toSymbol": "resolveDockerComposeTargetAsync",
+        "callExpression": "resolveDockerComposeTargetAsync",
         "sourcePath": "src/features/compose-runtime/application/suspendDockerComposeRuntimeAsync.ts"
       },
       {
@@ -3912,6 +5059,12 @@
         "toSymbol": "prepareDockerComposeRuntimeAsync",
         "callExpression": "prepareDockerComposeRuntimeAsync",
         "sourcePath": "src/features/compose-runtime/application/validateDockerComposeRuntimeAsync.ts"
+      },
+      {
+        "fromSymbol": "createInfraAdapter",
+        "toSymbol": "createDockerComposeCliControlPlane",
+        "callExpression": "createDockerComposeCliControlPlane",
+        "sourcePath": "src/features/compose-runtime/composition/createInfraAdapter.ts"
       },
       {
         "fromSymbol": "validateAsync",
@@ -4118,6 +5271,36 @@
         "sourcePath": "src/features/compose-runtime/utils/getDockerComposeProjectIdentity.ts"
       },
       {
+        "fromSymbol": "mergeDockerComposeServiceReplicas",
+        "toSymbol": "aggregateReplicaState",
+        "callExpression": "aggregateReplicaState",
+        "sourcePath": "src/features/compose-runtime/utils/mergeDockerComposeServiceReplicas.ts"
+      },
+      {
+        "fromSymbol": "mergeDockerComposeServiceReplicas",
+        "toSymbol": "mergePublicOutputs",
+        "callExpression": "mergePublicOutputs",
+        "sourcePath": "src/features/compose-runtime/utils/mergeDockerComposeServiceReplicas.ts"
+      },
+      {
+        "fromSymbol": "src/features/compose-runtime/utils/mergeDockerComposeServiceReplicas.ts",
+        "toSymbol": "findOutput",
+        "callExpression": "findOutput",
+        "sourcePath": "src/features/compose-runtime/utils/mergeDockerComposeServiceReplicas.ts"
+      },
+      {
+        "fromSymbol": "visit",
+        "toSymbol": "visit",
+        "callExpression": "visit",
+        "sourcePath": "src/features/compose-runtime/utils/orderDockerComposeResourceIdsForRemoval.ts"
+      },
+      {
+        "fromSymbol": "orderDockerComposeResourceIdsForRemoval",
+        "toSymbol": "visit",
+        "callExpression": "visit",
+        "sourcePath": "src/features/compose-runtime/utils/orderDockerComposeResourceIdsForRemoval.ts"
+      },
+      {
         "fromSymbol": "parseDockerComposeInventory",
         "toSymbol": "inventoryValues",
         "callExpression": "inventoryValues",
@@ -4192,6 +5375,21 @@
     ],
     "typeReferences": [
       {
+        "fromSymbol": "createDockerComposeCliControlPlane",
+        "toType": "DockerComposeControlPlane",
+        "sourcePath": "src/features/compose-runtime/adapters/createDockerComposeCliControlPlane.ts"
+      },
+      {
+        "fromSymbol": "createDockerComposeCliControlPlane",
+        "toType": "DockerComposeSessionResolver",
+        "sourcePath": "src/features/compose-runtime/adapters/createDockerComposeCliControlPlane.ts"
+      },
+      {
+        "fromSymbol": "createLocalDockerComposeSessionResolver",
+        "toType": "DockerComposeSessionResolver",
+        "sourcePath": "src/features/compose-runtime/adapters/createLocalDockerComposeSessionResolver.ts"
+      },
+      {
         "fromSymbol": "createSubprocessDockerComposeCommandRunner",
         "toType": "DockerComposeCommandRunner",
         "sourcePath": "src/features/compose-runtime/adapters/createSubprocessDockerComposeCommandRunner.ts"
@@ -4249,6 +5447,36 @@
       {
         "fromSymbol": "DockerComposeCommandRunner",
         "toType": "DockerComposeCommandResult",
+        "sourcePath": "src/types/dockerComposeProcess.ts"
+      },
+      {
+        "fromSymbol": "DockerComposeEngineSession",
+        "toType": "DockerComposeCommandRunner",
+        "sourcePath": "src/types/dockerComposeProcess.ts"
+      },
+      {
+        "fromSymbol": "DockerComposeEngineSession",
+        "toType": "Readonly",
+        "sourcePath": "src/types/dockerComposeProcess.ts"
+      },
+      {
+        "fromSymbol": "DockerComposeSessionResolver",
+        "toType": "AbortSignal",
+        "sourcePath": "src/types/dockerComposeProcess.ts"
+      },
+      {
+        "fromSymbol": "DockerComposeSessionResolver",
+        "toType": "DockerComposeEngineSession",
+        "sourcePath": "src/types/dockerComposeProcess.ts"
+      },
+      {
+        "fromSymbol": "DockerComposeSessionResolver",
+        "toType": "DockerComposeTargetAccess",
+        "sourcePath": "src/types/dockerComposeProcess.ts"
+      },
+      {
+        "fromSymbol": "DockerComposeSessionResolver",
+        "toType": "InfraResult",
         "sourcePath": "src/types/dockerComposeProcess.ts"
       },
       {
@@ -4374,6 +5602,11 @@
       {
         "fromSymbol": "DockerComposeResourceObservation",
         "toType": "Readonly",
+        "sourcePath": "src/types/dockerComposeRuntime.ts"
+      },
+      {
+        "fromSymbol": "DockerComposeSecret",
+        "toType": "InfraControlPlaneCredentialRef",
         "sourcePath": "src/types/dockerComposeRuntime.ts"
       },
       {

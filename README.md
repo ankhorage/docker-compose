@@ -15,6 +15,9 @@ Docker Compose runtime adapter for provider-neutral Ankhorage infrastructure.
 - [Architecture overview](././paradox/diagrams/architecture-overview.mmd)
 - [Module relationships](././paradox/diagrams/module-relationships.mmd)
 - [Export graph](././paradox/diagrams/export-graph.mmd)
+- [createDockerComposeCliControlPlane sequence](././paradox/diagrams/sequences/create-docker-compose-cli-control-plane.mmd)
+- [createInfraAdapter sequence](././paradox/diagrams/sequences/create-infra-adapter.mmd)
+- [createLocalDockerComposeSessionResolver sequence](././paradox/diagrams/sequences/create-local-docker-compose-session-resolver.mmd)
 
 ## Public API
 
@@ -24,16 +27,17 @@ Docker Compose runtime adapter for provider-neutral Ankhorage infrastructure.
 <summary>createInfraAdapter</summary>
 
 ```ts
-createInfraAdapter(options: DockerComposeAdapterOptions) => InfraRuntimeAdapter<"docker-compose">
+createInfraAdapter(options?: DockerComposeAdapterOptions | undefined) => InfraRuntimeAdapter<"docker-compose">
 ```
 
 Create the canonical Docker Compose runtime adapter entrypoint.
 
-The caller supplies a Docker Compose control-plane boundary. Portable workloads are projected
-into Compose services, networks, volumes, configs and execution-only secrets.
+The default composition operates the local Docker CLI. Callers may inject a control plane for a
+verified remote engine. Portable workloads become services, networks, volumes, configs and
+execution-only secrets.
 
 Module: `src/features/compose-runtime/composition/createInfraAdapter.ts`
-Source: `src/features/compose-runtime/composition/createInfraAdapter.ts:20:1`
+Source: `src/features/compose-runtime/composition/createInfraAdapter.ts:22:1`
 Related symbols: `DockerComposeAdapterOptions`
 
 </details>

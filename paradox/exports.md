@@ -1,21 +1,45 @@
 # Public API
 
+## createDockerComposeCliControlPlane
+
+Kind: `function`
+Module: `src/features/compose-runtime/adapters/createDockerComposeCliControlPlane.ts`
+Source: `src/features/compose-runtime/adapters/createDockerComposeCliControlPlane.ts:17:1`
+
+### Signatures
+
+- `(resolver?: DockerComposeSessionResolver) => DockerComposeControlPlane`
+  - resolver: `DockerComposeSessionResolver` (optional)
+  - returns: `DockerComposeControlPlane`
+
 ## createInfraAdapter
 
 Kind: `function`
 Module: `src/features/compose-runtime/composition/createInfraAdapter.ts`
-Source: `src/features/compose-runtime/composition/createInfraAdapter.ts:20:1`
+Source: `src/features/compose-runtime/composition/createInfraAdapter.ts:22:1`
 
 Create the canonical Docker Compose runtime adapter entrypoint.
 
-The caller supplies a Docker Compose control-plane boundary. Portable workloads are projected
-into Compose services, networks, volumes, configs and execution-only secrets.
+The default composition operates the local Docker CLI. Callers may inject a control plane for a
+verified remote engine. Portable workloads become services, networks, volumes, configs and
+execution-only secrets.
 
 ### Signatures
 
-- `(options: DockerComposeAdapterOptions) => InfraRuntimeAdapter<"docker-compose">`
-  - options: `DockerComposeAdapterOptions`
+- `(options?: DockerComposeAdapterOptions | undefined) => InfraRuntimeAdapter<"docker-compose">`
+  - options: `DockerComposeAdapterOptions | undefined` (optional)
   - returns: `InfraRuntimeAdapter<"docker-compose">`
+
+## createLocalDockerComposeSessionResolver
+
+Kind: `function`
+Module: `src/features/compose-runtime/adapters/createLocalDockerComposeSessionResolver.ts`
+Source: `src/features/compose-runtime/adapters/createLocalDockerComposeSessionResolver.ts:10:1`
+
+### Signatures
+
+- `() => DockerComposeSessionResolver`
+  - returns: `DockerComposeSessionResolver`
 
 ## createSubprocessDockerComposeCommandRunner
 
@@ -34,7 +58,7 @@ Create the concrete shell-free subprocess boundary used by Docker Compose operat
 
 Kind: `type`
 Module: `src/types/dockerComposeRuntime.ts`
-Source: `src/types/dockerComposeRuntime.ts:14:1`
+Source: `src/types/dockerComposeRuntime.ts:15:1`
 
 ### Members
 
@@ -46,7 +70,7 @@ Source: `src/types/dockerComposeRuntime.ts:14:1`
 
 Kind: `type`
 Module: `src/types/dockerComposeProcess.ts`
-Source: `src/types/dockerComposeProcess.ts:2:1`
+Source: `src/types/dockerComposeProcess.ts:6:1`
 
 ### Members
 
@@ -62,7 +86,7 @@ Source: `src/types/dockerComposeProcess.ts:2:1`
 
 Kind: `type`
 Module: `src/types/dockerComposeProcess.ts`
-Source: `src/types/dockerComposeProcess.ts:11:1`
+Source: `src/types/dockerComposeProcess.ts:15:1`
 
 ### Members
 
@@ -76,7 +100,7 @@ Source: `src/types/dockerComposeProcess.ts:11:1`
 
 Kind: `type`
 Module: `src/types/dockerComposeProcess.ts`
-Source: `src/types/dockerComposeProcess.ts:18:1`
+Source: `src/types/dockerComposeProcess.ts:22:1`
 
 ### Members
 
@@ -88,7 +112,7 @@ Source: `src/types/dockerComposeProcess.ts:18:1`
 
 Kind: `type`
 Module: `src/types/dockerComposeRuntime.ts`
-Source: `src/types/dockerComposeRuntime.ts:57:1`
+Source: `src/types/dockerComposeRuntime.ts:58:1`
 
 ### Members
 
@@ -104,30 +128,45 @@ Source: `src/types/dockerComposeRuntime.ts:57:1`
 
 Kind: `type`
 Module: `src/types/dockerComposeRuntime.ts`
-Source: `src/types/dockerComposeRuntime.ts:133:1`
+Source: `src/types/dockerComposeRuntime.ts:135:1`
 
 ### Members
 
 | Name                | Kind   | Type                                                                                                                                                                                              | Required | Description |
 | ------------------- | ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------- | ----------- |
-| destroyAsync        | method | `(identity: DockerComposeProjectIdentity, resourceIds: readonly string[], signal?: AbortSignal) => Promise<InfraResult<null>>`                                                                    | yes      |             |
-| downAsync           | method | `(identity: DockerComposeProjectIdentity, signal?: AbortSignal) => Promise<InfraResult<null>>`                                                                                                    | yes      |             |
-| inspectAsync        | method | `(identity: DockerComposeProjectIdentity, signal?: AbortSignal) => Promise<InfraResult<DockerComposeProjectObservation>>`                                                                         | yes      |             |
+| destroyAsync        | method | `(identity: DockerComposeProjectIdentity, access: DockerComposeTargetAccess, resourceIds: readonly string[], signal?: AbortSignal) => Promise<InfraResult<null>>`                                 | yes      |             |
+| downAsync           | method | `(identity: DockerComposeProjectIdentity, access: DockerComposeTargetAccess, signal?: AbortSignal) => Promise<InfraResult<null>>`                                                                 | yes      |             |
+| inspectAsync        | method | `(identity: DockerComposeProjectIdentity, access: DockerComposeTargetAccess, signal?: AbortSignal) => Promise<InfraResult<DockerComposeProjectObservation>>`                                      | yes      |             |
 | reconcileAsync      | method | `(project: DockerComposeExecutionProject, access: DockerComposeTargetAccess, pruneResourceIds: readonly string[], signal?: AbortSignal) => Promise<InfraResult<DockerComposeProjectObservation>>` | yes      |             |
 | validateAsync       | method | `(project: DockerComposeProject, access: DockerComposeTargetAccess, signal?: AbortSignal) => Promise<InfraResult<null>>`                                                                          | yes      |             |
-| waitUntilReadyAsync | method | `(identity: DockerComposeProjectIdentity, signal?: AbortSignal) => Promise<InfraResult<DockerComposeProjectObservation>>`                                                                         | yes      |             |
+| waitUntilReadyAsync | method | `(identity: DockerComposeProjectIdentity, access: DockerComposeTargetAccess, signal?: AbortSignal) => Promise<InfraResult<DockerComposeProjectObservation>>`                                      | yes      |             |
 
 ## DockerComposeDesiredState
 
 Kind: `unknown`
 Module: `src/types/dockerComposeRuntime.ts`
-Source: `src/types/dockerComposeRuntime.ts:164:1`
+Source: `src/types/dockerComposeRuntime.ts:170:1`
+
+## DockerComposeEngineSession
+
+Kind: `type`
+Module: `src/types/dockerComposeProcess.ts`
+Source: `src/types/dockerComposeProcess.ts:27:1`
+
+### Members
+
+| Name         | Kind     | Type                                            | Required | Description |
+| ------------ | -------- | ----------------------------------------------- | -------- | ----------- |
+| endpointHost | property | `string`                                        | yes      |             |
+| environment  | property | `Readonly<Record<string, string>> \| undefined` | no       |             |
+| executable   | property | `string`                                        | yes      |             |
+| runner       | property | `DockerComposeCommandRunner`                    | yes      |             |
 
 ## DockerComposeExecutionProject
 
 Kind: `type`
 Module: `src/types/dockerComposeRuntime.ts`
-Source: `src/types/dockerComposeRuntime.ts:111:1`
+Source: `src/types/dockerComposeRuntime.ts:113:1`
 
 ### Members
 
@@ -144,7 +183,7 @@ Source: `src/types/dockerComposeRuntime.ts:111:1`
 
 Kind: `type`
 Module: `src/types/dockerComposeRuntime.ts`
-Source: `src/types/dockerComposeRuntime.ts:106:1`
+Source: `src/types/dockerComposeRuntime.ts:108:1`
 
 ### Members
 
@@ -161,7 +200,7 @@ Source: `src/types/dockerComposeRuntime.ts:106:1`
 
 Kind: `type`
 Module: `src/types/dockerComposeRuntime.ts`
-Source: `src/types/dockerComposeRuntime.ts:46:1`
+Source: `src/types/dockerComposeRuntime.ts:47:1`
 
 ### Members
 
@@ -176,13 +215,13 @@ Source: `src/types/dockerComposeRuntime.ts:46:1`
 
 Kind: `unknown`
 Module: `src/types/dockerComposeRuntime.ts`
-Source: `src/types/dockerComposeRuntime.ts:165:1`
+Source: `src/types/dockerComposeRuntime.ts:171:1`
 
 ## DockerComposeProject
 
 Kind: `type`
 Module: `src/types/dockerComposeRuntime.ts`
-Source: `src/types/dockerComposeRuntime.ts:97:1`
+Source: `src/types/dockerComposeRuntime.ts:99:1`
 
 ### Members
 
@@ -199,7 +238,7 @@ Source: `src/types/dockerComposeRuntime.ts:97:1`
 
 Kind: `type`
 Module: `src/types/dockerComposeRuntime.ts`
-Source: `src/types/dockerComposeRuntime.ts:18:1`
+Source: `src/types/dockerComposeRuntime.ts:19:1`
 
 ### Members
 
@@ -213,7 +252,7 @@ Source: `src/types/dockerComposeRuntime.ts:18:1`
 
 Kind: `type`
 Module: `src/types/dockerComposeRuntime.ts`
-Source: `src/types/dockerComposeRuntime.ts:127:1`
+Source: `src/types/dockerComposeRuntime.ts:129:1`
 
 ### Members
 
@@ -226,13 +265,13 @@ Source: `src/types/dockerComposeRuntime.ts:127:1`
 
 Kind: `unknown`
 Module: `src/types/dockerComposeRuntime.ts`
-Source: `src/types/dockerComposeRuntime.ts:166:1`
+Source: `src/types/dockerComposeRuntime.ts:172:1`
 
 ## DockerComposeResourceObservation
 
 Kind: `type`
 Module: `src/types/dockerComposeRuntime.ts`
-Source: `src/types/dockerComposeRuntime.ts:115:1`
+Source: `src/types/dockerComposeRuntime.ts:117:1`
 
 ### Members
 
@@ -252,7 +291,7 @@ Source: `src/types/dockerComposeRuntime.ts:115:1`
 
 Kind: `type`
 Module: `src/types/dockerComposeRuntime.ts`
-Source: `src/types/dockerComposeRuntime.ts:63:1`
+Source: `src/types/dockerComposeRuntime.ts:64:1`
 
 ### Members
 
@@ -262,14 +301,14 @@ Source: `src/types/dockerComposeRuntime.ts:63:1`
 | kind              | property | `"secret"`                                                                                                      | yes      |             |
 | name              | property | `string`                                                                                                        | yes      |             |
 | owner             | property | `InfraOwnedResource`                                                                                            | yes      |             |
-| reference         | property | `InfraSecretReference`                                                                                          | yes      |             |
+| reference         | property | `InfraSecretReference \| (InfraControlPlaneCredentialRef & { readonly key: string; })`                          | yes      |             |
 | target            | property | `{ readonly kind: "environment"; readonly name: string; } \| { readonly kind: "file"; readonly path: string; }` | yes      |             |
 
 ## DockerComposeService
 
 Kind: `type`
 Module: `src/types/dockerComposeRuntime.ts`
-Source: `src/types/dockerComposeRuntime.ts:72:1`
+Source: `src/types/dockerComposeRuntime.ts:74:1`
 
 ### Members
 
@@ -292,17 +331,29 @@ Source: `src/types/dockerComposeRuntime.ts:72:1`
 | secretMounts      | property | `readonly { readonly source: string; readonly target: string; }[]`                                                               | yes      |             |
 | volumes           | property | `readonly { readonly source: string; readonly target: string; }[]`                                                               | yes      |             |
 
+## DockerComposeSessionResolver
+
+Kind: `type`
+Module: `src/types/dockerComposeProcess.ts`
+Source: `src/types/dockerComposeProcess.ts:35:1`
+
+### Members
+
+| Name         | Kind   | Type                                                                                                            | Required | Description |
+| ------------ | ------ | --------------------------------------------------------------------------------------------------------------- | -------- | ----------- |
+| resolveAsync | method | `(access: DockerComposeTargetAccess, signal?: AbortSignal) => Promise<InfraResult<DockerComposeEngineSession>>` | yes      |             |
+
 ## DockerComposeTargetAccess
 
 Kind: `unknown`
 Module: `src/types/dockerComposeRuntime.ts`
-Source: `src/types/dockerComposeRuntime.ts:24:1`
+Source: `src/types/dockerComposeRuntime.ts:25:1`
 
 ## DockerComposeVolume
 
 Kind: `type`
 Module: `src/types/dockerComposeRuntime.ts`
-Source: `src/types/dockerComposeRuntime.ts:51:1`
+Source: `src/types/dockerComposeRuntime.ts:52:1`
 
 ### Members
 
