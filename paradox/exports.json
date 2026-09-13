@@ -322,7 +322,7 @@
     "modulePath": "src/types/dockerComposeRuntime.ts",
     "sourceLocation": {
       "filePath": "src/types/dockerComposeRuntime.ts",
-      "line": 135,
+      "line": 142,
       "column": 1
     },
     "exportPaths": ["src/index.ts"],
@@ -389,7 +389,7 @@
     "modulePath": "src/types/dockerComposeRuntime.ts",
     "sourceLocation": {
       "filePath": "src/types/dockerComposeRuntime.ts",
-      "line": 170,
+      "line": 177,
       "column": 1
     },
     "exportPaths": ["src/index.ts"],
@@ -454,7 +454,7 @@
     "modulePath": "src/types/dockerComposeRuntime.ts",
     "sourceLocation": {
       "filePath": "src/types/dockerComposeRuntime.ts",
-      "line": 113,
+      "line": 120,
       "column": 1
     },
     "exportPaths": ["src/index.ts"],
@@ -522,7 +522,7 @@
     "modulePath": "src/types/dockerComposeRuntime.ts",
     "sourceLocation": {
       "filePath": "src/types/dockerComposeRuntime.ts",
-      "line": 108,
+      "line": 115,
       "column": 1
     },
     "exportPaths": ["src/index.ts"],
@@ -630,7 +630,7 @@
     "modulePath": "src/types/dockerComposeRuntime.ts",
     "sourceLocation": {
       "filePath": "src/types/dockerComposeRuntime.ts",
-      "line": 171,
+      "line": 178,
       "column": 1
     },
     "exportPaths": ["src/index.ts"],
@@ -648,7 +648,7 @@
     "modulePath": "src/types/dockerComposeRuntime.ts",
     "sourceLocation": {
       "filePath": "src/types/dockerComposeRuntime.ts",
-      "line": 99,
+      "line": 106,
       "column": 1
     },
     "exportPaths": ["src/index.ts"],
@@ -756,7 +756,7 @@
     "modulePath": "src/types/dockerComposeRuntime.ts",
     "sourceLocation": {
       "filePath": "src/types/dockerComposeRuntime.ts",
-      "line": 129,
+      "line": 136,
       "column": 1
     },
     "exportPaths": ["src/index.ts"],
@@ -789,7 +789,7 @@
     "modulePath": "src/types/dockerComposeRuntime.ts",
     "sourceLocation": {
       "filePath": "src/types/dockerComposeRuntime.ts",
-      "line": 172,
+      "line": 179,
       "column": 1
     },
     "exportPaths": ["src/index.ts"],
@@ -807,7 +807,7 @@
     "modulePath": "src/types/dockerComposeRuntime.ts",
     "sourceLocation": {
       "filePath": "src/types/dockerComposeRuntime.ts",
-      "line": 117,
+      "line": 124,
       "column": 1
     },
     "exportPaths": ["src/index.ts"],
@@ -889,11 +889,11 @@
     "modulePath": "src/types/dockerComposeRuntime.ts",
     "sourceLocation": {
       "filePath": "src/types/dockerComposeRuntime.ts",
-      "line": 64,
+      "line": 72,
       "column": 1
     },
     "exportPaths": ["src/index.ts"],
-    "relatedSymbols": [],
+    "relatedSymbols": ["DockerComposeSecretValueSegment"],
     "signatures": [],
     "members": [
       {
@@ -925,9 +925,9 @@
         "description": null
       },
       {
-        "name": "reference",
+        "name": "segments",
         "kind": "property",
-        "type": "InfraSecretReference | (InfraControlPlaneCredentialRef & { readonly key: string; })",
+        "type": "readonly DockerComposeSecretValueSegment[]",
         "required": true,
         "description": null
       },
@@ -942,6 +942,24 @@
     "structuredRows": []
   },
   {
+    "name": "DockerComposeSecretValueSegment",
+    "description": null,
+    "isReadme": false,
+    "examples": [],
+    "kind": "unknown",
+    "modulePath": "src/types/dockerComposeRuntime.ts",
+    "sourceLocation": {
+      "filePath": "src/types/dockerComposeRuntime.ts",
+      "line": 64,
+      "column": 1
+    },
+    "exportPaths": ["src/index.ts"],
+    "relatedSymbols": [],
+    "signatures": [],
+    "members": [],
+    "structuredRows": []
+  },
+  {
     "name": "DockerComposeService",
     "description": null,
     "isReadme": false,
@@ -950,7 +968,7 @@
     "modulePath": "src/types/dockerComposeRuntime.ts",
     "sourceLocation": {
       "filePath": "src/types/dockerComposeRuntime.ts",
-      "line": 74,
+      "line": 81,
       "column": 1
     },
     "exportPaths": ["src/index.ts"],

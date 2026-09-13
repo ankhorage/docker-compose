@@ -61,11 +61,18 @@ export interface DockerComposeConfig extends DockerComposeDesiredResource {
   readonly content: string;
 }
 
+export type DockerComposeSecretValueSegment =
+  | { readonly kind: 'literal'; readonly value: string }
+  | {
+      readonly kind: 'reference';
+      readonly reference:
+        InfraSecretReference | (InfraControlPlaneCredentialRef & { readonly key: string });
+    };
+
 export interface DockerComposeSecret extends DockerComposeDesiredResource {
   readonly kind: 'secret';
   readonly name: string;
-  readonly reference:
-    InfraSecretReference | (InfraControlPlaneCredentialRef & { readonly key: string });
+  readonly segments: readonly DockerComposeSecretValueSegment[];
   readonly target:
     | { readonly kind: 'environment'; readonly name: string }
     | { readonly kind: 'file'; readonly path: string };
@@ -105,7 +112,7 @@ export interface DockerComposeProject {
   readonly services: readonly DockerComposeService[];
 }
 
-export interface DockerComposeMaterializedSecret extends Omit<DockerComposeSecret, 'reference'> {
+export interface DockerComposeMaterializedSecret extends Omit<DockerComposeSecret, 'segments'> {
   readonly value: string;
 }
 

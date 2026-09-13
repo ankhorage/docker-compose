@@ -128,7 +128,7 @@ Source: `src/types/dockerComposeRuntime.ts:58:1`
 
 Kind: `type`
 Module: `src/types/dockerComposeRuntime.ts`
-Source: `src/types/dockerComposeRuntime.ts:135:1`
+Source: `src/types/dockerComposeRuntime.ts:142:1`
 
 ### Members
 
@@ -145,7 +145,7 @@ Source: `src/types/dockerComposeRuntime.ts:135:1`
 
 Kind: `unknown`
 Module: `src/types/dockerComposeRuntime.ts`
-Source: `src/types/dockerComposeRuntime.ts:170:1`
+Source: `src/types/dockerComposeRuntime.ts:177:1`
 
 ## DockerComposeEngineSession
 
@@ -166,7 +166,7 @@ Source: `src/types/dockerComposeProcess.ts:27:1`
 
 Kind: `type`
 Module: `src/types/dockerComposeRuntime.ts`
-Source: `src/types/dockerComposeRuntime.ts:113:1`
+Source: `src/types/dockerComposeRuntime.ts:120:1`
 
 ### Members
 
@@ -183,7 +183,7 @@ Source: `src/types/dockerComposeRuntime.ts:113:1`
 
 Kind: `type`
 Module: `src/types/dockerComposeRuntime.ts`
-Source: `src/types/dockerComposeRuntime.ts:108:1`
+Source: `src/types/dockerComposeRuntime.ts:115:1`
 
 ### Members
 
@@ -215,13 +215,13 @@ Source: `src/types/dockerComposeRuntime.ts:47:1`
 
 Kind: `unknown`
 Module: `src/types/dockerComposeRuntime.ts`
-Source: `src/types/dockerComposeRuntime.ts:171:1`
+Source: `src/types/dockerComposeRuntime.ts:178:1`
 
 ## DockerComposeProject
 
 Kind: `type`
 Module: `src/types/dockerComposeRuntime.ts`
-Source: `src/types/dockerComposeRuntime.ts:99:1`
+Source: `src/types/dockerComposeRuntime.ts:106:1`
 
 ### Members
 
@@ -252,7 +252,7 @@ Source: `src/types/dockerComposeRuntime.ts:19:1`
 
 Kind: `type`
 Module: `src/types/dockerComposeRuntime.ts`
-Source: `src/types/dockerComposeRuntime.ts:129:1`
+Source: `src/types/dockerComposeRuntime.ts:136:1`
 
 ### Members
 
@@ -265,13 +265,13 @@ Source: `src/types/dockerComposeRuntime.ts:129:1`
 
 Kind: `unknown`
 Module: `src/types/dockerComposeRuntime.ts`
-Source: `src/types/dockerComposeRuntime.ts:172:1`
+Source: `src/types/dockerComposeRuntime.ts:179:1`
 
 ## DockerComposeResourceObservation
 
 Kind: `type`
 Module: `src/types/dockerComposeRuntime.ts`
-Source: `src/types/dockerComposeRuntime.ts:117:1`
+Source: `src/types/dockerComposeRuntime.ts:124:1`
 
 ### Members
 
@@ -291,7 +291,7 @@ Source: `src/types/dockerComposeRuntime.ts:117:1`
 
 Kind: `type`
 Module: `src/types/dockerComposeRuntime.ts`
-Source: `src/types/dockerComposeRuntime.ts:64:1`
+Source: `src/types/dockerComposeRuntime.ts:72:1`
 
 ### Members
 
@@ -301,14 +301,20 @@ Source: `src/types/dockerComposeRuntime.ts:64:1`
 | kind              | property | `"secret"`                                                                                                      | yes      |             |
 | name              | property | `string`                                                                                                        | yes      |             |
 | owner             | property | `InfraOwnedResource`                                                                                            | yes      |             |
-| reference         | property | `InfraSecretReference \| (InfraControlPlaneCredentialRef & { readonly key: string; })`                          | yes      |             |
+| segments          | property | `readonly DockerComposeSecretValueSegment[]`                                                                    | yes      |             |
 | target            | property | `{ readonly kind: "environment"; readonly name: string; } \| { readonly kind: "file"; readonly path: string; }` | yes      |             |
+
+## DockerComposeSecretValueSegment
+
+Kind: `unknown`
+Module: `src/types/dockerComposeRuntime.ts`
+Source: `src/types/dockerComposeRuntime.ts:64:1`
 
 ## DockerComposeService
 
 Kind: `type`
 Module: `src/types/dockerComposeRuntime.ts`
-Source: `src/types/dockerComposeRuntime.ts:74:1`
+Source: `src/types/dockerComposeRuntime.ts:81:1`
 
 ### Members
 

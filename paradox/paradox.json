@@ -14,7 +14,7 @@
     {
       "id": "npm",
       "label": "npm",
-      "value": "v0.2.0",
+      "value": "v0.3.0",
       "color": "cb3837"
     },
     {
@@ -149,6 +149,12 @@
     },
     {
       "path": "src/dockerComposeRuntime.test.ts",
+      "isEntrypoint": false,
+      "dependencies": ["src/index.ts", "src/runtimeFixtures.test.ts"],
+      "exports": []
+    },
+    {
+      "path": "src/dockerComposeTemplates.test.ts",
       "isEntrypoint": false,
       "dependencies": ["src/index.ts", "src/runtimeFixtures.test.ts"],
       "exports": []
@@ -530,6 +536,7 @@
         "DockerComposeResource",
         "DockerComposeResourceObservation",
         "DockerComposeSecret",
+        "DockerComposeSecretValueSegment",
         "DockerComposeService",
         "DockerComposeSessionResolver",
         "DockerComposeTargetAccess",
@@ -582,6 +589,7 @@
         "DockerComposeResource",
         "DockerComposeResourceObservation",
         "DockerComposeSecret",
+        "DockerComposeSecretValueSegment",
         "DockerComposeService",
         "DockerComposeTargetAccess",
         "DockerComposeVolume"
@@ -912,7 +920,7 @@
       "modulePath": "src/types/dockerComposeRuntime.ts",
       "sourceLocation": {
         "filePath": "src/types/dockerComposeRuntime.ts",
-        "line": 135,
+        "line": 142,
         "column": 1
       },
       "exportPaths": ["src/index.ts"],
@@ -979,7 +987,7 @@
       "modulePath": "src/types/dockerComposeRuntime.ts",
       "sourceLocation": {
         "filePath": "src/types/dockerComposeRuntime.ts",
-        "line": 170,
+        "line": 177,
         "column": 1
       },
       "exportPaths": ["src/index.ts"],
@@ -1044,7 +1052,7 @@
       "modulePath": "src/types/dockerComposeRuntime.ts",
       "sourceLocation": {
         "filePath": "src/types/dockerComposeRuntime.ts",
-        "line": 113,
+        "line": 120,
         "column": 1
       },
       "exportPaths": ["src/index.ts"],
@@ -1112,7 +1120,7 @@
       "modulePath": "src/types/dockerComposeRuntime.ts",
       "sourceLocation": {
         "filePath": "src/types/dockerComposeRuntime.ts",
-        "line": 108,
+        "line": 115,
         "column": 1
       },
       "exportPaths": ["src/index.ts"],
@@ -1220,7 +1228,7 @@
       "modulePath": "src/types/dockerComposeRuntime.ts",
       "sourceLocation": {
         "filePath": "src/types/dockerComposeRuntime.ts",
-        "line": 171,
+        "line": 178,
         "column": 1
       },
       "exportPaths": ["src/index.ts"],
@@ -1238,7 +1246,7 @@
       "modulePath": "src/types/dockerComposeRuntime.ts",
       "sourceLocation": {
         "filePath": "src/types/dockerComposeRuntime.ts",
-        "line": 99,
+        "line": 106,
         "column": 1
       },
       "exportPaths": ["src/index.ts"],
@@ -1346,7 +1354,7 @@
       "modulePath": "src/types/dockerComposeRuntime.ts",
       "sourceLocation": {
         "filePath": "src/types/dockerComposeRuntime.ts",
-        "line": 129,
+        "line": 136,
         "column": 1
       },
       "exportPaths": ["src/index.ts"],
@@ -1379,7 +1387,7 @@
       "modulePath": "src/types/dockerComposeRuntime.ts",
       "sourceLocation": {
         "filePath": "src/types/dockerComposeRuntime.ts",
-        "line": 172,
+        "line": 179,
         "column": 1
       },
       "exportPaths": ["src/index.ts"],
@@ -1397,7 +1405,7 @@
       "modulePath": "src/types/dockerComposeRuntime.ts",
       "sourceLocation": {
         "filePath": "src/types/dockerComposeRuntime.ts",
-        "line": 117,
+        "line": 124,
         "column": 1
       },
       "exportPaths": ["src/index.ts"],
@@ -1479,11 +1487,11 @@
       "modulePath": "src/types/dockerComposeRuntime.ts",
       "sourceLocation": {
         "filePath": "src/types/dockerComposeRuntime.ts",
-        "line": 64,
+        "line": 72,
         "column": 1
       },
       "exportPaths": ["src/index.ts"],
-      "relatedSymbols": [],
+      "relatedSymbols": ["DockerComposeSecretValueSegment"],
       "signatures": [],
       "members": [
         {
@@ -1515,9 +1523,9 @@
           "description": null
         },
         {
-          "name": "reference",
+          "name": "segments",
           "kind": "property",
-          "type": "InfraSecretReference | (InfraControlPlaneCredentialRef & { readonly key: string; })",
+          "type": "readonly DockerComposeSecretValueSegment[]",
           "required": true,
           "description": null
         },
@@ -1532,6 +1540,24 @@
       "structuredRows": []
     },
     {
+      "name": "DockerComposeSecretValueSegment",
+      "description": null,
+      "isReadme": false,
+      "examples": [],
+      "kind": "unknown",
+      "modulePath": "src/types/dockerComposeRuntime.ts",
+      "sourceLocation": {
+        "filePath": "src/types/dockerComposeRuntime.ts",
+        "line": 64,
+        "column": 1
+      },
+      "exportPaths": ["src/index.ts"],
+      "relatedSymbols": [],
+      "signatures": [],
+      "members": [],
+      "structuredRows": []
+    },
+    {
       "name": "DockerComposeService",
       "description": null,
       "isReadme": false,
@@ -1540,7 +1566,7 @@
       "modulePath": "src/types/dockerComposeRuntime.ts",
       "sourceLocation": {
         "filePath": "src/types/dockerComposeRuntime.ts",
-        "line": 74,
+        "line": 81,
         "column": 1
       },
       "exportPaths": ["src/index.ts"],
@@ -2015,6 +2041,33 @@
       "sourceLocation": {
         "filePath": "src/dockerComposeRuntime.test.ts",
         "line": 223,
+        "column": 1
+      }
+    },
+    {
+      "name": "createDesired",
+      "description": "Create desired state containing public and privileged ordered templates.",
+      "sourceLocation": {
+        "filePath": "src/dockerComposeTemplates.test.ts",
+        "line": 25,
+        "column": 1
+      }
+    },
+    {
+      "name": "createContext",
+      "description": "Create the execution context used only at the reconcile boundary.",
+      "sourceLocation": {
+        "filePath": "src/dockerComposeTemplates.test.ts",
+        "line": 69,
+        "column": 1
+      }
+    },
+    {
+      "name": "createSecretReference",
+      "description": "Create one canonical secret reference.",
+      "sourceLocation": {
+        "filePath": "src/dockerComposeTemplates.test.ts",
+        "line": 89,
         "column": 1
       }
     },
@@ -2554,7 +2607,16 @@
       "description": "Resolve secret references immediately before Compose reconciliation.",
       "sourceLocation": {
         "filePath": "src/features/compose-runtime/application/materializeDockerComposeSecretsAsync.ts",
-        "line": 10,
+        "line": 11,
+        "column": 1
+      }
+    },
+    {
+      "name": "materializeSegmentsAsync",
+      "description": "Resolve and concatenate one ordered execution-only secret value.",
+      "sourceLocation": {
+        "filePath": "src/features/compose-runtime/application/materializeDockerComposeSecretsAsync.ts",
+        "line": 26,
         "column": 1
       }
     },
@@ -2563,7 +2625,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/features/compose-runtime/application/materializeDockerComposeSecretsAsync.ts",
-        "line": 27,
+        "line": 46,
         "column": 1
       }
     },
@@ -2653,7 +2715,25 @@
       "description": "Resolve public values while preserving secret references for execution-time materialization.",
       "sourceLocation": {
         "filePath": "src/features/compose-runtime/application/resolveDockerComposeValue.ts",
-        "line": 13,
+        "line": 18,
+        "column": 1
+      }
+    },
+    {
+      "name": "resolveSegment",
+      "description": "Resolve one scalar segment while retaining privileged references.",
+      "sourceLocation": {
+        "filePath": "src/features/compose-runtime/application/resolveDockerComposeValue.ts",
+        "line": 41,
+        "column": 1
+      }
+    },
+    {
+      "name": "success",
+      "description": "Create a successful scalar-segment result.",
+      "sourceLocation": {
+        "filePath": "src/features/compose-runtime/application/resolveDockerComposeValue.ts",
+        "line": 77,
         "column": 1
       }
     },
@@ -3049,7 +3129,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/runtimeFixtures.test.ts",
-        "line": 101,
+        "line": 105,
         "column": 1
       }
     }
@@ -3182,6 +3262,16 @@
         "fromPath": "src/dockerComposeRuntime.test.ts",
         "toPath": "src/runtimeFixtures.test.ts",
         "sourcePath": "src/dockerComposeRuntime.test.ts"
+      },
+      {
+        "fromPath": "src/dockerComposeTemplates.test.ts",
+        "toPath": "src/index.ts",
+        "sourcePath": "src/dockerComposeTemplates.test.ts"
+      },
+      {
+        "fromPath": "src/dockerComposeTemplates.test.ts",
+        "toPath": "src/runtimeFixtures.test.ts",
+        "sourcePath": "src/dockerComposeTemplates.test.ts"
       },
       {
         "fromPath": "src/index.ts",
@@ -4101,6 +4191,42 @@
         "sourcePath": "src/dockerComposeRuntime.test.ts"
       },
       {
+        "fromSymbol": "src/dockerComposeTemplates.test.ts",
+        "toSymbol": "it",
+        "callExpression": "it",
+        "sourcePath": "src/dockerComposeTemplates.test.ts"
+      },
+      {
+        "fromSymbol": "src/dockerComposeTemplates.test.ts",
+        "toSymbol": "createInfraAdapter",
+        "callExpression": "createInfraAdapter",
+        "sourcePath": "src/dockerComposeTemplates.test.ts"
+      },
+      {
+        "fromSymbol": "src/dockerComposeTemplates.test.ts",
+        "toSymbol": "createContext",
+        "callExpression": "createContext",
+        "sourcePath": "src/dockerComposeTemplates.test.ts"
+      },
+      {
+        "fromSymbol": "src/dockerComposeTemplates.test.ts",
+        "toSymbol": "createDesired",
+        "callExpression": "createDesired",
+        "sourcePath": "src/dockerComposeTemplates.test.ts"
+      },
+      {
+        "fromSymbol": "src/dockerComposeTemplates.test.ts",
+        "toSymbol": "expect",
+        "callExpression": "expect",
+        "sourcePath": "src/dockerComposeTemplates.test.ts"
+      },
+      {
+        "fromSymbol": "createDesired",
+        "toSymbol": "createSecretReference",
+        "callExpression": "createSecretReference",
+        "sourcePath": "src/dockerComposeTemplates.test.ts"
+      },
+      {
         "fromSymbol": "src/infraAdapter.test.ts",
         "toSymbol": "describe",
         "callExpression": "describe",
@@ -4882,6 +5008,12 @@
       },
       {
         "fromSymbol": "materializeDockerComposeSecretsAsync",
+        "toSymbol": "materializeSegmentsAsync",
+        "callExpression": "materializeSegmentsAsync",
+        "sourcePath": "src/features/compose-runtime/application/materializeDockerComposeSecretsAsync.ts"
+      },
+      {
+        "fromSymbol": "materializeSegmentsAsync",
         "toSymbol": "resolveCredentialValueAsync",
         "callExpression": "resolveCredentialValueAsync",
         "sourcePath": "src/features/compose-runtime/application/materializeDockerComposeSecretsAsync.ts"
@@ -5029,6 +5161,18 @@
         "toSymbol": "hashDockerComposeResource",
         "callExpression": "hashDockerComposeResource",
         "sourcePath": "src/features/compose-runtime/application/projectDockerComposeWorkload.ts"
+      },
+      {
+        "fromSymbol": "resolveDockerComposeValue",
+        "toSymbol": "resolveSegment",
+        "callExpression": "resolveSegment",
+        "sourcePath": "src/features/compose-runtime/application/resolveDockerComposeValue.ts"
+      },
+      {
+        "fromSymbol": "resolveSegment",
+        "toSymbol": "success",
+        "callExpression": "success",
+        "sourcePath": "src/features/compose-runtime/application/resolveDockerComposeValue.ts"
       },
       {
         "fromSymbol": "suspendDockerComposeRuntimeAsync",
@@ -5606,17 +5750,12 @@
       },
       {
         "fromSymbol": "DockerComposeSecret",
-        "toType": "InfraControlPlaneCredentialRef",
+        "toType": "DockerComposeSecretValueSegment",
         "sourcePath": "src/types/dockerComposeRuntime.ts"
       },
       {
         "fromSymbol": "DockerComposeSecret",
         "toType": "InfraOwnedResource",
-        "sourcePath": "src/types/dockerComposeRuntime.ts"
-      },
-      {
-        "fromSymbol": "DockerComposeSecret",
-        "toType": "InfraSecretReference",
         "sourcePath": "src/types/dockerComposeRuntime.ts"
       },
       {

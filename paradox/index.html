@@ -279,6 +279,16 @@
               <button
                 class="nav-button"
                 type="button"
+                data-target="src/dockerComposeTemplates.test.ts"
+              >
+                src/dockerComposeTemplates.test.ts
+                <small>3 functions</small>
+              </button>
+            </li>
+            <li>
+              <button
+                class="nav-button"
+                type="button"
                 data-target="src/features/compose-runtime/adapters/createDockerComposeCliControlPlane.ts"
               >
                 src/features/compose-runtime/adapters/createDockerComposeCliControlPlane.ts
@@ -422,7 +432,7 @@
                 data-target="src/features/compose-runtime/application/materializeDockerComposeSecretsAsync.ts"
               >
                 src/features/compose-runtime/application/materializeDockerComposeSecretsAsync.ts
-                <small>2 functions</small>
+                <small>3 functions</small>
               </button>
             </li>
             <li>
@@ -482,7 +492,7 @@
                 data-target="src/features/compose-runtime/application/resolveDockerComposeValue.ts"
               >
                 src/features/compose-runtime/application/resolveDockerComposeValue.ts
-                <small>1 function</small>
+                <small>3 functions</small>
               </button>
             </li>
             <li>
@@ -629,9 +639,9 @@
           <section class="panel">
             <h2>Package overview</h2>
             <div class="summary">
-              <div><strong>28</strong><span class="muted">public exports</span></div>
+              <div><strong>29</strong><span class="muted">public exports</span></div>
               <div><strong>0</strong><span class="muted">components</span></div>
-              <div><strong>51</strong><span class="muted">modules</span></div>
+              <div><strong>52</strong><span class="muted">modules</span></div>
               <div><strong>1</strong><span class="muted">entrypoints</span></div>
             </div>
             <h3>Entrypoints</h3>
@@ -757,6 +767,18 @@
               data-search="src/dockerComposeRuntime.test.ts src/index.ts src/runtimeFixtures.test.ts"
             >
               <h3>src/dockerComposeRuntime.test.ts</h3>
+              <p class="muted">Referenced module</p>
+              <p>
+                <strong>Dependencies:</strong> <code>src/index.ts</code>,
+                <code>src/runtimeFixtures.test.ts</code>
+              </p>
+              <p><strong>Exports:</strong> <span class="empty">None</span></p>
+            </article>
+            <article
+              class="item"
+              data-search="src/dockerComposeTemplates.test.ts src/index.ts src/runtimeFixtures.test.ts"
+            >
+              <h3>src/dockerComposeTemplates.test.ts</h3>
               <p class="muted">Referenced module</p>
               <p>
                 <strong>Dependencies:</strong> <code>src/index.ts</code>,
@@ -1288,7 +1310,7 @@
             </article>
             <article
               class="item"
-              data-search="src/index.ts createDockerComposeCliControlPlane createInfraAdapter createLocalDockerComposeSessionResolver createSubprocessDockerComposeCommandRunner DockerComposeAdapterOptions DockerComposeCommandRequest DockerComposeCommandResult DockerComposeCommandRunner DockerComposeConfig DockerComposeControlPlane DockerComposeDesiredState DockerComposeEngineSession DockerComposeExecutionProject DockerComposeMaterializedSecret DockerComposeNetwork DockerComposeOutput DockerComposeProject DockerComposeProjectIdentity DockerComposeProjectObservation DockerComposeResource DockerComposeResourceObservation DockerComposeSecret DockerComposeService DockerComposeSessionResolver DockerComposeTargetAccess DockerComposeVolume infraAdapterDescriptor projectDockerComposeProject"
+              data-search="src/index.ts createDockerComposeCliControlPlane createInfraAdapter createLocalDockerComposeSessionResolver createSubprocessDockerComposeCommandRunner DockerComposeAdapterOptions DockerComposeCommandRequest DockerComposeCommandResult DockerComposeCommandRunner DockerComposeConfig DockerComposeControlPlane DockerComposeDesiredState DockerComposeEngineSession DockerComposeExecutionProject DockerComposeMaterializedSecret DockerComposeNetwork DockerComposeOutput DockerComposeProject DockerComposeProjectIdentity DockerComposeProjectObservation DockerComposeResource DockerComposeResourceObservation DockerComposeSecret DockerComposeSecretValueSegment DockerComposeService DockerComposeSessionResolver DockerComposeTargetAccess DockerComposeVolume infraAdapterDescriptor projectDockerComposeProject"
             >
               <h3>src/index.ts</h3>
               <p class="muted">Configured entrypoint</p>
@@ -1308,9 +1330,10 @@
                 <code>DockerComposeProjectIdentity</code>,
                 <code>DockerComposeProjectObservation</code>, <code>DockerComposeResource</code>,
                 <code>DockerComposeResourceObservation</code>, <code>DockerComposeSecret</code>,
-                <code>DockerComposeService</code>, <code>DockerComposeSessionResolver</code>,
-                <code>DockerComposeTargetAccess</code>, <code>DockerComposeVolume</code>,
-                <code>infraAdapterDescriptor</code>, <code>projectDockerComposeProject</code>
+                <code>DockerComposeSecretValueSegment</code>, <code>DockerComposeService</code>,
+                <code>DockerComposeSessionResolver</code>, <code>DockerComposeTargetAccess</code>,
+                <code>DockerComposeVolume</code>, <code>infraAdapterDescriptor</code>,
+                <code>projectDockerComposeProject</code>
               </p>
             </article>
             <article
@@ -1350,7 +1373,7 @@
             </article>
             <article
               class="item"
-              data-search="src/types/dockerComposeRuntime.ts DockerComposeAdapterOptions DockerComposeConfig DockerComposeControlPlane DockerComposeDesiredState DockerComposeExecutionProject DockerComposeMaterializedSecret DockerComposeNetwork DockerComposeOutput DockerComposeProject DockerComposeProjectIdentity DockerComposeProjectObservation DockerComposeResource DockerComposeResourceObservation DockerComposeSecret DockerComposeService DockerComposeTargetAccess DockerComposeVolume"
+              data-search="src/types/dockerComposeRuntime.ts DockerComposeAdapterOptions DockerComposeConfig DockerComposeControlPlane DockerComposeDesiredState DockerComposeExecutionProject DockerComposeMaterializedSecret DockerComposeNetwork DockerComposeOutput DockerComposeProject DockerComposeProjectIdentity DockerComposeProjectObservation DockerComposeResource DockerComposeResourceObservation DockerComposeSecret DockerComposeSecretValueSegment DockerComposeService DockerComposeTargetAccess DockerComposeVolume"
             >
               <h3>src/types/dockerComposeRuntime.ts</h3>
               <p class="muted">Referenced module</p>
@@ -1364,8 +1387,8 @@
                 <code>DockerComposeProjectIdentity</code>,
                 <code>DockerComposeProjectObservation</code>, <code>DockerComposeResource</code>,
                 <code>DockerComposeResourceObservation</code>, <code>DockerComposeSecret</code>,
-                <code>DockerComposeService</code>, <code>DockerComposeTargetAccess</code>,
-                <code>DockerComposeVolume</code>
+                <code>DockerComposeSecretValueSegment</code>, <code>DockerComposeService</code>,
+                <code>DockerComposeTargetAccess</code>, <code>DockerComposeVolume</code>
               </p>
             </article>
           </section>
@@ -1982,7 +2005,7 @@
                 data-search="DockerComposeControlPlane type src/types/dockerComposeRuntime.ts  DockerComposeExecutionProject DockerComposeProject DockerComposeProjectIdentity DockerComposeProjectObservation DockerComposeTargetAccess"
               >
                 <h4>DockerComposeControlPlane</h4>
-                <p class="muted">type • <code>src/types/dockerComposeRuntime.ts:135:1</code></p>
+                <p class="muted">type • <code>src/types/dockerComposeRuntime.ts:142:1</code></p>
 
                 <p><strong>Export paths:</strong> <code>src/index.ts</code></p>
                 <div>
@@ -2094,7 +2117,7 @@
                 data-search="DockerComposeDesiredState unknown src/types/dockerComposeRuntime.ts "
               >
                 <h4>DockerComposeDesiredState</h4>
-                <p class="muted">unknown • <code>src/types/dockerComposeRuntime.ts:170:1</code></p>
+                <p class="muted">unknown • <code>src/types/dockerComposeRuntime.ts:177:1</code></p>
 
                 <p><strong>Export paths:</strong> <code>src/index.ts</code></p>
                 <div><strong>Related symbols:</strong> <span class="empty">None</span></div>
@@ -2105,7 +2128,7 @@
                 data-search="DockerComposeExecutionProject type src/types/dockerComposeRuntime.ts  DockerComposeConfig DockerComposeMaterializedSecret DockerComposeNetwork DockerComposeProjectIdentity DockerComposeService DockerComposeVolume"
               >
                 <h4>DockerComposeExecutionProject</h4>
-                <p class="muted">type • <code>src/types/dockerComposeRuntime.ts:113:1</code></p>
+                <p class="muted">type • <code>src/types/dockerComposeRuntime.ts:120:1</code></p>
 
                 <p><strong>Export paths:</strong> <code>src/index.ts</code></p>
                 <div>
@@ -2182,7 +2205,7 @@
                 data-search="DockerComposeMaterializedSecret type src/types/dockerComposeRuntime.ts "
               >
                 <h4>DockerComposeMaterializedSecret</h4>
-                <p class="muted">type • <code>src/types/dockerComposeRuntime.ts:108:1</code></p>
+                <p class="muted">type • <code>src/types/dockerComposeRuntime.ts:115:1</code></p>
 
                 <p><strong>Export paths:</strong> <code>src/index.ts</code></p>
                 <div><strong>Related symbols:</strong> <span class="empty">None</span></div>
@@ -2307,7 +2330,7 @@
                 data-search="DockerComposeOutput unknown src/types/dockerComposeRuntime.ts "
               >
                 <h4>DockerComposeOutput</h4>
-                <p class="muted">unknown • <code>src/types/dockerComposeRuntime.ts:171:1</code></p>
+                <p class="muted">unknown • <code>src/types/dockerComposeRuntime.ts:178:1</code></p>
 
                 <p><strong>Export paths:</strong> <code>src/index.ts</code></p>
                 <div><strong>Related symbols:</strong> <span class="empty">None</span></div>
@@ -2318,7 +2341,7 @@
                 data-search="DockerComposeProject type src/types/dockerComposeRuntime.ts  DockerComposeConfig DockerComposeNetwork DockerComposeProjectIdentity DockerComposeSecret DockerComposeService DockerComposeVolume"
               >
                 <h4>DockerComposeProject</h4>
-                <p class="muted">type • <code>src/types/dockerComposeRuntime.ts:99:1</code></p>
+                <p class="muted">type • <code>src/types/dockerComposeRuntime.ts:106:1</code></p>
 
                 <p><strong>Export paths:</strong> <code>src/index.ts</code></p>
                 <div>
@@ -2445,7 +2468,7 @@
                 data-search="DockerComposeProjectObservation type src/types/dockerComposeRuntime.ts  DockerComposeResourceObservation"
               >
                 <h4>DockerComposeProjectObservation</h4>
-                <p class="muted">type • <code>src/types/dockerComposeRuntime.ts:129:1</code></p>
+                <p class="muted">type • <code>src/types/dockerComposeRuntime.ts:136:1</code></p>
 
                 <p><strong>Export paths:</strong> <code>src/index.ts</code></p>
                 <div>
@@ -2495,7 +2518,7 @@
                 data-search="DockerComposeResource unknown src/types/dockerComposeRuntime.ts "
               >
                 <h4>DockerComposeResource</h4>
-                <p class="muted">unknown • <code>src/types/dockerComposeRuntime.ts:172:1</code></p>
+                <p class="muted">unknown • <code>src/types/dockerComposeRuntime.ts:179:1</code></p>
 
                 <p><strong>Export paths:</strong> <code>src/index.ts</code></p>
                 <div><strong>Related symbols:</strong> <span class="empty">None</span></div>
@@ -2506,7 +2529,7 @@
                 data-search="DockerComposeResourceObservation type src/types/dockerComposeRuntime.ts "
               >
                 <h4>DockerComposeResourceObservation</h4>
-                <p class="muted">type • <code>src/types/dockerComposeRuntime.ts:117:1</code></p>
+                <p class="muted">type • <code>src/types/dockerComposeRuntime.ts:124:1</code></p>
 
                 <p><strong>Export paths:</strong> <code>src/index.ts</code></p>
                 <div><strong>Related symbols:</strong> <span class="empty">None</span></div>
@@ -2602,13 +2625,18 @@
               <article
                 class="item"
                 id="symbol-dockercomposesecret"
-                data-search="DockerComposeSecret type src/types/dockerComposeRuntime.ts "
+                data-search="DockerComposeSecret type src/types/dockerComposeRuntime.ts  DockerComposeSecretValueSegment"
               >
                 <h4>DockerComposeSecret</h4>
-                <p class="muted">type • <code>src/types/dockerComposeRuntime.ts:64:1</code></p>
+                <p class="muted">type • <code>src/types/dockerComposeRuntime.ts:72:1</code></p>
 
                 <p><strong>Export paths:</strong> <code>src/index.ts</code></p>
-                <div><strong>Related symbols:</strong> <span class="empty">None</span></div>
+                <div>
+                  <strong>Related symbols:</strong>
+                  <ul class="chips">
+                    <li class="chip">DockerComposeSecretValueSegment</li>
+                  </ul>
+                </div>
 
                 <table>
                   <thead>
@@ -2650,14 +2678,9 @@
                       <td></td>
                     </tr>
                     <tr>
-                      <td><code>reference</code></td>
+                      <td><code>segments</code></td>
                       <td>property</td>
-                      <td>
-                        <code
-                          >InfraSecretReference | (InfraControlPlaneCredentialRef &amp; { readonly
-                          key: string; })</code
-                        >
-                      </td>
+                      <td><code>readonly DockerComposeSecretValueSegment[]</code></td>
                       <td>yes</td>
                       <td></td>
                     </tr>
@@ -2678,11 +2701,22 @@
               </article>
               <article
                 class="item"
+                id="symbol-dockercomposesecretvaluesegment"
+                data-search="DockerComposeSecretValueSegment unknown src/types/dockerComposeRuntime.ts "
+              >
+                <h4>DockerComposeSecretValueSegment</h4>
+                <p class="muted">unknown • <code>src/types/dockerComposeRuntime.ts:64:1</code></p>
+
+                <p><strong>Export paths:</strong> <code>src/index.ts</code></p>
+                <div><strong>Related symbols:</strong> <span class="empty">None</span></div>
+              </article>
+              <article
+                class="item"
                 id="symbol-dockercomposeservice"
                 data-search="DockerComposeService type src/types/dockerComposeRuntime.ts "
               >
                 <h4>DockerComposeService</h4>
-                <p class="muted">type • <code>src/types/dockerComposeRuntime.ts:74:1</code></p>
+                <p class="muted">type • <code>src/types/dockerComposeRuntime.ts:81:1</code></p>
 
                 <p><strong>Export paths:</strong> <code>src/index.ts</code></p>
                 <div><strong>Related symbols:</strong> <span class="empty">None</span></div>
@@ -2973,6 +3007,10 @@
                 package__ankhorage_docker_compose -.-&gt; module_src_dockerComposeRuntime_test_ts
                 module_src_dockerComposeRuntime_test_ts --&gt; module_src_index_ts
                 module_src_dockerComposeRuntime_test_ts --&gt; module_src_runtimeFixtures_test_ts
+                module_src_dockerComposeTemplates_test_ts[&quot;src/dockerComposeTemplates.test.ts&quot;]
+                package__ankhorage_docker_compose -.-&gt; module_src_dockerComposeTemplates_test_ts
+                module_src_dockerComposeTemplates_test_ts --&gt; module_src_index_ts
+                module_src_dockerComposeTemplates_test_ts --&gt; module_src_runtimeFixtures_test_ts
                 module_src_features_compose_runtime_adapters_createDockerComposeCliControlPlane_ts[&quot;src/features/compose-runtime/adapters/createDockerComposeCliControlPlane.ts&quot;]
                 package__ankhorage_docker_compose -.-&gt;
                 module_src_features_compose_runtime_adapters_createDockerComposeCliControlPlane_ts
@@ -3354,6 +3392,10 @@ graph TD
   package__ankhorage_docker_compose -.-&gt; module_src_dockerComposeRuntime_test_ts
   module_src_dockerComposeRuntime_test_ts --&gt; module_src_index_ts
   module_src_dockerComposeRuntime_test_ts --&gt; module_src_runtimeFixtures_test_ts
+  module_src_dockerComposeTemplates_test_ts[&quot;src/dockerComposeTemplates.test.ts&quot;]
+  package__ankhorage_docker_compose -.-&gt; module_src_dockerComposeTemplates_test_ts
+  module_src_dockerComposeTemplates_test_ts --&gt; module_src_index_ts
+  module_src_dockerComposeTemplates_test_ts --&gt; module_src_runtimeFixtures_test_ts
   module_src_features_compose_runtime_adapters_createDockerComposeCliControlPlane_ts[&quot;src/features/compose-runtime/adapters/createDockerComposeCliControlPlane.ts&quot;]
   package__ankhorage_docker_compose -.-&gt; module_src_features_compose_runtime_adapters_createDockerComposeCliControlPlane_ts
   module_src_features_compose_runtime_adapters_createDockerComposeCliControlPlane_ts --&gt; module_src_features_compose_runtime_adapters_createLocalDockerComposeSessionResolver_ts
@@ -3557,6 +3599,7 @@ graph TD
                 module_src_dockerComposeInspection_test_ts[&quot;src/dockerComposeInspection.test.ts&quot;]
                 module_src_dockerComposeProcess_test_ts[&quot;src/dockerComposeProcess.test.ts&quot;]
                 module_src_dockerComposeRuntime_test_ts[&quot;src/dockerComposeRuntime.test.ts&quot;]
+                module_src_dockerComposeTemplates_test_ts[&quot;src/dockerComposeTemplates.test.ts&quot;]
                 module_src_features_compose_runtime_adapters_createDockerComposeCliControlPlane_ts[&quot;src/features/compose-runtime/adapters/createDockerComposeCliControlPlane.ts&quot;]
                 module_src_features_compose_runtime_adapters_createLocalDockerComposeSessionResolver_ts[&quot;src/features/compose-runtime/adapters/createLocalDockerComposeSessionResolver.ts&quot;]
                 module_src_features_compose_runtime_adapters_createSubprocessDockerComposeCommandRunner_ts[&quot;src/features/compose-runtime/adapters/createSubprocessDockerComposeCommandRunner.ts&quot;]
@@ -3623,6 +3666,8 @@ graph TD
                 module_src_dockerComposeProcess_test_ts --&gt; module_src_index_ts
                 module_src_dockerComposeRuntime_test_ts --&gt; module_src_index_ts
                 module_src_dockerComposeRuntime_test_ts --&gt; module_src_runtimeFixtures_test_ts
+                module_src_dockerComposeTemplates_test_ts --&gt; module_src_index_ts
+                module_src_dockerComposeTemplates_test_ts --&gt; module_src_runtimeFixtures_test_ts
                 module_src_features_compose_runtime_adapters_createDockerComposeCliControlPlane_ts
                 --&gt;
                 module_src_features_compose_runtime_adapters_createLocalDockerComposeSessionResolver_ts
@@ -3857,6 +3902,7 @@ graph LR
   module_src_dockerComposeInspection_test_ts[&quot;src/dockerComposeInspection.test.ts&quot;]
   module_src_dockerComposeProcess_test_ts[&quot;src/dockerComposeProcess.test.ts&quot;]
   module_src_dockerComposeRuntime_test_ts[&quot;src/dockerComposeRuntime.test.ts&quot;]
+  module_src_dockerComposeTemplates_test_ts[&quot;src/dockerComposeTemplates.test.ts&quot;]
   module_src_features_compose_runtime_adapters_createDockerComposeCliControlPlane_ts[&quot;src/features/compose-runtime/adapters/createDockerComposeCliControlPlane.ts&quot;]
   module_src_features_compose_runtime_adapters_createLocalDockerComposeSessionResolver_ts[&quot;src/features/compose-runtime/adapters/createLocalDockerComposeSessionResolver.ts&quot;]
   module_src_features_compose_runtime_adapters_createSubprocessDockerComposeCommandRunner_ts[&quot;src/features/compose-runtime/adapters/createSubprocessDockerComposeCommandRunner.ts&quot;]
@@ -3915,6 +3961,8 @@ graph LR
   module_src_dockerComposeProcess_test_ts --&gt; module_src_index_ts
   module_src_dockerComposeRuntime_test_ts --&gt; module_src_index_ts
   module_src_dockerComposeRuntime_test_ts --&gt; module_src_runtimeFixtures_test_ts
+  module_src_dockerComposeTemplates_test_ts --&gt; module_src_index_ts
+  module_src_dockerComposeTemplates_test_ts --&gt; module_src_runtimeFixtures_test_ts
   module_src_features_compose_runtime_adapters_createDockerComposeCliControlPlane_ts --&gt; module_src_features_compose_runtime_adapters_createLocalDockerComposeSessionResolver_ts
   module_src_features_compose_runtime_adapters_createDockerComposeCliControlPlane_ts --&gt; module_src_features_compose_runtime_adapters_inspectDockerComposeProjectAsync_ts
   module_src_features_compose_runtime_adapters_createDockerComposeCliControlPlane_ts --&gt; module_src_features_compose_runtime_adapters_reconcileDockerComposeProjectAsync_ts
@@ -4036,6 +4084,7 @@ graph LR
                 module_src_dockerComposeInspection_test_ts[&quot;src/dockerComposeInspection.test.ts&quot;]
                 module_src_dockerComposeProcess_test_ts[&quot;src/dockerComposeProcess.test.ts&quot;]
                 module_src_dockerComposeRuntime_test_ts[&quot;src/dockerComposeRuntime.test.ts&quot;]
+                module_src_dockerComposeTemplates_test_ts[&quot;src/dockerComposeTemplates.test.ts&quot;]
                 module_src_features_compose_runtime_adapters_createDockerComposeCliControlPlane_ts[&quot;src/features/compose-runtime/adapters/createDockerComposeCliControlPlane.ts&quot;]
                 module_src_features_compose_runtime_adapters_createLocalDockerComposeSessionResolver_ts[&quot;src/features/compose-runtime/adapters/createLocalDockerComposeSessionResolver.ts&quot;]
                 module_src_features_compose_runtime_adapters_createSubprocessDockerComposeCommandRunner_ts[&quot;src/features/compose-runtime/adapters/createSubprocessDockerComposeCommandRunner.ts&quot;]
@@ -4157,6 +4206,10 @@ graph LR
                 export_DockerComposeResourceObservation
                 export_DockerComposeSecret[&quot;DockerComposeSecret&quot;]
                 module_src_types_dockerComposeRuntime_ts --&gt; export_DockerComposeSecret
+                export_DockerComposeSecret -.-&gt; export_DockerComposeSecretValueSegment
+                export_DockerComposeSecretValueSegment[&quot;DockerComposeSecretValueSegment&quot;]
+                module_src_types_dockerComposeRuntime_ts --&gt;
+                export_DockerComposeSecretValueSegment
                 export_DockerComposeService[&quot;DockerComposeService&quot;]
                 module_src_types_dockerComposeRuntime_ts --&gt; export_DockerComposeService
                 export_DockerComposeSessionResolver[&quot;DockerComposeSessionResolver&quot;]
@@ -4191,6 +4244,7 @@ graph LR
   module_src_dockerComposeInspection_test_ts[&quot;src/dockerComposeInspection.test.ts&quot;]
   module_src_dockerComposeProcess_test_ts[&quot;src/dockerComposeProcess.test.ts&quot;]
   module_src_dockerComposeRuntime_test_ts[&quot;src/dockerComposeRuntime.test.ts&quot;]
+  module_src_dockerComposeTemplates_test_ts[&quot;src/dockerComposeTemplates.test.ts&quot;]
   module_src_features_compose_runtime_adapters_createDockerComposeCliControlPlane_ts[&quot;src/features/compose-runtime/adapters/createDockerComposeCliControlPlane.ts&quot;]
   module_src_features_compose_runtime_adapters_createLocalDockerComposeSessionResolver_ts[&quot;src/features/compose-runtime/adapters/createLocalDockerComposeSessionResolver.ts&quot;]
   module_src_features_compose_runtime_adapters_createSubprocessDockerComposeCommandRunner_ts[&quot;src/features/compose-runtime/adapters/createSubprocessDockerComposeCommandRunner.ts&quot;]
@@ -4302,6 +4356,9 @@ graph LR
   module_src_types_dockerComposeRuntime_ts --&gt; export_DockerComposeResourceObservation
   export_DockerComposeSecret[&quot;DockerComposeSecret&quot;]
   module_src_types_dockerComposeRuntime_ts --&gt; export_DockerComposeSecret
+  export_DockerComposeSecret -.-&gt; export_DockerComposeSecretValueSegment
+  export_DockerComposeSecretValueSegment[&quot;DockerComposeSecretValueSegment&quot;]
+  module_src_types_dockerComposeRuntime_ts --&gt; export_DockerComposeSecretValueSegment
   export_DockerComposeService[&quot;DockerComposeService&quot;]
   module_src_types_dockerComposeRuntime_ts --&gt; export_DockerComposeService
   export_DockerComposeSessionResolver[&quot;DockerComposeSessionResolver&quot;]
@@ -4640,6 +4697,40 @@ sequenceDiagram
               <h3>createDestroyRequest</h3>
               <p class="muted"><code>src/dockerComposeRuntime.test.ts:223:1</code></p>
               <p class="empty">No description available.</p>
+            </article>
+          </section>
+        </section>
+        <section
+          id="view-src-dockercomposetemplates-test-ts"
+          class="view"
+          data-view="src/dockerComposeTemplates.test.ts"
+          hidden
+        >
+          <section class="panel">
+            <h2>src/dockerComposeTemplates.test.ts</h2>
+            <article
+              class="item"
+              data-search="createDesired src/dockerComposeTemplates.test.ts Create desired state containing public and privileged ordered templates."
+            >
+              <h3>createDesired</h3>
+              <p class="muted"><code>src/dockerComposeTemplates.test.ts:25:1</code></p>
+              <p>Create desired state containing public and privileged ordered templates.</p>
+            </article>
+            <article
+              class="item"
+              data-search="createContext src/dockerComposeTemplates.test.ts Create the execution context used only at the reconcile boundary."
+            >
+              <h3>createContext</h3>
+              <p class="muted"><code>src/dockerComposeTemplates.test.ts:69:1</code></p>
+              <p>Create the execution context used only at the reconcile boundary.</p>
+            </article>
+            <article
+              class="item"
+              data-search="createSecretReference src/dockerComposeTemplates.test.ts Create one canonical secret reference."
+            >
+              <h3>createSecretReference</h3>
+              <p class="muted"><code>src/dockerComposeTemplates.test.ts:89:1</code></p>
+              <p>Create one canonical secret reference.</p>
             </article>
           </section>
         </section>
@@ -5539,10 +5630,22 @@ sequenceDiagram
               <h3>materializeDockerComposeSecretsAsync</h3>
               <p class="muted">
                 <code
-                  >src/features/compose-runtime/application/materializeDockerComposeSecretsAsync.ts:10:1</code
+                  >src/features/compose-runtime/application/materializeDockerComposeSecretsAsync.ts:11:1</code
                 >
               </p>
               <p>Resolve secret references immediately before Compose reconciliation.</p>
+            </article>
+            <article
+              class="item"
+              data-search="materializeSegmentsAsync src/features/compose-runtime/application/materializeDockerComposeSecretsAsync.ts Resolve and concatenate one ordered execution-only secret value."
+            >
+              <h3>materializeSegmentsAsync</h3>
+              <p class="muted">
+                <code
+                  >src/features/compose-runtime/application/materializeDockerComposeSecretsAsync.ts:26:1</code
+                >
+              </p>
+              <p>Resolve and concatenate one ordered execution-only secret value.</p>
             </article>
             <article
               class="item"
@@ -5551,7 +5654,7 @@ sequenceDiagram
               <h3>resolveCredentialValueAsync</h3>
               <p class="muted">
                 <code
-                  >src/features/compose-runtime/application/materializeDockerComposeSecretsAsync.ts:27:1</code
+                  >src/features/compose-runtime/application/materializeDockerComposeSecretsAsync.ts:46:1</code
                 >
               </p>
               <p class="empty">No description available.</p>
@@ -5738,13 +5841,37 @@ sequenceDiagram
               <h3>resolveDockerComposeValue</h3>
               <p class="muted">
                 <code
-                  >src/features/compose-runtime/application/resolveDockerComposeValue.ts:13:1</code
+                  >src/features/compose-runtime/application/resolveDockerComposeValue.ts:18:1</code
                 >
               </p>
               <p>
                 Resolve public values while preserving secret references for execution-time
                 materialization.
               </p>
+            </article>
+            <article
+              class="item"
+              data-search="resolveSegment src/features/compose-runtime/application/resolveDockerComposeValue.ts Resolve one scalar segment while retaining privileged references."
+            >
+              <h3>resolveSegment</h3>
+              <p class="muted">
+                <code
+                  >src/features/compose-runtime/application/resolveDockerComposeValue.ts:41:1</code
+                >
+              </p>
+              <p>Resolve one scalar segment while retaining privileged references.</p>
+            </article>
+            <article
+              class="item"
+              data-search="success src/features/compose-runtime/application/resolveDockerComposeValue.ts Create a successful scalar-segment result."
+            >
+              <h3>success</h3>
+              <p class="muted">
+                <code
+                  >src/features/compose-runtime/application/resolveDockerComposeValue.ts:77:1</code
+                >
+              </p>
+              <p>Create a successful scalar-segment result.</p>
             </article>
           </section>
         </section>
@@ -6359,7 +6486,7 @@ sequenceDiagram
             <h2>src/runtimeFixtures.test.ts</h2>
             <article class="item" data-search="success src/runtimeFixtures.test.ts ">
               <h3>success</h3>
-              <p class="muted"><code>src/runtimeFixtures.test.ts:101:1</code></p>
+              <p class="muted"><code>src/runtimeFixtures.test.ts:105:1</code></p>
               <p class="empty">No description available.</p>
             </article>
           </section>
