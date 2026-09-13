@@ -31,14 +31,8 @@ it('reconstructs exact owned resources, readiness and public ports from Docker i
       engineResource('sample-local-api-data', 'volume:api:data', 'volume-hash', true),
     ]),
     containers: JSON.stringify([
-      {
-        Name: '/sample-local-api-1',
-        Config: {
-          Labels: labels('service:api', 'service-hash', false, inventory),
-        },
-        State: { Status: 'running', ExitCode: 0, Health: { Status: 'healthy' } },
-        NetworkSettings: { Ports: { '8080/tcp': [{ HostIp: '0.0.0.0', HostPort: '49152' }] } },
-      },
+      serviceContainer('/sample-local-api-1', inventory, 'healthy', '49152'),
+      serviceContainer('/sample-local-api-2', inventory, 'healthy', '49153'),
     ]),
   });
 
@@ -126,6 +120,15 @@ function inventoryEntry(
     retention: 'delete-on-destroy',
     dependsOnResourceIds: [],
     externalId,
+  };
+}
+
+function serviceContainer(name: string, inventory: string, health: string, hostPort: string) {
+  return {
+    Name: name,
+    Config: { Labels: labels('service:api', 'service-hash', false, inventory) },
+    State: { Status: 'running', ExitCode: 0, Health: { Status: health } },
+    NetworkSettings: { Ports: { '8080/tcp': [{ HostIp: '0.0.0.0', HostPort: hostPort }] } },
   };
 }
 

@@ -19,6 +19,7 @@ import {
   requireRecord,
   requireString,
 } from '../utils/dockerJson';
+import { mergeDockerComposeServiceReplicas } from '../utils/mergeDockerComposeServiceReplicas';
 import {
   type DockerComposeInventoryEntry,
   type DockerComposeInventoryPort,
@@ -106,8 +107,11 @@ function readActualResources(
       carrierAvailable,
       endpointHost,
     );
-    if (byId.has(observation.resourceId)) throw new Error('Duplicate owned Docker resource.');
-    byId.set(observation.resourceId, observation);
+    const existing = byId.get(observation.resourceId);
+    if (existing === undefined) byId.set(observation.resourceId, observation);
+    else if (resource.kind === 'service' && observation.resourceId.startsWith('service:')) {
+      byId.set(observation.resourceId, mergeDockerComposeServiceReplicas(existing, observation));
+    } else throw new Error('Duplicate owned Docker resource.');
   }
   return byId;
 }
@@ -132,7 +136,10 @@ function observeActualResource(
   return {
     ...metadata,
     state,
-    externalId: readExternalId(resource.value),
+    externalId:
+      resource.kind === 'service' && inventory !== undefined
+        ? inventory.externalId
+        : readExternalId(resource.value),
     ...(publicOutputs === undefined ? {} : { publicOutputs }),
     ...(resource.kind === 'service' ? { detail: `Docker container state: ${state}.` } : {}),
   };
