@@ -5,18 +5,8 @@ import type {
   DockerComposeResource,
   DockerComposeService,
 } from '../../../types/dockerComposeRuntime';
+import { DOCKER_COMPOSE_LABELS } from '../utils/dockerComposeLabels';
 import { toComposeName } from '../utils/getDockerComposeProjectIdentity';
-
-const DOCKER_COMPOSE_INVENTORY_LABEL = 'com.ankhorage.infra.inventory';
-
-const RESOURCE_ID_LABEL = 'com.ankhorage.infra.resource-id';
-const PROJECT_LABEL = 'com.ankhorage.infra.project';
-const ENVIRONMENT_LABEL = 'com.ankhorage.infra.environment';
-const ADAPTER_LABEL = 'com.ankhorage.infra.adapter';
-const CONFIGURATION_HASH_LABEL = 'com.ankhorage.infra.configuration-hash';
-const PERSISTENT_LABEL = 'com.ankhorage.infra.persistent';
-const RETENTION_LABEL = 'com.ankhorage.infra.retention';
-const DEPENDENCIES_LABEL = 'com.ankhorage.infra.dependencies';
 
 type DockerComposeCliResource = DockerComposeResource | DockerComposeMaterializedSecret;
 interface SecretBinding {
@@ -58,7 +48,7 @@ function createDocument(
         name: project.network.name,
         labels: {
           ...resourceLabels(project.network),
-          [DOCKER_COMPOSE_INVENTORY_LABEL]: inventory,
+          [DOCKER_COMPOSE_LABELS.inventory]: inventory,
         },
       },
     },
@@ -104,7 +94,7 @@ function renderService(
     ...(service.args === undefined ? {} : { command: [...service.args] }),
     environment: renderEnvironment(service, secretBindings),
     networks: ['default'],
-    labels: { ...resourceLabels(service), [DOCKER_COMPOSE_INVENTORY_LABEL]: inventory },
+    labels: { ...resourceLabels(service), [DOCKER_COMPOSE_LABELS.inventory]: inventory },
     ...renderMounts(service),
     ...renderPorts(service),
     ...renderDependencies(service),
@@ -217,14 +207,14 @@ function renderHealthcheck(
 
 function resourceLabels(resource: DockerComposeCliResource): Readonly<Record<string, string>> {
   return {
-    [PROJECT_LABEL]: resource.owner.identity.projectId,
-    [ENVIRONMENT_LABEL]: resource.owner.identity.environment,
-    [ADAPTER_LABEL]: resource.owner.identity.adapter,
-    [RESOURCE_ID_LABEL]: resource.owner.identity.resourceId,
-    [CONFIGURATION_HASH_LABEL]: resource.configurationHash,
-    [PERSISTENT_LABEL]: String(resource.owner.persistent),
-    [RETENTION_LABEL]: resource.owner.retention,
-    [DEPENDENCIES_LABEL]: JSON.stringify(
+    [DOCKER_COMPOSE_LABELS.project]: resource.owner.identity.projectId,
+    [DOCKER_COMPOSE_LABELS.environment]: resource.owner.identity.environment,
+    [DOCKER_COMPOSE_LABELS.adapter]: resource.owner.identity.adapter,
+    [DOCKER_COMPOSE_LABELS.resourceId]: resource.owner.identity.resourceId,
+    [DOCKER_COMPOSE_LABELS.configurationHash]: resource.configurationHash,
+    [DOCKER_COMPOSE_LABELS.persistent]: String(resource.owner.persistent),
+    [DOCKER_COMPOSE_LABELS.retention]: resource.owner.retention,
+    [DOCKER_COMPOSE_LABELS.dependencies]: JSON.stringify(
       resource.owner.dependsOn.map(({ resourceId }) => resourceId).sort(),
     ),
   };
@@ -232,6 +222,7 @@ function resourceLabels(resource: DockerComposeCliResource): Readonly<Record<str
 
 function toInventoryEntry(resource: DockerComposeCliResource): Readonly<Record<string, unknown>> {
   return {
+    kind: resource.kind,
     resourceId: resource.owner.identity.resourceId,
     configurationHash: resource.configurationHash,
     persistent: resource.owner.persistent,

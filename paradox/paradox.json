@@ -90,6 +90,15 @@
       "exports": []
     },
     {
+      "path": "src/dockerComposeInspection.test.ts",
+      "isEntrypoint": false,
+      "dependencies": [
+        "src/features/compose-runtime/adapters/parseDockerComposeInspection.ts",
+        "src/features/compose-runtime/utils/dockerComposeLabels.ts"
+      ],
+      "exports": []
+    },
+    {
       "path": "src/dockerComposeProcess.test.ts",
       "isEntrypoint": false,
       "dependencies": ["src/index.ts"],
@@ -108,9 +117,21 @@
       "exports": ["createSubprocessDockerComposeCommandRunner"]
     },
     {
+      "path": "src/features/compose-runtime/adapters/parseDockerComposeInspection.ts",
+      "isEntrypoint": false,
+      "dependencies": [
+        "src/features/compose-runtime/utils/dockerComposeLabels.ts",
+        "src/features/compose-runtime/utils/dockerJson.ts",
+        "src/features/compose-runtime/utils/parseDockerComposeInventory.ts",
+        "src/types/dockerComposeRuntime.ts"
+      ],
+      "exports": ["parseDockerComposeInspection"]
+    },
+    {
       "path": "src/features/compose-runtime/adapters/renderDockerComposeCliInput.ts",
       "isEntrypoint": false,
       "dependencies": [
+        "src/features/compose-runtime/utils/dockerComposeLabels.ts",
         "src/features/compose-runtime/utils/getDockerComposeProjectIdentity.ts",
         "src/types/dockerComposeProcess.ts",
         "src/types/dockerComposeRuntime.ts"
@@ -249,6 +270,12 @@
       "exports": ["createInfraAdapter"]
     },
     {
+      "path": "src/features/compose-runtime/utils/dockerComposeLabels.ts",
+      "isEntrypoint": false,
+      "dependencies": [],
+      "exports": ["DOCKER_COMPOSE_LABELS"]
+    },
+    {
       "path": "src/features/compose-runtime/utils/dockerComposeResourceFactories.ts",
       "isEntrypoint": false,
       "dependencies": [
@@ -266,6 +293,28 @@
       ]
     },
     {
+      "path": "src/features/compose-runtime/utils/dockerJson.ts",
+      "isEntrypoint": false,
+      "dependencies": [],
+      "exports": [
+        "getString",
+        "getValue",
+        "isRecord",
+        "isUnknownArray",
+        "optionalArray",
+        "optionalNumber",
+        "optionalRecord",
+        "optionalString",
+        "optionalStringRecord",
+        "parseDockerDocument",
+        "requireBoolean",
+        "requireNumber",
+        "requireRecord",
+        "requireString",
+        "requireStringArray"
+      ]
+    },
+    {
       "path": "src/features/compose-runtime/utils/getDockerComposeProjectIdentity.ts",
       "isEntrypoint": false,
       "dependencies": ["src/types/dockerComposeRuntime.ts"],
@@ -276,6 +325,19 @@
       "isEntrypoint": false,
       "dependencies": ["src/types/dockerComposeRuntime.ts"],
       "exports": ["createObservedDockerComposeOwner", "getDockerComposeResources"]
+    },
+    {
+      "path": "src/features/compose-runtime/utils/parseDockerComposeInventory.ts",
+      "isEntrypoint": false,
+      "dependencies": [
+        "src/features/compose-runtime/utils/dockerComposeLabels.ts",
+        "src/features/compose-runtime/utils/dockerJson.ts"
+      ],
+      "exports": [
+        "DockerComposeInventoryEntry",
+        "DockerComposeInventoryPort",
+        "parseDockerComposeInventory"
+      ]
     },
     {
       "path": "src/features/compose-runtime/utils/resolveDockerComposeTargetAsync.ts",
@@ -1481,7 +1543,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/dockerComposeCliInput.test.ts",
-        "line": 49,
+        "line": 60,
         "column": 1
       }
     },
@@ -1490,7 +1552,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/dockerComposeCliInput.test.ts",
-        "line": 66,
+        "line": 77,
         "column": 1
       }
     },
@@ -1499,7 +1561,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/dockerComposeCliInput.test.ts",
-        "line": 85,
+        "line": 96,
         "column": 1
       }
     },
@@ -1508,7 +1570,34 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/dockerComposeCliInput.test.ts",
-        "line": 96,
+        "line": 107,
+        "column": 1
+      }
+    },
+    {
+      "name": "inventoryEntry",
+      "description": null,
+      "sourceLocation": {
+        "filePath": "src/dockerComposeInspection.test.ts",
+        "line": 115,
+        "column": 1
+      }
+    },
+    {
+      "name": "engineResource",
+      "description": null,
+      "sourceLocation": {
+        "filePath": "src/dockerComposeInspection.test.ts",
+        "line": 132,
+        "column": 1
+      }
+    },
+    {
+      "name": "labels",
+      "description": null,
+      "sourceLocation": {
+        "filePath": "src/dockerComposeInspection.test.ts",
+        "line": 146,
         "column": 1
       }
     },
@@ -1567,11 +1656,173 @@
       }
     },
     {
+      "name": "parseDockerComposeInspection",
+      "description": "Parse Docker inspect responses into exact owned, provider-neutral project observations.",
+      "sourceLocation": {
+        "filePath": "src/features/compose-runtime/adapters/parseDockerComposeInspection.ts",
+        "line": 43,
+        "column": 1
+      }
+    },
+    {
+      "name": "readInspectedResources",
+      "description": null,
+      "sourceLocation": {
+        "filePath": "src/features/compose-runtime/adapters/parseDockerComposeInspection.ts",
+        "line": 75,
+        "column": 1
+      }
+    },
+    {
+      "name": "inspectedResource",
+      "description": null,
+      "sourceLocation": {
+        "filePath": "src/features/compose-runtime/adapters/parseDockerComposeInspection.ts",
+        "line": 83,
+        "column": 1
+      }
+    },
+    {
+      "name": "readActualResources",
+      "description": null,
+      "sourceLocation": {
+        "filePath": "src/features/compose-runtime/adapters/parseDockerComposeInspection.ts",
+        "line": 94,
+        "column": 1
+      }
+    },
+    {
+      "name": "observeActualResource",
+      "description": null,
+      "sourceLocation": {
+        "filePath": "src/features/compose-runtime/adapters/parseDockerComposeInspection.ts",
+        "line": 115,
+        "column": 1
+      }
+    },
+    {
+      "name": "mergeInventory",
+      "description": null,
+      "sourceLocation": {
+        "filePath": "src/features/compose-runtime/adapters/parseDockerComposeInspection.ts",
+        "line": 141,
+        "column": 1
+      }
+    },
+    {
+      "name": "readLabelMetadata",
+      "description": null,
+      "sourceLocation": {
+        "filePath": "src/features/compose-runtime/adapters/parseDockerComposeInspection.ts",
+        "line": 172,
+        "column": 1
+      }
+    },
+    {
+      "name": "readContainerState",
+      "description": null,
+      "sourceLocation": {
+        "filePath": "src/features/compose-runtime/adapters/parseDockerComposeInspection.ts",
+        "line": 189,
+        "column": 1
+      }
+    },
+    {
+      "name": "readPublicOutputs",
+      "description": null,
+      "sourceLocation": {
+        "filePath": "src/features/compose-runtime/adapters/parseDockerComposeInspection.ts",
+        "line": 207,
+        "column": 1
+      }
+    },
+    {
+      "name": "aggregateState",
+      "description": null,
+      "sourceLocation": {
+        "filePath": "src/features/compose-runtime/adapters/parseDockerComposeInspection.ts",
+        "line": 231,
+        "column": 1
+      }
+    },
+    {
+      "name": "isOwned",
+      "description": null,
+      "sourceLocation": {
+        "filePath": "src/features/compose-runtime/adapters/parseDockerComposeInspection.ts",
+        "line": 246,
+        "column": 1
+      }
+    },
+    {
+      "name": "readExternalId",
+      "description": null,
+      "sourceLocation": {
+        "filePath": "src/features/compose-runtime/adapters/parseDockerComposeInspection.ts",
+        "line": 257,
+        "column": 1
+      }
+    },
+    {
+      "name": "requireLabel",
+      "description": null,
+      "sourceLocation": {
+        "filePath": "src/features/compose-runtime/adapters/parseDockerComposeInspection.ts",
+        "line": 261,
+        "column": 1
+      }
+    },
+    {
+      "name": "parseStringArray",
+      "description": null,
+      "sourceLocation": {
+        "filePath": "src/features/compose-runtime/adapters/parseDockerComposeInspection.ts",
+        "line": 268,
+        "column": 1
+      }
+    },
+    {
+      "name": "invalidBoolean",
+      "description": null,
+      "sourceLocation": {
+        "filePath": "src/features/compose-runtime/adapters/parseDockerComposeInspection.ts",
+        "line": 276,
+        "column": 1
+      }
+    },
+    {
+      "name": "invalidRetention",
+      "description": null,
+      "sourceLocation": {
+        "filePath": "src/features/compose-runtime/adapters/parseDockerComposeInspection.ts",
+        "line": 280,
+        "column": 1
+      }
+    },
+    {
       "name": "renderDockerComposeCliInput",
       "description": "Render deterministic Compose JSON without copying resolved secret values into the document.",
       "sourceLocation": {
         "filePath": "src/features/compose-runtime/adapters/renderDockerComposeCliInput.ts",
-        "line": 25,
+        "line": 18,
+        "column": 1
+      }
+    },
+    {
+      "name": "createDocument",
+      "description": null,
+      "sourceLocation": {
+        "filePath": "src/features/compose-runtime/adapters/renderDockerComposeCliInput.ts",
+        "line": 33,
+        "column": 1
+      }
+    },
+    {
+      "name": "createSecretBindings",
+      "description": null,
+      "sourceLocation": {
+        "filePath": "src/features/compose-runtime/adapters/renderDockerComposeCliInput.ts",
+        "line": 75,
         "column": 1
       }
     },
@@ -1580,7 +1831,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/features/compose-runtime/adapters/renderDockerComposeCliInput.ts",
-        "line": 76,
+        "line": 86,
         "column": 1
       }
     },
@@ -1589,7 +1840,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/features/compose-runtime/adapters/renderDockerComposeCliInput.ts",
-        "line": 95,
+        "line": 106,
         "column": 1
       }
     },
@@ -1598,7 +1849,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/features/compose-runtime/adapters/renderDockerComposeCliInput.ts",
-        "line": 110,
+        "line": 121,
         "column": 1
       }
     },
@@ -1607,7 +1858,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/features/compose-runtime/adapters/renderDockerComposeCliInput.ts",
-        "line": 130,
+        "line": 141,
         "column": 1
       }
     },
@@ -1616,7 +1867,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/features/compose-runtime/adapters/renderDockerComposeCliInput.ts",
-        "line": 143,
+        "line": 154,
         "column": 1
       }
     },
@@ -1625,7 +1876,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/features/compose-runtime/adapters/renderDockerComposeCliInput.ts",
-        "line": 158,
+        "line": 169,
         "column": 1
       }
     },
@@ -1634,7 +1885,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/features/compose-runtime/adapters/renderDockerComposeCliInput.ts",
-        "line": 177,
+        "line": 188,
         "column": 1
       }
     },
@@ -1643,7 +1894,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/features/compose-runtime/adapters/renderDockerComposeCliInput.ts",
-        "line": 197,
+        "line": 208,
         "column": 1
       }
     },
@@ -1652,7 +1903,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/features/compose-runtime/adapters/renderDockerComposeCliInput.ts",
-        "line": 209,
+        "line": 223,
         "column": 1
       }
     },
@@ -1661,7 +1912,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/features/compose-runtime/adapters/renderDockerComposeCliInput.ts",
-        "line": 227,
+        "line": 242,
         "column": 1
       }
     },
@@ -1670,7 +1921,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/features/compose-runtime/adapters/renderDockerComposeCliInput.ts",
-        "line": 237,
+        "line": 252,
         "column": 1
       }
     },
@@ -1679,7 +1930,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/features/compose-runtime/adapters/renderDockerComposeCliInput.ts",
-        "line": 246,
+        "line": 261,
         "column": 1
       }
     },
@@ -1954,6 +2205,141 @@
       }
     },
     {
+      "name": "parseDockerDocument",
+      "description": null,
+      "sourceLocation": {
+        "filePath": "src/features/compose-runtime/utils/dockerJson.ts",
+        "line": 2,
+        "column": 1
+      }
+    },
+    {
+      "name": "requireRecord",
+      "description": null,
+      "sourceLocation": {
+        "filePath": "src/features/compose-runtime/utils/dockerJson.ts",
+        "line": 9,
+        "column": 1
+      }
+    },
+    {
+      "name": "optionalRecord",
+      "description": null,
+      "sourceLocation": {
+        "filePath": "src/features/compose-runtime/utils/dockerJson.ts",
+        "line": 14,
+        "column": 1
+      }
+    },
+    {
+      "name": "optionalStringRecord",
+      "description": null,
+      "sourceLocation": {
+        "filePath": "src/features/compose-runtime/utils/dockerJson.ts",
+        "line": 24,
+        "column": 1
+      }
+    },
+    {
+      "name": "requireString",
+      "description": null,
+      "sourceLocation": {
+        "filePath": "src/features/compose-runtime/utils/dockerJson.ts",
+        "line": 37,
+        "column": 1
+      }
+    },
+    {
+      "name": "optionalString",
+      "description": null,
+      "sourceLocation": {
+        "filePath": "src/features/compose-runtime/utils/dockerJson.ts",
+        "line": 43,
+        "column": 1
+      }
+    },
+    {
+      "name": "requireBoolean",
+      "description": null,
+      "sourceLocation": {
+        "filePath": "src/features/compose-runtime/utils/dockerJson.ts",
+        "line": 51,
+        "column": 1
+      }
+    },
+    {
+      "name": "requireNumber",
+      "description": null,
+      "sourceLocation": {
+        "filePath": "src/features/compose-runtime/utils/dockerJson.ts",
+        "line": 57,
+        "column": 1
+      }
+    },
+    {
+      "name": "optionalNumber",
+      "description": null,
+      "sourceLocation": {
+        "filePath": "src/features/compose-runtime/utils/dockerJson.ts",
+        "line": 63,
+        "column": 1
+      }
+    },
+    {
+      "name": "requireStringArray",
+      "description": null,
+      "sourceLocation": {
+        "filePath": "src/features/compose-runtime/utils/dockerJson.ts",
+        "line": 71,
+        "column": 1
+      }
+    },
+    {
+      "name": "optionalArray",
+      "description": null,
+      "sourceLocation": {
+        "filePath": "src/features/compose-runtime/utils/dockerJson.ts",
+        "line": 82,
+        "column": 1
+      }
+    },
+    {
+      "name": "getString",
+      "description": null,
+      "sourceLocation": {
+        "filePath": "src/features/compose-runtime/utils/dockerJson.ts",
+        "line": 92,
+        "column": 1
+      }
+    },
+    {
+      "name": "getValue",
+      "description": null,
+      "sourceLocation": {
+        "filePath": "src/features/compose-runtime/utils/dockerJson.ts",
+        "line": 101,
+        "column": 1
+      }
+    },
+    {
+      "name": "isRecord",
+      "description": null,
+      "sourceLocation": {
+        "filePath": "src/features/compose-runtime/utils/dockerJson.ts",
+        "line": 112,
+        "column": 1
+      }
+    },
+    {
+      "name": "isUnknownArray",
+      "description": null,
+      "sourceLocation": {
+        "filePath": "src/features/compose-runtime/utils/dockerJson.ts",
+        "line": 116,
+        "column": 1
+      }
+    },
+    {
       "name": "getDockerComposeProjectIdentity",
       "description": null,
       "sourceLocation": {
@@ -1986,6 +2372,51 @@
       "sourceLocation": {
         "filePath": "src/features/compose-runtime/utils/getDockerComposeResources.ts",
         "line": 22,
+        "column": 1
+      }
+    },
+    {
+      "name": "parseDockerComposeInventory",
+      "description": null,
+      "sourceLocation": {
+        "filePath": "src/features/compose-runtime/utils/parseDockerComposeInventory.ts",
+        "line": 32,
+        "column": 1
+      }
+    },
+    {
+      "name": "inventoryValues",
+      "description": null,
+      "sourceLocation": {
+        "filePath": "src/features/compose-runtime/utils/parseDockerComposeInventory.ts",
+        "line": 49,
+        "column": 1
+      }
+    },
+    {
+      "name": "parseInventoryEntry",
+      "description": null,
+      "sourceLocation": {
+        "filePath": "src/features/compose-runtime/utils/parseDockerComposeInventory.ts",
+        "line": 57,
+        "column": 1
+      }
+    },
+    {
+      "name": "parseInventoryPort",
+      "description": null,
+      "sourceLocation": {
+        "filePath": "src/features/compose-runtime/utils/parseDockerComposeInventory.ts",
+        "line": 77,
+        "column": 1
+      }
+    },
+    {
+      "name": "isResourceKind",
+      "description": null,
+      "sourceLocation": {
+        "filePath": "src/features/compose-runtime/utils/parseDockerComposeInventory.ts",
+        "line": 88,
         "column": 1
       }
     },
@@ -2045,6 +2476,16 @@
         "fromPath": "src/dockerComposeCliInput.test.ts",
         "toPath": "src/index.ts",
         "sourcePath": "src/dockerComposeCliInput.test.ts"
+      },
+      {
+        "fromPath": "src/dockerComposeInspection.test.ts",
+        "toPath": "src/features/compose-runtime/adapters/parseDockerComposeInspection.ts",
+        "sourcePath": "src/dockerComposeInspection.test.ts"
+      },
+      {
+        "fromPath": "src/dockerComposeInspection.test.ts",
+        "toPath": "src/features/compose-runtime/utils/dockerComposeLabels.ts",
+        "sourcePath": "src/dockerComposeInspection.test.ts"
       },
       {
         "fromPath": "src/dockerComposeProcess.test.ts",
@@ -2117,6 +2558,26 @@
         "sourcePath": "src/features/compose-runtime/adapters/createSubprocessDockerComposeCommandRunner.ts"
       },
       {
+        "fromPath": "src/features/compose-runtime/adapters/parseDockerComposeInspection.ts",
+        "toPath": "src/types/dockerComposeRuntime.ts",
+        "sourcePath": "src/features/compose-runtime/adapters/parseDockerComposeInspection.ts"
+      },
+      {
+        "fromPath": "src/features/compose-runtime/adapters/parseDockerComposeInspection.ts",
+        "toPath": "src/features/compose-runtime/utils/dockerComposeLabels.ts",
+        "sourcePath": "src/features/compose-runtime/adapters/parseDockerComposeInspection.ts"
+      },
+      {
+        "fromPath": "src/features/compose-runtime/adapters/parseDockerComposeInspection.ts",
+        "toPath": "src/features/compose-runtime/utils/dockerJson.ts",
+        "sourcePath": "src/features/compose-runtime/adapters/parseDockerComposeInspection.ts"
+      },
+      {
+        "fromPath": "src/features/compose-runtime/adapters/parseDockerComposeInspection.ts",
+        "toPath": "src/features/compose-runtime/utils/parseDockerComposeInventory.ts",
+        "sourcePath": "src/features/compose-runtime/adapters/parseDockerComposeInspection.ts"
+      },
+      {
         "fromPath": "src/features/compose-runtime/adapters/renderDockerComposeCliInput.ts",
         "toPath": "src/types/dockerComposeProcess.ts",
         "sourcePath": "src/features/compose-runtime/adapters/renderDockerComposeCliInput.ts"
@@ -2124,6 +2585,11 @@
       {
         "fromPath": "src/features/compose-runtime/adapters/renderDockerComposeCliInput.ts",
         "toPath": "src/types/dockerComposeRuntime.ts",
+        "sourcePath": "src/features/compose-runtime/adapters/renderDockerComposeCliInput.ts"
+      },
+      {
+        "fromPath": "src/features/compose-runtime/adapters/renderDockerComposeCliInput.ts",
+        "toPath": "src/features/compose-runtime/utils/dockerComposeLabels.ts",
         "sourcePath": "src/features/compose-runtime/adapters/renderDockerComposeCliInput.ts"
       },
       {
@@ -2347,6 +2813,16 @@
         "sourcePath": "src/features/compose-runtime/utils/getDockerComposeResources.ts"
       },
       {
+        "fromPath": "src/features/compose-runtime/utils/parseDockerComposeInventory.ts",
+        "toPath": "src/features/compose-runtime/utils/dockerComposeLabels.ts",
+        "sourcePath": "src/features/compose-runtime/utils/parseDockerComposeInventory.ts"
+      },
+      {
+        "fromPath": "src/features/compose-runtime/utils/parseDockerComposeInventory.ts",
+        "toPath": "src/features/compose-runtime/utils/dockerJson.ts",
+        "sourcePath": "src/features/compose-runtime/utils/parseDockerComposeInventory.ts"
+      },
+      {
         "fromPath": "src/features/compose-runtime/utils/resolveDockerComposeTargetAsync.ts",
         "toPath": "src/types/dockerComposeRuntime.ts",
         "sourcePath": "src/features/compose-runtime/utils/resolveDockerComposeTargetAsync.ts"
@@ -2423,6 +2899,48 @@
         "toSymbol": "createOwner",
         "callExpression": "createOwner",
         "sourcePath": "src/dockerComposeCliInput.test.ts"
+      },
+      {
+        "fromSymbol": "src/dockerComposeInspection.test.ts",
+        "toSymbol": "it",
+        "callExpression": "it",
+        "sourcePath": "src/dockerComposeInspection.test.ts"
+      },
+      {
+        "fromSymbol": "src/dockerComposeInspection.test.ts",
+        "toSymbol": "inventoryEntry",
+        "callExpression": "inventoryEntry",
+        "sourcePath": "src/dockerComposeInspection.test.ts"
+      },
+      {
+        "fromSymbol": "src/dockerComposeInspection.test.ts",
+        "toSymbol": "parseDockerComposeInspection",
+        "callExpression": "parseDockerComposeInspection",
+        "sourcePath": "src/dockerComposeInspection.test.ts"
+      },
+      {
+        "fromSymbol": "src/dockerComposeInspection.test.ts",
+        "toSymbol": "engineResource",
+        "callExpression": "engineResource",
+        "sourcePath": "src/dockerComposeInspection.test.ts"
+      },
+      {
+        "fromSymbol": "src/dockerComposeInspection.test.ts",
+        "toSymbol": "labels",
+        "callExpression": "labels",
+        "sourcePath": "src/dockerComposeInspection.test.ts"
+      },
+      {
+        "fromSymbol": "src/dockerComposeInspection.test.ts",
+        "toSymbol": "expect",
+        "callExpression": "expect",
+        "sourcePath": "src/dockerComposeInspection.test.ts"
+      },
+      {
+        "fromSymbol": "engineResource",
+        "toSymbol": "labels",
+        "callExpression": "labels",
+        "sourcePath": "src/dockerComposeInspection.test.ts"
       },
       {
         "fromSymbol": "src/dockerComposeProcess.test.ts",
@@ -2605,9 +3123,231 @@
         "sourcePath": "src/features/compose-runtime/adapters/createSubprocessDockerComposeCommandRunner.ts"
       },
       {
+        "fromSymbol": "parseDockerComposeInspection",
+        "toSymbol": "readInspectedResources",
+        "callExpression": "readInspectedResources",
+        "sourcePath": "src/features/compose-runtime/adapters/parseDockerComposeInspection.ts"
+      },
+      {
+        "fromSymbol": "src/features/compose-runtime/adapters/parseDockerComposeInspection.ts",
+        "toSymbol": "isOwned",
+        "callExpression": "isOwned",
+        "sourcePath": "src/features/compose-runtime/adapters/parseDockerComposeInspection.ts"
+      },
+      {
+        "fromSymbol": "parseDockerComposeInspection",
+        "toSymbol": "parseDockerComposeInventory",
+        "callExpression": "parseDockerComposeInventory",
+        "sourcePath": "src/features/compose-runtime/adapters/parseDockerComposeInspection.ts"
+      },
+      {
+        "fromSymbol": "parseDockerComposeInspection",
+        "toSymbol": "readActualResources",
+        "callExpression": "readActualResources",
+        "sourcePath": "src/features/compose-runtime/adapters/parseDockerComposeInspection.ts"
+      },
+      {
+        "fromSymbol": "parseDockerComposeInspection",
+        "toSymbol": "mergeInventory",
+        "callExpression": "mergeInventory",
+        "sourcePath": "src/features/compose-runtime/adapters/parseDockerComposeInspection.ts"
+      },
+      {
+        "fromSymbol": "parseDockerComposeInspection",
+        "toSymbol": "aggregateState",
+        "callExpression": "aggregateState",
+        "sourcePath": "src/features/compose-runtime/adapters/parseDockerComposeInspection.ts"
+      },
+      {
+        "fromSymbol": "readInspectedResources",
+        "toSymbol": "parseDockerDocument",
+        "callExpression": "parseDockerDocument",
+        "sourcePath": "src/features/compose-runtime/adapters/parseDockerComposeInspection.ts"
+      },
+      {
+        "fromSymbol": "src/features/compose-runtime/adapters/parseDockerComposeInspection.ts",
+        "toSymbol": "inspectedResource",
+        "callExpression": "inspectedResource",
+        "sourcePath": "src/features/compose-runtime/adapters/parseDockerComposeInspection.ts"
+      },
+      {
+        "fromSymbol": "inspectedResource",
+        "toSymbol": "optionalStringRecord",
+        "callExpression": "optionalStringRecord",
+        "sourcePath": "src/features/compose-runtime/adapters/parseDockerComposeInspection.ts"
+      },
+      {
+        "fromSymbol": "inspectedResource",
+        "toSymbol": "optionalRecord",
+        "callExpression": "optionalRecord",
+        "sourcePath": "src/features/compose-runtime/adapters/parseDockerComposeInspection.ts"
+      },
+      {
+        "fromSymbol": "readActualResources",
+        "toSymbol": "observeActualResource",
+        "callExpression": "observeActualResource",
+        "sourcePath": "src/features/compose-runtime/adapters/parseDockerComposeInspection.ts"
+      },
+      {
+        "fromSymbol": "readActualResources",
+        "toSymbol": "requireLabel",
+        "callExpression": "requireLabel",
+        "sourcePath": "src/features/compose-runtime/adapters/parseDockerComposeInspection.ts"
+      },
+      {
+        "fromSymbol": "observeActualResource",
+        "toSymbol": "readLabelMetadata",
+        "callExpression": "readLabelMetadata",
+        "sourcePath": "src/features/compose-runtime/adapters/parseDockerComposeInspection.ts"
+      },
+      {
+        "fromSymbol": "observeActualResource",
+        "toSymbol": "readContainerState",
+        "callExpression": "readContainerState",
+        "sourcePath": "src/features/compose-runtime/adapters/parseDockerComposeInspection.ts"
+      },
+      {
+        "fromSymbol": "observeActualResource",
+        "toSymbol": "readPublicOutputs",
+        "callExpression": "readPublicOutputs",
+        "sourcePath": "src/features/compose-runtime/adapters/parseDockerComposeInspection.ts"
+      },
+      {
+        "fromSymbol": "observeActualResource",
+        "toSymbol": "readExternalId",
+        "callExpression": "readExternalId",
+        "sourcePath": "src/features/compose-runtime/adapters/parseDockerComposeInspection.ts"
+      },
+      {
+        "fromSymbol": "readLabelMetadata",
+        "toSymbol": "requireLabel",
+        "callExpression": "requireLabel",
+        "sourcePath": "src/features/compose-runtime/adapters/parseDockerComposeInspection.ts"
+      },
+      {
+        "fromSymbol": "readLabelMetadata",
+        "toSymbol": "invalidBoolean",
+        "callExpression": "invalidBoolean",
+        "sourcePath": "src/features/compose-runtime/adapters/parseDockerComposeInspection.ts"
+      },
+      {
+        "fromSymbol": "readLabelMetadata",
+        "toSymbol": "invalidRetention",
+        "callExpression": "invalidRetention",
+        "sourcePath": "src/features/compose-runtime/adapters/parseDockerComposeInspection.ts"
+      },
+      {
+        "fromSymbol": "readLabelMetadata",
+        "toSymbol": "parseStringArray",
+        "callExpression": "parseStringArray",
+        "sourcePath": "src/features/compose-runtime/adapters/parseDockerComposeInspection.ts"
+      },
+      {
+        "fromSymbol": "readContainerState",
+        "toSymbol": "requireRecord",
+        "callExpression": "requireRecord",
+        "sourcePath": "src/features/compose-runtime/adapters/parseDockerComposeInspection.ts"
+      },
+      {
+        "fromSymbol": "readContainerState",
+        "toSymbol": "getValue",
+        "callExpression": "getValue",
+        "sourcePath": "src/features/compose-runtime/adapters/parseDockerComposeInspection.ts"
+      },
+      {
+        "fromSymbol": "readContainerState",
+        "toSymbol": "requireString",
+        "callExpression": "requireString",
+        "sourcePath": "src/features/compose-runtime/adapters/parseDockerComposeInspection.ts"
+      },
+      {
+        "fromSymbol": "readContainerState",
+        "toSymbol": "optionalRecord",
+        "callExpression": "optionalRecord",
+        "sourcePath": "src/features/compose-runtime/adapters/parseDockerComposeInspection.ts"
+      },
+      {
+        "fromSymbol": "readContainerState",
+        "toSymbol": "optionalString",
+        "callExpression": "optionalString",
+        "sourcePath": "src/features/compose-runtime/adapters/parseDockerComposeInspection.ts"
+      },
+      {
+        "fromSymbol": "readContainerState",
+        "toSymbol": "optionalNumber",
+        "callExpression": "optionalNumber",
+        "sourcePath": "src/features/compose-runtime/adapters/parseDockerComposeInspection.ts"
+      },
+      {
+        "fromSymbol": "readPublicOutputs",
+        "toSymbol": "optionalRecord",
+        "callExpression": "optionalRecord",
+        "sourcePath": "src/features/compose-runtime/adapters/parseDockerComposeInspection.ts"
+      },
+      {
+        "fromSymbol": "readPublicOutputs",
+        "toSymbol": "getValue",
+        "callExpression": "getValue",
+        "sourcePath": "src/features/compose-runtime/adapters/parseDockerComposeInspection.ts"
+      },
+      {
+        "fromSymbol": "readPublicOutputs",
+        "toSymbol": "isUnknownArray",
+        "callExpression": "isUnknownArray",
+        "sourcePath": "src/features/compose-runtime/adapters/parseDockerComposeInspection.ts"
+      },
+      {
+        "fromSymbol": "readPublicOutputs",
+        "toSymbol": "isRecord",
+        "callExpression": "isRecord",
+        "sourcePath": "src/features/compose-runtime/adapters/parseDockerComposeInspection.ts"
+      },
+      {
+        "fromSymbol": "readPublicOutputs",
+        "toSymbol": "optionalString",
+        "callExpression": "optionalString",
+        "sourcePath": "src/features/compose-runtime/adapters/parseDockerComposeInspection.ts"
+      },
+      {
+        "fromSymbol": "isOwned",
+        "toSymbol": "getString",
+        "callExpression": "getString",
+        "sourcePath": "src/features/compose-runtime/adapters/parseDockerComposeInspection.ts"
+      },
+      {
+        "fromSymbol": "readExternalId",
+        "toSymbol": "requireString",
+        "callExpression": "requireString",
+        "sourcePath": "src/features/compose-runtime/adapters/parseDockerComposeInspection.ts"
+      },
+      {
+        "fromSymbol": "requireLabel",
+        "toSymbol": "getString",
+        "callExpression": "getString",
+        "sourcePath": "src/features/compose-runtime/adapters/parseDockerComposeInspection.ts"
+      },
+      {
+        "fromSymbol": "parseStringArray",
+        "toSymbol": "isUnknownArray",
+        "callExpression": "isUnknownArray",
+        "sourcePath": "src/features/compose-runtime/adapters/parseDockerComposeInspection.ts"
+      },
+      {
         "fromSymbol": "renderDockerComposeCliInput",
         "toSymbol": "getResources",
         "callExpression": "getResources",
+        "sourcePath": "src/features/compose-runtime/adapters/renderDockerComposeCliInput.ts"
+      },
+      {
+        "fromSymbol": "renderDockerComposeCliInput",
+        "toSymbol": "createSecretBindings",
+        "callExpression": "createSecretBindings",
+        "sourcePath": "src/features/compose-runtime/adapters/renderDockerComposeCliInput.ts"
+      },
+      {
+        "fromSymbol": "renderDockerComposeCliInput",
+        "toSymbol": "createDocument",
+        "callExpression": "createDocument",
         "sourcePath": "src/features/compose-runtime/adapters/renderDockerComposeCliInput.ts"
       },
       {
@@ -2617,7 +3357,7 @@
         "sourcePath": "src/features/compose-runtime/adapters/renderDockerComposeCliInput.ts"
       },
       {
-        "fromSymbol": "renderDockerComposeCliInput",
+        "fromSymbol": "createDocument",
         "toSymbol": "resourceLabels",
         "callExpression": "resourceLabels",
         "sourcePath": "src/features/compose-runtime/adapters/renderDockerComposeCliInput.ts"
@@ -3097,10 +3837,160 @@
         "sourcePath": "src/features/compose-runtime/utils/dockerComposeResourceFactories.ts"
       },
       {
+        "fromSymbol": "parseDockerDocument",
+        "toSymbol": "isUnknownArray",
+        "callExpression": "isUnknownArray",
+        "sourcePath": "src/features/compose-runtime/utils/dockerJson.ts"
+      },
+      {
+        "fromSymbol": "requireRecord",
+        "toSymbol": "isRecord",
+        "callExpression": "isRecord",
+        "sourcePath": "src/features/compose-runtime/utils/dockerJson.ts"
+      },
+      {
+        "fromSymbol": "optionalRecord",
+        "toSymbol": "getValue",
+        "callExpression": "getValue",
+        "sourcePath": "src/features/compose-runtime/utils/dockerJson.ts"
+      },
+      {
+        "fromSymbol": "optionalRecord",
+        "toSymbol": "isRecord",
+        "callExpression": "isRecord",
+        "sourcePath": "src/features/compose-runtime/utils/dockerJson.ts"
+      },
+      {
+        "fromSymbol": "optionalStringRecord",
+        "toSymbol": "optionalRecord",
+        "callExpression": "optionalRecord",
+        "sourcePath": "src/features/compose-runtime/utils/dockerJson.ts"
+      },
+      {
+        "fromSymbol": "requireString",
+        "toSymbol": "getValue",
+        "callExpression": "getValue",
+        "sourcePath": "src/features/compose-runtime/utils/dockerJson.ts"
+      },
+      {
+        "fromSymbol": "optionalString",
+        "toSymbol": "getValue",
+        "callExpression": "getValue",
+        "sourcePath": "src/features/compose-runtime/utils/dockerJson.ts"
+      },
+      {
+        "fromSymbol": "requireBoolean",
+        "toSymbol": "getValue",
+        "callExpression": "getValue",
+        "sourcePath": "src/features/compose-runtime/utils/dockerJson.ts"
+      },
+      {
+        "fromSymbol": "requireNumber",
+        "toSymbol": "getValue",
+        "callExpression": "getValue",
+        "sourcePath": "src/features/compose-runtime/utils/dockerJson.ts"
+      },
+      {
+        "fromSymbol": "optionalNumber",
+        "toSymbol": "getValue",
+        "callExpression": "getValue",
+        "sourcePath": "src/features/compose-runtime/utils/dockerJson.ts"
+      },
+      {
+        "fromSymbol": "requireStringArray",
+        "toSymbol": "getValue",
+        "callExpression": "getValue",
+        "sourcePath": "src/features/compose-runtime/utils/dockerJson.ts"
+      },
+      {
+        "fromSymbol": "requireStringArray",
+        "toSymbol": "isUnknownArray",
+        "callExpression": "isUnknownArray",
+        "sourcePath": "src/features/compose-runtime/utils/dockerJson.ts"
+      },
+      {
+        "fromSymbol": "optionalArray",
+        "toSymbol": "getValue",
+        "callExpression": "getValue",
+        "sourcePath": "src/features/compose-runtime/utils/dockerJson.ts"
+      },
+      {
+        "fromSymbol": "optionalArray",
+        "toSymbol": "isUnknownArray",
+        "callExpression": "isUnknownArray",
+        "sourcePath": "src/features/compose-runtime/utils/dockerJson.ts"
+      },
+      {
         "fromSymbol": "getDockerComposeProjectIdentity",
         "toSymbol": "toComposeName",
         "callExpression": "toComposeName",
         "sourcePath": "src/features/compose-runtime/utils/getDockerComposeProjectIdentity.ts"
+      },
+      {
+        "fromSymbol": "parseDockerComposeInventory",
+        "toSymbol": "inventoryValues",
+        "callExpression": "inventoryValues",
+        "sourcePath": "src/features/compose-runtime/utils/parseDockerComposeInventory.ts"
+      },
+      {
+        "fromSymbol": "src/features/compose-runtime/utils/parseDockerComposeInventory.ts",
+        "toSymbol": "getString",
+        "callExpression": "getString",
+        "sourcePath": "src/features/compose-runtime/utils/parseDockerComposeInventory.ts"
+      },
+      {
+        "fromSymbol": "parseInventoryEntry",
+        "toSymbol": "requireRecord",
+        "callExpression": "requireRecord",
+        "sourcePath": "src/features/compose-runtime/utils/parseDockerComposeInventory.ts"
+      },
+      {
+        "fromSymbol": "parseInventoryEntry",
+        "toSymbol": "requireString",
+        "callExpression": "requireString",
+        "sourcePath": "src/features/compose-runtime/utils/parseDockerComposeInventory.ts"
+      },
+      {
+        "fromSymbol": "parseInventoryEntry",
+        "toSymbol": "isResourceKind",
+        "callExpression": "isResourceKind",
+        "sourcePath": "src/features/compose-runtime/utils/parseDockerComposeInventory.ts"
+      },
+      {
+        "fromSymbol": "parseInventoryEntry",
+        "toSymbol": "requireBoolean",
+        "callExpression": "requireBoolean",
+        "sourcePath": "src/features/compose-runtime/utils/parseDockerComposeInventory.ts"
+      },
+      {
+        "fromSymbol": "parseInventoryEntry",
+        "toSymbol": "requireStringArray",
+        "callExpression": "requireStringArray",
+        "sourcePath": "src/features/compose-runtime/utils/parseDockerComposeInventory.ts"
+      },
+      {
+        "fromSymbol": "parseInventoryEntry",
+        "toSymbol": "optionalArray",
+        "callExpression": "optionalArray",
+        "sourcePath": "src/features/compose-runtime/utils/parseDockerComposeInventory.ts"
+      },
+      {
+        "fromSymbol": "parseInventoryPort",
+        "toSymbol": "requireRecord",
+        "callExpression": "requireRecord",
+        "sourcePath": "src/features/compose-runtime/utils/parseDockerComposeInventory.ts"
+      },
+      {
+        "fromSymbol": "parseInventoryPort",
+        "toSymbol": "requireString",
+        "callExpression": "requireString",
+        "sourcePath": "src/features/compose-runtime/utils/parseDockerComposeInventory.ts"
+      },
+      {
+        "fromSymbol": "parseInventoryPort",
+        "toSymbol": "requireNumber",
+        "callExpression": "requireNumber",
+        "sourcePath": "src/features/compose-runtime/utils/parseDockerComposeInventory.ts"
       },
       {
         "fromSymbol": "resolveDockerComposeTargetAsync",
