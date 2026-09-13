@@ -199,6 +199,16 @@
               <button
                 class="nav-button"
                 type="button"
+                data-target="src/dockerComposeCliInput.test.ts"
+              >
+                src/dockerComposeCliInput.test.ts
+                <small>4 functions</small>
+              </button>
+            </li>
+            <li>
+              <button
+                class="nav-button"
+                type="button"
                 data-target="src/dockerComposeRuntime.test.ts"
               >
                 src/dockerComposeRuntime.test.ts
@@ -213,6 +223,16 @@
               >
                 src/features/compose-runtime/adapters/createSubprocessDockerComposeCommandRunner.ts
                 <small>2 functions</small>
+              </button>
+            </li>
+            <li>
+              <button
+                class="nav-button"
+                type="button"
+                data-target="src/features/compose-runtime/adapters/renderDockerComposeCliInput.ts"
+              >
+                src/features/compose-runtime/adapters/renderDockerComposeCliInput.ts
+                <small>13 functions</small>
               </button>
             </li>
             <li>
@@ -411,7 +431,7 @@
             <div class="summary">
               <div><strong>24</strong><span class="muted">public exports</span></div>
               <div><strong>0</strong><span class="muted">components</span></div>
-              <div><strong>28</strong><span class="muted">modules</span></div>
+              <div><strong>30</strong><span class="muted">modules</span></div>
               <div><strong>1</strong><span class="muted">entrypoints</span></div>
             </div>
             <h3>Entrypoints</h3>
@@ -433,6 +453,19 @@
               <p class="muted">Referenced module</p>
               <p><strong>Dependencies:</strong> <span class="empty">None</span></p>
               <p><strong>Exports:</strong> <code>infraAdapterDescriptor</code></p>
+            </article>
+            <article
+              class="item"
+              data-search="src/dockerComposeCliInput.test.ts src/features/compose-runtime/adapters/renderDockerComposeCliInput.ts src/index.ts"
+            >
+              <h3>src/dockerComposeCliInput.test.ts</h3>
+              <p class="muted">Referenced module</p>
+              <p>
+                <strong>Dependencies:</strong>
+                <code>src/features/compose-runtime/adapters/renderDockerComposeCliInput.ts</code>,
+                <code>src/index.ts</code>
+              </p>
+              <p><strong>Exports:</strong> <span class="empty">None</span></p>
             </article>
             <article class="item" data-search="src/dockerComposeProcess.test.ts src/index.ts">
               <h3>src/dockerComposeProcess.test.ts</h3>
@@ -464,6 +497,20 @@
               <p>
                 <strong>Exports:</strong> <code>createSubprocessDockerComposeCommandRunner</code>
               </p>
+            </article>
+            <article
+              class="item"
+              data-search="src/features/compose-runtime/adapters/renderDockerComposeCliInput.ts src/features/compose-runtime/utils/getDockerComposeProjectIdentity.ts src/types/dockerComposeProcess.ts src/types/dockerComposeRuntime.ts renderDockerComposeCliInput"
+            >
+              <h3>src/features/compose-runtime/adapters/renderDockerComposeCliInput.ts</h3>
+              <p class="muted">Referenced module</p>
+              <p>
+                <strong>Dependencies:</strong>
+                <code>src/features/compose-runtime/utils/getDockerComposeProjectIdentity.ts</code>,
+                <code>src/types/dockerComposeProcess.ts</code>,
+                <code>src/types/dockerComposeRuntime.ts</code>
+              </p>
+              <p><strong>Exports:</strong> <code>renderDockerComposeCliInput</code></p>
             </article>
             <article
               class="item"
@@ -774,14 +821,15 @@
             </article>
             <article
               class="item"
-              data-search="src/types/dockerComposeProcess.ts DockerComposeCommandRequest DockerComposeCommandResult DockerComposeCommandRunner"
+              data-search="src/types/dockerComposeProcess.ts DockerComposeCliInput DockerComposeCommandRequest DockerComposeCommandResult DockerComposeCommandRunner"
             >
               <h3>src/types/dockerComposeProcess.ts</h3>
               <p class="muted">Referenced module</p>
               <p><strong>Dependencies:</strong> <span class="empty">None</span></p>
               <p>
-                <strong>Exports:</strong> <code>DockerComposeCommandRequest</code>,
-                <code>DockerComposeCommandResult</code>, <code>DockerComposeCommandRunner</code>
+                <strong>Exports:</strong> <code>DockerComposeCliInput</code>,
+                <code>DockerComposeCommandRequest</code>, <code>DockerComposeCommandResult</code>,
+                <code>DockerComposeCommandRunner</code>
               </p>
             </article>
             <article
@@ -2169,6 +2217,11 @@
                 module_examples_basic_usage_index_ts --&gt; module_dist_index_d_ts
                 module_src_constants_infra_ts[&quot;src/constants/infra.ts&quot;]
                 package__ankhorage_docker_compose -.-&gt; module_src_constants_infra_ts
+                module_src_dockerComposeCliInput_test_ts[&quot;src/dockerComposeCliInput.test.ts&quot;]
+                package__ankhorage_docker_compose -.-&gt; module_src_dockerComposeCliInput_test_ts
+                module_src_dockerComposeCliInput_test_ts --&gt;
+                module_src_features_compose_runtime_adapters_renderDockerComposeCliInput_ts
+                module_src_dockerComposeCliInput_test_ts --&gt; module_src_index_ts
                 module_src_dockerComposeProcess_test_ts[&quot;src/dockerComposeProcess.test.ts&quot;]
                 package__ankhorage_docker_compose -.-&gt; module_src_dockerComposeProcess_test_ts
                 module_src_dockerComposeProcess_test_ts --&gt; module_src_index_ts
@@ -2181,6 +2234,15 @@
                 module_src_features_compose_runtime_adapters_createSubprocessDockerComposeCommandRunner_ts
                 module_src_features_compose_runtime_adapters_createSubprocessDockerComposeCommandRunner_ts
                 --&gt; module_src_types_dockerComposeProcess_ts
+                module_src_features_compose_runtime_adapters_renderDockerComposeCliInput_ts[&quot;src/features/compose-runtime/adapters/renderDockerComposeCliInput.ts&quot;]
+                package__ankhorage_docker_compose -.-&gt;
+                module_src_features_compose_runtime_adapters_renderDockerComposeCliInput_ts
+                module_src_features_compose_runtime_adapters_renderDockerComposeCliInput_ts --&gt;
+                module_src_features_compose_runtime_utils_getDockerComposeProjectIdentity_ts
+                module_src_features_compose_runtime_adapters_renderDockerComposeCliInput_ts --&gt;
+                module_src_types_dockerComposeProcess_ts
+                module_src_features_compose_runtime_adapters_renderDockerComposeCliInput_ts --&gt;
+                module_src_types_dockerComposeRuntime_ts
                 module_src_features_compose_runtime_application_destroyDockerComposeRuntimeAsync_ts[&quot;src/features/compose-runtime/application/destroyDockerComposeRuntimeAsync.ts&quot;]
                 package__ankhorage_docker_compose -.-&gt;
                 module_src_features_compose_runtime_application_destroyDockerComposeRuntimeAsync_ts
@@ -2357,6 +2419,10 @@ graph TD
   module_examples_basic_usage_index_ts --&gt; module_dist_index_d_ts
   module_src_constants_infra_ts[&quot;src/constants/infra.ts&quot;]
   package__ankhorage_docker_compose -.-&gt; module_src_constants_infra_ts
+  module_src_dockerComposeCliInput_test_ts[&quot;src/dockerComposeCliInput.test.ts&quot;]
+  package__ankhorage_docker_compose -.-&gt; module_src_dockerComposeCliInput_test_ts
+  module_src_dockerComposeCliInput_test_ts --&gt; module_src_features_compose_runtime_adapters_renderDockerComposeCliInput_ts
+  module_src_dockerComposeCliInput_test_ts --&gt; module_src_index_ts
   module_src_dockerComposeProcess_test_ts[&quot;src/dockerComposeProcess.test.ts&quot;]
   package__ankhorage_docker_compose -.-&gt; module_src_dockerComposeProcess_test_ts
   module_src_dockerComposeProcess_test_ts --&gt; module_src_index_ts
@@ -2367,6 +2433,11 @@ graph TD
   module_src_features_compose_runtime_adapters_createSubprocessDockerComposeCommandRunner_ts[&quot;src/features/compose-runtime/adapters/createSubprocessDockerComposeCommandRunner.ts&quot;]
   package__ankhorage_docker_compose -.-&gt; module_src_features_compose_runtime_adapters_createSubprocessDockerComposeCommandRunner_ts
   module_src_features_compose_runtime_adapters_createSubprocessDockerComposeCommandRunner_ts --&gt; module_src_types_dockerComposeProcess_ts
+  module_src_features_compose_runtime_adapters_renderDockerComposeCliInput_ts[&quot;src/features/compose-runtime/adapters/renderDockerComposeCliInput.ts&quot;]
+  package__ankhorage_docker_compose -.-&gt; module_src_features_compose_runtime_adapters_renderDockerComposeCliInput_ts
+  module_src_features_compose_runtime_adapters_renderDockerComposeCliInput_ts --&gt; module_src_features_compose_runtime_utils_getDockerComposeProjectIdentity_ts
+  module_src_features_compose_runtime_adapters_renderDockerComposeCliInput_ts --&gt; module_src_types_dockerComposeProcess_ts
+  module_src_features_compose_runtime_adapters_renderDockerComposeCliInput_ts --&gt; module_src_types_dockerComposeRuntime_ts
   module_src_features_compose_runtime_application_destroyDockerComposeRuntimeAsync_ts[&quot;src/features/compose-runtime/application/destroyDockerComposeRuntimeAsync.ts&quot;]
   package__ankhorage_docker_compose -.-&gt; module_src_features_compose_runtime_application_destroyDockerComposeRuntimeAsync_ts
   module_src_features_compose_runtime_application_destroyDockerComposeRuntimeAsync_ts --&gt; module_src_features_compose_runtime_utils_getDockerComposeProjectIdentity_ts
@@ -2473,9 +2544,11 @@ graph TD
                 graph LR
                 module_examples_basic_usage_index_ts[&quot;examples/basic-usage/index.ts&quot;]
                 module_src_constants_infra_ts[&quot;src/constants/infra.ts&quot;]
+                module_src_dockerComposeCliInput_test_ts[&quot;src/dockerComposeCliInput.test.ts&quot;]
                 module_src_dockerComposeProcess_test_ts[&quot;src/dockerComposeProcess.test.ts&quot;]
                 module_src_dockerComposeRuntime_test_ts[&quot;src/dockerComposeRuntime.test.ts&quot;]
                 module_src_features_compose_runtime_adapters_createSubprocessDockerComposeCommandRunner_ts[&quot;src/features/compose-runtime/adapters/createSubprocessDockerComposeCommandRunner.ts&quot;]
+                module_src_features_compose_runtime_adapters_renderDockerComposeCliInput_ts[&quot;src/features/compose-runtime/adapters/renderDockerComposeCliInput.ts&quot;]
                 module_src_features_compose_runtime_application_destroyDockerComposeRuntimeAsync_ts[&quot;src/features/compose-runtime/application/destroyDockerComposeRuntimeAsync.ts&quot;]
                 module_src_features_compose_runtime_application_ensureDockerComposeRuntimeAsync_ts[&quot;src/features/compose-runtime/application/ensureDockerComposeRuntimeAsync.ts&quot;]
                 module_src_features_compose_runtime_application_getDockerComposeStatusAsync_ts[&quot;src/features/compose-runtime/application/getDockerComposeStatusAsync.ts&quot;]
@@ -2500,11 +2573,20 @@ graph TD
                 module_src_types_dockerComposeProcess_ts[&quot;src/types/dockerComposeProcess.ts&quot;]
                 module_src_types_dockerComposeRuntime_ts[&quot;src/types/dockerComposeRuntime.ts&quot;]
                 module_examples_basic_usage_index_ts --&gt; module_dist_index_d_ts
+                module_src_dockerComposeCliInput_test_ts --&gt;
+                module_src_features_compose_runtime_adapters_renderDockerComposeCliInput_ts
+                module_src_dockerComposeCliInput_test_ts --&gt; module_src_index_ts
                 module_src_dockerComposeProcess_test_ts --&gt; module_src_index_ts
                 module_src_dockerComposeRuntime_test_ts --&gt; module_src_index_ts
                 module_src_dockerComposeRuntime_test_ts --&gt; module_src_runtimeFixtures_test_ts
                 module_src_features_compose_runtime_adapters_createSubprocessDockerComposeCommandRunner_ts
                 --&gt; module_src_types_dockerComposeProcess_ts
+                module_src_features_compose_runtime_adapters_renderDockerComposeCliInput_ts --&gt;
+                module_src_features_compose_runtime_utils_getDockerComposeProjectIdentity_ts
+                module_src_features_compose_runtime_adapters_renderDockerComposeCliInput_ts --&gt;
+                module_src_types_dockerComposeProcess_ts
+                module_src_features_compose_runtime_adapters_renderDockerComposeCliInput_ts --&gt;
+                module_src_types_dockerComposeRuntime_ts
                 module_src_features_compose_runtime_application_destroyDockerComposeRuntimeAsync_ts
                 --&gt; module_src_features_compose_runtime_utils_getDockerComposeProjectIdentity_ts
                 module_src_features_compose_runtime_application_destroyDockerComposeRuntimeAsync_ts
@@ -2612,9 +2694,11 @@ graph TD
 graph LR
   module_examples_basic_usage_index_ts[&quot;examples/basic-usage/index.ts&quot;]
   module_src_constants_infra_ts[&quot;src/constants/infra.ts&quot;]
+  module_src_dockerComposeCliInput_test_ts[&quot;src/dockerComposeCliInput.test.ts&quot;]
   module_src_dockerComposeProcess_test_ts[&quot;src/dockerComposeProcess.test.ts&quot;]
   module_src_dockerComposeRuntime_test_ts[&quot;src/dockerComposeRuntime.test.ts&quot;]
   module_src_features_compose_runtime_adapters_createSubprocessDockerComposeCommandRunner_ts[&quot;src/features/compose-runtime/adapters/createSubprocessDockerComposeCommandRunner.ts&quot;]
+  module_src_features_compose_runtime_adapters_renderDockerComposeCliInput_ts[&quot;src/features/compose-runtime/adapters/renderDockerComposeCliInput.ts&quot;]
   module_src_features_compose_runtime_application_destroyDockerComposeRuntimeAsync_ts[&quot;src/features/compose-runtime/application/destroyDockerComposeRuntimeAsync.ts&quot;]
   module_src_features_compose_runtime_application_ensureDockerComposeRuntimeAsync_ts[&quot;src/features/compose-runtime/application/ensureDockerComposeRuntimeAsync.ts&quot;]
   module_src_features_compose_runtime_application_getDockerComposeStatusAsync_ts[&quot;src/features/compose-runtime/application/getDockerComposeStatusAsync.ts&quot;]
@@ -2639,10 +2723,15 @@ graph LR
   module_src_types_dockerComposeProcess_ts[&quot;src/types/dockerComposeProcess.ts&quot;]
   module_src_types_dockerComposeRuntime_ts[&quot;src/types/dockerComposeRuntime.ts&quot;]
   module_examples_basic_usage_index_ts --&gt; module_dist_index_d_ts
+  module_src_dockerComposeCliInput_test_ts --&gt; module_src_features_compose_runtime_adapters_renderDockerComposeCliInput_ts
+  module_src_dockerComposeCliInput_test_ts --&gt; module_src_index_ts
   module_src_dockerComposeProcess_test_ts --&gt; module_src_index_ts
   module_src_dockerComposeRuntime_test_ts --&gt; module_src_index_ts
   module_src_dockerComposeRuntime_test_ts --&gt; module_src_runtimeFixtures_test_ts
   module_src_features_compose_runtime_adapters_createSubprocessDockerComposeCommandRunner_ts --&gt; module_src_types_dockerComposeProcess_ts
+  module_src_features_compose_runtime_adapters_renderDockerComposeCliInput_ts --&gt; module_src_features_compose_runtime_utils_getDockerComposeProjectIdentity_ts
+  module_src_features_compose_runtime_adapters_renderDockerComposeCliInput_ts --&gt; module_src_types_dockerComposeProcess_ts
+  module_src_features_compose_runtime_adapters_renderDockerComposeCliInput_ts --&gt; module_src_types_dockerComposeRuntime_ts
   module_src_features_compose_runtime_application_destroyDockerComposeRuntimeAsync_ts --&gt; module_src_features_compose_runtime_utils_getDockerComposeProjectIdentity_ts
   module_src_features_compose_runtime_application_destroyDockerComposeRuntimeAsync_ts --&gt; module_src_features_compose_runtime_utils_getDockerComposeResources_ts
   module_src_features_compose_runtime_application_destroyDockerComposeRuntimeAsync_ts --&gt; module_src_types_dockerComposeRuntime_ts
@@ -2701,9 +2790,11 @@ graph LR
                 graph LR
                 module_examples_basic_usage_index_ts[&quot;examples/basic-usage/index.ts&quot;]
                 module_src_constants_infra_ts[&quot;src/constants/infra.ts&quot;]
+                module_src_dockerComposeCliInput_test_ts[&quot;src/dockerComposeCliInput.test.ts&quot;]
                 module_src_dockerComposeProcess_test_ts[&quot;src/dockerComposeProcess.test.ts&quot;]
                 module_src_dockerComposeRuntime_test_ts[&quot;src/dockerComposeRuntime.test.ts&quot;]
                 module_src_features_compose_runtime_adapters_createSubprocessDockerComposeCommandRunner_ts[&quot;src/features/compose-runtime/adapters/createSubprocessDockerComposeCommandRunner.ts&quot;]
+                module_src_features_compose_runtime_adapters_renderDockerComposeCliInput_ts[&quot;src/features/compose-runtime/adapters/renderDockerComposeCliInput.ts&quot;]
                 module_src_features_compose_runtime_application_destroyDockerComposeRuntimeAsync_ts[&quot;src/features/compose-runtime/application/destroyDockerComposeRuntimeAsync.ts&quot;]
                 module_src_features_compose_runtime_application_ensureDockerComposeRuntimeAsync_ts[&quot;src/features/compose-runtime/application/ensureDockerComposeRuntimeAsync.ts&quot;]
                 module_src_features_compose_runtime_application_getDockerComposeStatusAsync_ts[&quot;src/features/compose-runtime/application/getDockerComposeStatusAsync.ts&quot;]
@@ -2815,9 +2906,11 @@ graph LR
 graph LR
   module_examples_basic_usage_index_ts[&quot;examples/basic-usage/index.ts&quot;]
   module_src_constants_infra_ts[&quot;src/constants/infra.ts&quot;]
+  module_src_dockerComposeCliInput_test_ts[&quot;src/dockerComposeCliInput.test.ts&quot;]
   module_src_dockerComposeProcess_test_ts[&quot;src/dockerComposeProcess.test.ts&quot;]
   module_src_dockerComposeRuntime_test_ts[&quot;src/dockerComposeRuntime.test.ts&quot;]
   module_src_features_compose_runtime_adapters_createSubprocessDockerComposeCommandRunner_ts[&quot;src/features/compose-runtime/adapters/createSubprocessDockerComposeCommandRunner.ts&quot;]
+  module_src_features_compose_runtime_adapters_renderDockerComposeCliInput_ts[&quot;src/features/compose-runtime/adapters/renderDockerComposeCliInput.ts&quot;]
   module_src_features_compose_runtime_application_destroyDockerComposeRuntimeAsync_ts[&quot;src/features/compose-runtime/application/destroyDockerComposeRuntimeAsync.ts&quot;]
   module_src_features_compose_runtime_application_ensureDockerComposeRuntimeAsync_ts[&quot;src/features/compose-runtime/application/ensureDockerComposeRuntimeAsync.ts&quot;]
   module_src_features_compose_runtime_application_getDockerComposeStatusAsync_ts[&quot;src/features/compose-runtime/application/getDockerComposeStatusAsync.ts&quot;]
@@ -2921,6 +3014,39 @@ graph LR
           </section>
         </section>
         <section
+          id="view-src-dockercomposecliinput-test-ts"
+          class="view"
+          data-view="src/dockerComposeCliInput.test.ts"
+          hidden
+        >
+          <section class="panel">
+            <h2>src/dockerComposeCliInput.test.ts</h2>
+            <article
+              class="item"
+              data-search="createExecutionProject src/dockerComposeCliInput.test.ts "
+            >
+              <h3>createExecutionProject</h3>
+              <p class="muted"><code>src/dockerComposeCliInput.test.ts:49:1</code></p>
+              <p class="empty">No description available.</p>
+            </article>
+            <article class="item" data-search="createOwner src/dockerComposeCliInput.test.ts ">
+              <h3>createOwner</h3>
+              <p class="muted"><code>src/dockerComposeCliInput.test.ts:66:1</code></p>
+              <p class="empty">No description available.</p>
+            </article>
+            <article class="item" data-search="createSecret src/dockerComposeCliInput.test.ts ">
+              <h3>createSecret</h3>
+              <p class="muted"><code>src/dockerComposeCliInput.test.ts:85:1</code></p>
+              <p class="empty">No description available.</p>
+            </article>
+            <article class="item" data-search="createService src/dockerComposeCliInput.test.ts ">
+              <h3>createService</h3>
+              <p class="muted"><code>src/dockerComposeCliInput.test.ts:96:1</code></p>
+              <p class="empty">No description available.</p>
+            </article>
+          </section>
+        </section>
+        <section
           id="view-src-dockercomposeruntime-test-ts"
           class="view"
           data-view="src/dockerComposeRuntime.test.ts"
@@ -2995,6 +3121,175 @@ graph LR
                 Execute one argv-safe command while keeping stdin and execution-only environment
                 values private.
               </p>
+            </article>
+          </section>
+        </section>
+        <section
+          id="view-src-features-compose-runtime-adapters-renderdockercomposecliinput-ts"
+          class="view"
+          data-view="src/features/compose-runtime/adapters/renderDockerComposeCliInput.ts"
+          hidden
+        >
+          <section class="panel">
+            <h2>src/features/compose-runtime/adapters/renderDockerComposeCliInput.ts</h2>
+            <article
+              class="item"
+              data-search="renderDockerComposeCliInput src/features/compose-runtime/adapters/renderDockerComposeCliInput.ts Render deterministic Compose JSON without copying resolved secret values into the document."
+            >
+              <h3>renderDockerComposeCliInput</h3>
+              <p class="muted">
+                <code
+                  >src/features/compose-runtime/adapters/renderDockerComposeCliInput.ts:25:1</code
+                >
+              </p>
+              <p>
+                Render deterministic Compose JSON without copying resolved secret values into the
+                document.
+              </p>
+            </article>
+            <article
+              class="item"
+              data-search="renderService src/features/compose-runtime/adapters/renderDockerComposeCliInput.ts "
+            >
+              <h3>renderService</h3>
+              <p class="muted">
+                <code
+                  >src/features/compose-runtime/adapters/renderDockerComposeCliInput.ts:76:1</code
+                >
+              </p>
+              <p class="empty">No description available.</p>
+            </article>
+            <article
+              class="item"
+              data-search="renderEnvironment src/features/compose-runtime/adapters/renderDockerComposeCliInput.ts "
+            >
+              <h3>renderEnvironment</h3>
+              <p class="muted">
+                <code
+                  >src/features/compose-runtime/adapters/renderDockerComposeCliInput.ts:95:1</code
+                >
+              </p>
+              <p class="empty">No description available.</p>
+            </article>
+            <article
+              class="item"
+              data-search="renderMounts src/features/compose-runtime/adapters/renderDockerComposeCliInput.ts "
+            >
+              <h3>renderMounts</h3>
+              <p class="muted">
+                <code
+                  >src/features/compose-runtime/adapters/renderDockerComposeCliInput.ts:110:1</code
+                >
+              </p>
+              <p class="empty">No description available.</p>
+            </article>
+            <article
+              class="item"
+              data-search="renderPorts src/features/compose-runtime/adapters/renderDockerComposeCliInput.ts "
+            >
+              <h3>renderPorts</h3>
+              <p class="muted">
+                <code
+                  >src/features/compose-runtime/adapters/renderDockerComposeCliInput.ts:130:1</code
+                >
+              </p>
+              <p class="empty">No description available.</p>
+            </article>
+            <article
+              class="item"
+              data-search="renderDependencies src/features/compose-runtime/adapters/renderDockerComposeCliInput.ts "
+            >
+              <h3>renderDependencies</h3>
+              <p class="muted">
+                <code
+                  >src/features/compose-runtime/adapters/renderDockerComposeCliInput.ts:143:1</code
+                >
+              </p>
+              <p class="empty">No description available.</p>
+            </article>
+            <article
+              class="item"
+              data-search="renderDeploy src/features/compose-runtime/adapters/renderDockerComposeCliInput.ts "
+            >
+              <h3>renderDeploy</h3>
+              <p class="muted">
+                <code
+                  >src/features/compose-runtime/adapters/renderDockerComposeCliInput.ts:158:1</code
+                >
+              </p>
+              <p class="empty">No description available.</p>
+            </article>
+            <article
+              class="item"
+              data-search="renderHealthcheck src/features/compose-runtime/adapters/renderDockerComposeCliInput.ts "
+            >
+              <h3>renderHealthcheck</h3>
+              <p class="muted">
+                <code
+                  >src/features/compose-runtime/adapters/renderDockerComposeCliInput.ts:177:1</code
+                >
+              </p>
+              <p class="empty">No description available.</p>
+            </article>
+            <article
+              class="item"
+              data-search="resourceLabels src/features/compose-runtime/adapters/renderDockerComposeCliInput.ts "
+            >
+              <h3>resourceLabels</h3>
+              <p class="muted">
+                <code
+                  >src/features/compose-runtime/adapters/renderDockerComposeCliInput.ts:197:1</code
+                >
+              </p>
+              <p class="empty">No description available.</p>
+            </article>
+            <article
+              class="item"
+              data-search="toInventoryEntry src/features/compose-runtime/adapters/renderDockerComposeCliInput.ts "
+            >
+              <h3>toInventoryEntry</h3>
+              <p class="muted">
+                <code
+                  >src/features/compose-runtime/adapters/renderDockerComposeCliInput.ts:209:1</code
+                >
+              </p>
+              <p class="empty">No description available.</p>
+            </article>
+            <article
+              class="item"
+              data-search="getResources src/features/compose-runtime/adapters/renderDockerComposeCliInput.ts "
+            >
+              <h3>getResources</h3>
+              <p class="muted">
+                <code
+                  >src/features/compose-runtime/adapters/renderDockerComposeCliInput.ts:227:1</code
+                >
+              </p>
+              <p class="empty">No description available.</p>
+            </article>
+            <article
+              class="item"
+              data-search="requireSecretBinding src/features/compose-runtime/adapters/renderDockerComposeCliInput.ts "
+            >
+              <h3>requireSecretBinding</h3>
+              <p class="muted">
+                <code
+                  >src/features/compose-runtime/adapters/renderDockerComposeCliInput.ts:237:1</code
+                >
+              </p>
+              <p class="empty">No description available.</p>
+            </article>
+            <article
+              class="item"
+              data-search="quoteShell src/features/compose-runtime/adapters/renderDockerComposeCliInput.ts "
+            >
+              <h3>quoteShell</h3>
+              <p class="muted">
+                <code
+                  >src/features/compose-runtime/adapters/renderDockerComposeCliInput.ts:246:1</code
+                >
+              </p>
+              <p class="empty">No description available.</p>
             </article>
           </section>
         </section>

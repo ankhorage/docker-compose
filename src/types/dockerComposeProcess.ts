@@ -18,3 +18,9 @@ export interface DockerComposeCommandResult {
 export interface DockerComposeCommandRunner {
   runAsync(request: DockerComposeCommandRequest): Promise<DockerComposeCommandResult>;
 }
+
+/** Serialized Compose input and its execution-only interpolation environment. */
+export interface DockerComposeCliInput {
+  readonly document: string;
+  readonly environment: Readonly<Record<string, string>>;
+}

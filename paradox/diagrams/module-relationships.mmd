@@ -1,9 +1,11 @@
 graph LR
   module_examples_basic_usage_index_ts["examples/basic-usage/index.ts"]
   module_src_constants_infra_ts["src/constants/infra.ts"]
+  module_src_dockerComposeCliInput_test_ts["src/dockerComposeCliInput.test.ts"]
   module_src_dockerComposeProcess_test_ts["src/dockerComposeProcess.test.ts"]
   module_src_dockerComposeRuntime_test_ts["src/dockerComposeRuntime.test.ts"]
   module_src_features_compose_runtime_adapters_createSubprocessDockerComposeCommandRunner_ts["src/features/compose-runtime/adapters/createSubprocessDockerComposeCommandRunner.ts"]
+  module_src_features_compose_runtime_adapters_renderDockerComposeCliInput_ts["src/features/compose-runtime/adapters/renderDockerComposeCliInput.ts"]
   module_src_features_compose_runtime_application_destroyDockerComposeRuntimeAsync_ts["src/features/compose-runtime/application/destroyDockerComposeRuntimeAsync.ts"]
   module_src_features_compose_runtime_application_ensureDockerComposeRuntimeAsync_ts["src/features/compose-runtime/application/ensureDockerComposeRuntimeAsync.ts"]
   module_src_features_compose_runtime_application_getDockerComposeStatusAsync_ts["src/features/compose-runtime/application/getDockerComposeStatusAsync.ts"]
@@ -28,10 +30,15 @@ graph LR
   module_src_types_dockerComposeProcess_ts["src/types/dockerComposeProcess.ts"]
   module_src_types_dockerComposeRuntime_ts["src/types/dockerComposeRuntime.ts"]
   module_examples_basic_usage_index_ts --> module_dist_index_d_ts
+  module_src_dockerComposeCliInput_test_ts --> module_src_features_compose_runtime_adapters_renderDockerComposeCliInput_ts
+  module_src_dockerComposeCliInput_test_ts --> module_src_index_ts
   module_src_dockerComposeProcess_test_ts --> module_src_index_ts
   module_src_dockerComposeRuntime_test_ts --> module_src_index_ts
   module_src_dockerComposeRuntime_test_ts --> module_src_runtimeFixtures_test_ts
   module_src_features_compose_runtime_adapters_createSubprocessDockerComposeCommandRunner_ts --> module_src_types_dockerComposeProcess_ts
+  module_src_features_compose_runtime_adapters_renderDockerComposeCliInput_ts --> module_src_features_compose_runtime_utils_getDockerComposeProjectIdentity_ts
+  module_src_features_compose_runtime_adapters_renderDockerComposeCliInput_ts --> module_src_types_dockerComposeProcess_ts
+  module_src_features_compose_runtime_adapters_renderDockerComposeCliInput_ts --> module_src_types_dockerComposeRuntime_ts
   module_src_features_compose_runtime_application_destroyDockerComposeRuntimeAsync_ts --> module_src_features_compose_runtime_utils_getDockerComposeProjectIdentity_ts
   module_src_features_compose_runtime_application_destroyDockerComposeRuntimeAsync_ts --> module_src_features_compose_runtime_utils_getDockerComposeResources_ts
   module_src_features_compose_runtime_application_destroyDockerComposeRuntimeAsync_ts --> module_src_types_dockerComposeRuntime_ts

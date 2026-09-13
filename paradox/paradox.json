@@ -81,6 +81,15 @@
       "exports": ["infraAdapterDescriptor"]
     },
     {
+      "path": "src/dockerComposeCliInput.test.ts",
+      "isEntrypoint": false,
+      "dependencies": [
+        "src/features/compose-runtime/adapters/renderDockerComposeCliInput.ts",
+        "src/index.ts"
+      ],
+      "exports": []
+    },
+    {
       "path": "src/dockerComposeProcess.test.ts",
       "isEntrypoint": false,
       "dependencies": ["src/index.ts"],
@@ -97,6 +106,16 @@
       "isEntrypoint": false,
       "dependencies": ["src/types/dockerComposeProcess.ts"],
       "exports": ["createSubprocessDockerComposeCommandRunner"]
+    },
+    {
+      "path": "src/features/compose-runtime/adapters/renderDockerComposeCliInput.ts",
+      "isEntrypoint": false,
+      "dependencies": [
+        "src/features/compose-runtime/utils/getDockerComposeProjectIdentity.ts",
+        "src/types/dockerComposeProcess.ts",
+        "src/types/dockerComposeRuntime.ts"
+      ],
+      "exports": ["renderDockerComposeCliInput"]
     },
     {
       "path": "src/features/compose-runtime/application/destroyDockerComposeRuntimeAsync.ts",
@@ -315,6 +334,7 @@
       "isEntrypoint": false,
       "dependencies": [],
       "exports": [
+        "DockerComposeCliInput",
         "DockerComposeCommandRequest",
         "DockerComposeCommandResult",
         "DockerComposeCommandRunner"
@@ -1457,6 +1477,42 @@
   "components": [],
   "sourceFunctions": [
     {
+      "name": "createExecutionProject",
+      "description": null,
+      "sourceLocation": {
+        "filePath": "src/dockerComposeCliInput.test.ts",
+        "line": 49,
+        "column": 1
+      }
+    },
+    {
+      "name": "createOwner",
+      "description": null,
+      "sourceLocation": {
+        "filePath": "src/dockerComposeCliInput.test.ts",
+        "line": 66,
+        "column": 1
+      }
+    },
+    {
+      "name": "createSecret",
+      "description": null,
+      "sourceLocation": {
+        "filePath": "src/dockerComposeCliInput.test.ts",
+        "line": 85,
+        "column": 1
+      }
+    },
+    {
+      "name": "createService",
+      "description": null,
+      "sourceLocation": {
+        "filePath": "src/dockerComposeCliInput.test.ts",
+        "line": 96,
+        "column": 1
+      }
+    },
+    {
       "name": "createDesired",
       "description": null,
       "sourceLocation": {
@@ -1507,6 +1563,123 @@
       "sourceLocation": {
         "filePath": "src/features/compose-runtime/adapters/createSubprocessDockerComposeCommandRunner.ts",
         "line": 15,
+        "column": 1
+      }
+    },
+    {
+      "name": "renderDockerComposeCliInput",
+      "description": "Render deterministic Compose JSON without copying resolved secret values into the document.",
+      "sourceLocation": {
+        "filePath": "src/features/compose-runtime/adapters/renderDockerComposeCliInput.ts",
+        "line": 25,
+        "column": 1
+      }
+    },
+    {
+      "name": "renderService",
+      "description": null,
+      "sourceLocation": {
+        "filePath": "src/features/compose-runtime/adapters/renderDockerComposeCliInput.ts",
+        "line": 76,
+        "column": 1
+      }
+    },
+    {
+      "name": "renderEnvironment",
+      "description": null,
+      "sourceLocation": {
+        "filePath": "src/features/compose-runtime/adapters/renderDockerComposeCliInput.ts",
+        "line": 95,
+        "column": 1
+      }
+    },
+    {
+      "name": "renderMounts",
+      "description": null,
+      "sourceLocation": {
+        "filePath": "src/features/compose-runtime/adapters/renderDockerComposeCliInput.ts",
+        "line": 110,
+        "column": 1
+      }
+    },
+    {
+      "name": "renderPorts",
+      "description": null,
+      "sourceLocation": {
+        "filePath": "src/features/compose-runtime/adapters/renderDockerComposeCliInput.ts",
+        "line": 130,
+        "column": 1
+      }
+    },
+    {
+      "name": "renderDependencies",
+      "description": null,
+      "sourceLocation": {
+        "filePath": "src/features/compose-runtime/adapters/renderDockerComposeCliInput.ts",
+        "line": 143,
+        "column": 1
+      }
+    },
+    {
+      "name": "renderDeploy",
+      "description": null,
+      "sourceLocation": {
+        "filePath": "src/features/compose-runtime/adapters/renderDockerComposeCliInput.ts",
+        "line": 158,
+        "column": 1
+      }
+    },
+    {
+      "name": "renderHealthcheck",
+      "description": null,
+      "sourceLocation": {
+        "filePath": "src/features/compose-runtime/adapters/renderDockerComposeCliInput.ts",
+        "line": 177,
+        "column": 1
+      }
+    },
+    {
+      "name": "resourceLabels",
+      "description": null,
+      "sourceLocation": {
+        "filePath": "src/features/compose-runtime/adapters/renderDockerComposeCliInput.ts",
+        "line": 197,
+        "column": 1
+      }
+    },
+    {
+      "name": "toInventoryEntry",
+      "description": null,
+      "sourceLocation": {
+        "filePath": "src/features/compose-runtime/adapters/renderDockerComposeCliInput.ts",
+        "line": 209,
+        "column": 1
+      }
+    },
+    {
+      "name": "getResources",
+      "description": null,
+      "sourceLocation": {
+        "filePath": "src/features/compose-runtime/adapters/renderDockerComposeCliInput.ts",
+        "line": 227,
+        "column": 1
+      }
+    },
+    {
+      "name": "requireSecretBinding",
+      "description": null,
+      "sourceLocation": {
+        "filePath": "src/features/compose-runtime/adapters/renderDockerComposeCliInput.ts",
+        "line": 237,
+        "column": 1
+      }
+    },
+    {
+      "name": "quoteShell",
+      "description": null,
+      "sourceLocation": {
+        "filePath": "src/features/compose-runtime/adapters/renderDockerComposeCliInput.ts",
+        "line": 246,
         "column": 1
       }
     },
@@ -1864,6 +2037,16 @@
   "graphs": {
     "imports": [
       {
+        "fromPath": "src/dockerComposeCliInput.test.ts",
+        "toPath": "src/features/compose-runtime/adapters/renderDockerComposeCliInput.ts",
+        "sourcePath": "src/dockerComposeCliInput.test.ts"
+      },
+      {
+        "fromPath": "src/dockerComposeCliInput.test.ts",
+        "toPath": "src/index.ts",
+        "sourcePath": "src/dockerComposeCliInput.test.ts"
+      },
+      {
         "fromPath": "src/dockerComposeProcess.test.ts",
         "toPath": "src/index.ts",
         "sourcePath": "src/dockerComposeProcess.test.ts"
@@ -1932,6 +2115,21 @@
         "fromPath": "src/features/compose-runtime/adapters/createSubprocessDockerComposeCommandRunner.ts",
         "toPath": "src/types/dockerComposeProcess.ts",
         "sourcePath": "src/features/compose-runtime/adapters/createSubprocessDockerComposeCommandRunner.ts"
+      },
+      {
+        "fromPath": "src/features/compose-runtime/adapters/renderDockerComposeCliInput.ts",
+        "toPath": "src/types/dockerComposeProcess.ts",
+        "sourcePath": "src/features/compose-runtime/adapters/renderDockerComposeCliInput.ts"
+      },
+      {
+        "fromPath": "src/features/compose-runtime/adapters/renderDockerComposeCliInput.ts",
+        "toPath": "src/types/dockerComposeRuntime.ts",
+        "sourcePath": "src/features/compose-runtime/adapters/renderDockerComposeCliInput.ts"
+      },
+      {
+        "fromPath": "src/features/compose-runtime/adapters/renderDockerComposeCliInput.ts",
+        "toPath": "src/features/compose-runtime/utils/getDockerComposeProjectIdentity.ts",
+        "sourcePath": "src/features/compose-runtime/adapters/renderDockerComposeCliInput.ts"
       },
       {
         "fromPath": "src/features/compose-runtime/application/destroyDockerComposeRuntimeAsync.ts",
@@ -2161,6 +2359,72 @@
     ],
     "calls": [
       {
+        "fromSymbol": "src/dockerComposeCliInput.test.ts",
+        "toSymbol": "it",
+        "callExpression": "it",
+        "sourcePath": "src/dockerComposeCliInput.test.ts"
+      },
+      {
+        "fromSymbol": "src/dockerComposeCliInput.test.ts",
+        "toSymbol": "renderDockerComposeCliInput",
+        "callExpression": "renderDockerComposeCliInput",
+        "sourcePath": "src/dockerComposeCliInput.test.ts"
+      },
+      {
+        "fromSymbol": "src/dockerComposeCliInput.test.ts",
+        "toSymbol": "createExecutionProject",
+        "callExpression": "createExecutionProject",
+        "sourcePath": "src/dockerComposeCliInput.test.ts"
+      },
+      {
+        "fromSymbol": "src/dockerComposeCliInput.test.ts",
+        "toSymbol": "expect",
+        "callExpression": "expect",
+        "sourcePath": "src/dockerComposeCliInput.test.ts"
+      },
+      {
+        "fromSymbol": "src/dockerComposeCliInput.test.ts",
+        "toSymbol": "runAsync",
+        "callExpression": "createSubprocessDockerComposeCommandRunner().runAsync",
+        "sourcePath": "src/dockerComposeCliInput.test.ts"
+      },
+      {
+        "fromSymbol": "src/dockerComposeCliInput.test.ts",
+        "toSymbol": "createSubprocessDockerComposeCommandRunner",
+        "callExpression": "createSubprocessDockerComposeCommandRunner",
+        "sourcePath": "src/dockerComposeCliInput.test.ts"
+      },
+      {
+        "fromSymbol": "createExecutionProject",
+        "toSymbol": "createOwner",
+        "callExpression": "createOwner",
+        "sourcePath": "src/dockerComposeCliInput.test.ts"
+      },
+      {
+        "fromSymbol": "createExecutionProject",
+        "toSymbol": "createSecret",
+        "callExpression": "createSecret",
+        "sourcePath": "src/dockerComposeCliInput.test.ts"
+      },
+      {
+        "fromSymbol": "createExecutionProject",
+        "toSymbol": "createService",
+        "callExpression": "createService",
+        "sourcePath": "src/dockerComposeCliInput.test.ts"
+      },
+      {
+        "fromSymbol": "createSecret",
+        "toSymbol": "createOwner",
+        "callExpression": "createOwner",
+        "sourcePath": "src/dockerComposeCliInput.test.ts"
+      },
+      {
+        "fromSymbol": "createService",
+        "toSymbol": "createOwner",
+        "callExpression": "createOwner",
+        "sourcePath": "src/dockerComposeCliInput.test.ts"
+      },
+      {
         "fromSymbol": "src/dockerComposeProcess.test.ts",
         "toSymbol": "it",
         "callExpression": "it",
@@ -2339,6 +2603,90 @@
         "toSymbol": "resolve",
         "callExpression": "resolve",
         "sourcePath": "src/features/compose-runtime/adapters/createSubprocessDockerComposeCommandRunner.ts"
+      },
+      {
+        "fromSymbol": "renderDockerComposeCliInput",
+        "toSymbol": "getResources",
+        "callExpression": "getResources",
+        "sourcePath": "src/features/compose-runtime/adapters/renderDockerComposeCliInput.ts"
+      },
+      {
+        "fromSymbol": "src/features/compose-runtime/adapters/renderDockerComposeCliInput.ts",
+        "toSymbol": "renderService",
+        "callExpression": "renderService",
+        "sourcePath": "src/features/compose-runtime/adapters/renderDockerComposeCliInput.ts"
+      },
+      {
+        "fromSymbol": "renderDockerComposeCliInput",
+        "toSymbol": "resourceLabels",
+        "callExpression": "resourceLabels",
+        "sourcePath": "src/features/compose-runtime/adapters/renderDockerComposeCliInput.ts"
+      },
+      {
+        "fromSymbol": "src/features/compose-runtime/adapters/renderDockerComposeCliInput.ts",
+        "toSymbol": "resourceLabels",
+        "callExpression": "resourceLabels",
+        "sourcePath": "src/features/compose-runtime/adapters/renderDockerComposeCliInput.ts"
+      },
+      {
+        "fromSymbol": "src/features/compose-runtime/adapters/renderDockerComposeCliInput.ts",
+        "toSymbol": "requireSecretBinding",
+        "callExpression": "requireSecretBinding",
+        "sourcePath": "src/features/compose-runtime/adapters/renderDockerComposeCliInput.ts"
+      },
+      {
+        "fromSymbol": "renderService",
+        "toSymbol": "renderEnvironment",
+        "callExpression": "renderEnvironment",
+        "sourcePath": "src/features/compose-runtime/adapters/renderDockerComposeCliInput.ts"
+      },
+      {
+        "fromSymbol": "renderService",
+        "toSymbol": "resourceLabels",
+        "callExpression": "resourceLabels",
+        "sourcePath": "src/features/compose-runtime/adapters/renderDockerComposeCliInput.ts"
+      },
+      {
+        "fromSymbol": "renderService",
+        "toSymbol": "renderMounts",
+        "callExpression": "renderMounts",
+        "sourcePath": "src/features/compose-runtime/adapters/renderDockerComposeCliInput.ts"
+      },
+      {
+        "fromSymbol": "renderService",
+        "toSymbol": "renderPorts",
+        "callExpression": "renderPorts",
+        "sourcePath": "src/features/compose-runtime/adapters/renderDockerComposeCliInput.ts"
+      },
+      {
+        "fromSymbol": "renderService",
+        "toSymbol": "renderDependencies",
+        "callExpression": "renderDependencies",
+        "sourcePath": "src/features/compose-runtime/adapters/renderDockerComposeCliInput.ts"
+      },
+      {
+        "fromSymbol": "renderService",
+        "toSymbol": "renderHealthcheck",
+        "callExpression": "renderHealthcheck",
+        "sourcePath": "src/features/compose-runtime/adapters/renderDockerComposeCliInput.ts"
+      },
+      {
+        "fromSymbol": "renderService",
+        "toSymbol": "renderDeploy",
+        "callExpression": "renderDeploy",
+        "sourcePath": "src/features/compose-runtime/adapters/renderDockerComposeCliInput.ts"
+      },
+      {
+        "fromSymbol": "src/features/compose-runtime/adapters/renderDockerComposeCliInput.ts",
+        "toSymbol": "toComposeName",
+        "callExpression": "toComposeName",
+        "sourcePath": "src/features/compose-runtime/adapters/renderDockerComposeCliInput.ts"
+      },
+      {
+        "fromSymbol": "renderHealthcheck",
+        "toSymbol": "quoteShell",
+        "callExpression": "quoteShell",
+        "sourcePath": "src/features/compose-runtime/adapters/renderDockerComposeCliInput.ts"
       },
       {
         "fromSymbol": "destroyDockerComposeRuntimeAsync",
