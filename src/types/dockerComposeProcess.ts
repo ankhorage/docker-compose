@@ -1,3 +1,7 @@
+import type { InfraResult } from '@ankhorage/contracts/infra';
+
+import type { DockerComposeTargetAccess } from './dockerComposeRuntime';
+
 /** One shell-free process invocation used by the Docker Compose CLI adapter. */
 export interface DockerComposeCommandRequest {
   readonly executable: string;
@@ -25,6 +29,14 @@ export interface DockerComposeEngineSession {
   readonly executable: string;
   readonly environment?: Readonly<Record<string, string>>;
   readonly endpointHost: string;
+}
+
+/** Resolve one local or verified remote Docker engine for a single stateless operation. */
+export interface DockerComposeSessionResolver {
+  resolveAsync(
+    access: DockerComposeTargetAccess,
+    signal?: AbortSignal,
+  ): Promise<InfraResult<DockerComposeEngineSession>>;
 }
 
 /** Serialized Compose input and its execution-only interpolation environment. */

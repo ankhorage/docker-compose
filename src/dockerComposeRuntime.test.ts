@@ -22,11 +22,13 @@ it('plans and converges the complete portable Compose lifecycle', async () => {
   expect(ensured.ok && ensured.value.outputs.some(({ name }) => name === 'endpoint')).toBe(true);
   const converged = await adapter.planAsync(context, desired);
   expect(converged.ok && converged.value.every(({ operation }) => operation === 'noop')).toBe(true);
-  expect((await adapter.statusAsync(context)).ok).toBe(true);
-  expect((await adapter.suspendAsync(context)).ok).toBe(true);
+  expect((await adapter.statusAsync(context, desired)).ok).toBe(true);
+  expect((await adapter.suspendAsync(context, desired)).ok).toBe(true);
   expect(controlPlane.state).toBe('stopped');
   expect((await adapter.ensureAsync(context, desired)).ok).toBe(true);
-  expect((await adapter.destroyAsync(context, createDestroyRequest('local'))).ok).toBe(true);
+  expect((await adapter.destroyAsync(context, desired, createDestroyRequest('local'))).ok).toBe(
+    true,
+  );
   expect(controlPlane.state).toBe('absent');
 });
 
@@ -59,6 +61,33 @@ it('materializes secrets only across the reconcile boundary', async () => {
   expect(JSON.stringify(result)).not.toContain('runtime-secret');
 });
 
+it('materializes keyed bootstrap credentials only across the reconcile boundary', async () => {
+  const controlPlane = new FakeDockerComposeControlPlane();
+  const adapter = createInfraAdapter({ controlPlane });
+  const desired = createDesired(false, false);
+  const [workload] = desired.workloads;
+  if (workload === undefined) throw new Error('Invalid workload fixture.');
+  const result = await adapter.ensureAsync(createContext('local'), {
+    ...desired,
+    workloads: [
+      {
+        ...workload,
+        environment: {
+          BOOTSTRAP_TOKEN: {
+            kind: 'credential',
+            reference: { source: 'control-plane', name: 'SERVICE_BOOTSTRAP' },
+            key: 'token',
+          },
+        },
+      },
+    ],
+  });
+
+  expect(result.ok).toBe(true);
+  expect(controlPlane.lastSecretValues).toEqual(['bootstrap-token']);
+  expect(JSON.stringify(result)).not.toContain('bootstrap-token');
+});
+
 it('retains volumes by default and removes them only with resource-scoped confirmation', async () => {
   const controlPlane = new FakeDockerComposeControlPlane();
   const adapter = createInfraAdapter({ controlPlane });
@@ -72,11 +101,12 @@ it('retains volumes by default and removes them only with resource-scoped confir
   );
   expect(volume).toBeDefined();
 
-  const retained = await adapter.destroyAsync(context, createDestroyRequest('local'));
+  const retained = await adapter.destroyAsync(context, desired, createDestroyRequest('local'));
   expect(retained.ok && retained.value.resources).toHaveLength(1);
   expect(controlPlane.state).toBe('retained');
   const destroyed = await adapter.destroyAsync(
     context,
+    desired,
     createDestroyRequest('local', volume?.identity),
   );
   expect(destroyed.ok && destroyed.value.resources).toHaveLength(0);
@@ -172,8 +202,17 @@ function createContext(environment: 'local' | 'production'): InfraExecutionConte
       networking: { domain: 'api.sample.test' },
     },
     credentials: {
-      resolveAsync: () =>
-        Promise.resolve({ ok: true, value: { privateKey: 'ssh-private-key' }, diagnostics: [] }),
+      resolveAsync: ({ name }) => {
+        const value: Readonly<Record<string, string>> =
+          name === 'SERVICE_BOOTSTRAP'
+            ? { token: 'bootstrap-token' }
+            : { privateKey: 'ssh-private-key' };
+        return Promise.resolve({
+          ok: true,
+          value,
+          diagnostics: [],
+        });
+      },
     },
     secrets: {
       resolveAsync: () => Promise.resolve({ ok: true, value: 'runtime-secret', diagnostics: [] }),

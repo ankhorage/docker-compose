@@ -25,7 +25,11 @@ export async function ensureDockerComposeRuntimeAsync(
   const prepared = await prepareDockerComposeRuntimeAsync(options, context, desired);
   if (!prepared.ok) return prepared;
   const { project, access } = prepared.value;
-  const observed = await options.controlPlane.inspectAsync(project.identity, context.signal);
+  const observed = await options.controlPlane.inspectAsync(
+    project.identity,
+    access,
+    context.signal,
+  );
   if (!observed.ok) return observed;
   const resources = getDockerComposeResources(project);
   const desiredIds = new Set(resources.map(({ owner }) => owner.identity.resourceId));
@@ -43,7 +47,11 @@ export async function ensureDockerComposeRuntimeAsync(
     context.signal,
   );
   if (!reconciled.ok) return reconciled;
-  const ready = await options.controlPlane.waitUntilReadyAsync(project.identity, context.signal);
+  const ready = await options.controlPlane.waitUntilReadyAsync(
+    project.identity,
+    access,
+    context.signal,
+  );
   if (!ready.ok) return ready;
   return {
     ok: true,

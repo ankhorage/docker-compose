@@ -3,7 +3,6 @@ import { createHash } from 'node:crypto';
 import type {
   InfraExecutionContext,
   InfraOwnedResource,
-  InfraSecretReference,
   InfraWorkloadSpec,
 } from '@ankhorage/contracts/infra';
 
@@ -90,7 +89,7 @@ export function createDockerComposeSecret(
   identity: DockerComposeProjectIdentity,
   workloadId: string,
   suffix: string,
-  reference: InfraSecretReference,
+  reference: DockerComposeSecret['reference'],
   target: DockerComposeSecret['target'],
 ): DockerComposeSecret {
   const owner = createDockerComposeOwner(

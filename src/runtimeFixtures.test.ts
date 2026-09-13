@@ -84,6 +84,7 @@ export class FakeDockerComposeControlPlane implements DockerComposeControlPlane 
 
   destroyAsync(
     _identity: DockerComposeProjectIdentity,
+    _access: DockerComposeTargetAccess,
     resourceIds: readonly string[],
   ): Promise<InfraResult<null>> {
     this.calls.push(`destroy:${resourceIds.join(',')}`);

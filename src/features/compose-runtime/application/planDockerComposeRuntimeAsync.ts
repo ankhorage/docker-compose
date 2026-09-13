@@ -23,6 +23,7 @@ export async function planDockerComposeRuntimeAsync(
   if (!prepared.ok) return prepared;
   const observed = await options.controlPlane.inspectAsync(
     prepared.value.project.identity,
+    prepared.value.access,
     context.signal,
   );
   if (!observed.ok) return observed;

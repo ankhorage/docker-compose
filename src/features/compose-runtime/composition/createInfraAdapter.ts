@@ -2,6 +2,7 @@ import type { InfraRuntimeAdapter } from '@ankhorage/contracts/infra';
 
 import { infraAdapterDescriptor } from '../../../constants/infra';
 import type { DockerComposeAdapterOptions } from '../../../types/dockerComposeRuntime';
+import { createDockerComposeCliControlPlane } from '../adapters/createDockerComposeCliControlPlane';
 import { destroyDockerComposeRuntimeAsync } from '../application/destroyDockerComposeRuntimeAsync';
 import { ensureDockerComposeRuntimeAsync } from '../application/ensureDockerComposeRuntimeAsync';
 import { getDockerComposeStatusAsync } from '../application/getDockerComposeStatusAsync';
@@ -12,22 +13,26 @@ import { validateDockerComposeRuntimeAsync } from '../application/validateDocker
 /***
  * Create the canonical Docker Compose runtime adapter entrypoint.
  *
- * The caller supplies a Docker Compose control-plane boundary. Portable workloads are projected
- * into Compose services, networks, volumes, configs and execution-only secrets.
+ * The default composition operates the local Docker CLI. Callers may inject a control plane for a
+ * verified remote engine. Portable workloads become services, networks, volumes, configs and
+ * execution-only secrets.
  *
  * @readme
  */
 export function createInfraAdapter(
-  options: DockerComposeAdapterOptions,
+  options?: DockerComposeAdapterOptions,
 ): InfraRuntimeAdapter<'docker-compose'> {
+  const resolved = options ?? { controlPlane: createDockerComposeCliControlPlane() };
   return {
     descriptor: infraAdapterDescriptor,
     validateAsync: (context, desired) =>
-      validateDockerComposeRuntimeAsync(options, context, desired),
-    planAsync: (context, desired) => planDockerComposeRuntimeAsync(options, context, desired),
-    ensureAsync: (context, desired) => ensureDockerComposeRuntimeAsync(options, context, desired),
-    statusAsync: (context) => getDockerComposeStatusAsync(options, context),
-    suspendAsync: (context) => suspendDockerComposeRuntimeAsync(options, context),
-    destroyAsync: (context, request) => destroyDockerComposeRuntimeAsync(options, context, request),
+      validateDockerComposeRuntimeAsync(resolved, context, desired),
+    planAsync: (context, desired) => planDockerComposeRuntimeAsync(resolved, context, desired),
+    ensureAsync: (context, desired) => ensureDockerComposeRuntimeAsync(resolved, context, desired),
+    statusAsync: (context, desired) => getDockerComposeStatusAsync(resolved, context, desired),
+    suspendAsync: (context, desired) =>
+      suspendDockerComposeRuntimeAsync(resolved, context, desired),
+    destroyAsync: (context, desired, request) =>
+      destroyDockerComposeRuntimeAsync(resolved, context, desired, request),
   };
 }

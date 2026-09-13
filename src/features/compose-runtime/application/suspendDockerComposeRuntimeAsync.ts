@@ -5,20 +5,32 @@ import type {
   InfraResult,
 } from '@ankhorage/contracts/infra';
 
-import type { DockerComposeAdapterOptions } from '../../../types/dockerComposeRuntime';
-import { getDockerComposeProjectIdentity } from '../utils/getDockerComposeProjectIdentity';
+import type {
+  DockerComposeAdapterOptions,
+  DockerComposeDesiredState,
+} from '../../../types/dockerComposeRuntime';
 import { createObservedDockerComposeOwner } from '../utils/getDockerComposeResources';
+import { resolveDockerComposeTargetAsync } from '../utils/resolveDockerComposeTargetAsync';
 
 /*** Stop Compose services while retaining networks, configs, secrets and volumes. */
 export async function suspendDockerComposeRuntimeAsync(
   options: DockerComposeAdapterOptions,
   context: InfraExecutionContext,
+  desired: DockerComposeDesiredState,
 ): Promise<InfraResult<InfraReconcileResult>> {
-  const identity = getDockerComposeProjectIdentity(context);
-  if (!identity.ok) return identity;
-  const observed = await options.controlPlane.inspectAsync(identity.value, context.signal);
+  const target = await resolveDockerComposeTargetAsync(context, desired);
+  if (!target.ok) return target;
+  const observed = await options.controlPlane.inspectAsync(
+    target.value.identity,
+    target.value.access,
+    context.signal,
+  );
   if (!observed.ok) return observed;
-  const down = await options.controlPlane.downAsync(identity.value, context.signal);
+  const down = await options.controlPlane.downAsync(
+    target.value.identity,
+    target.value.access,
+    context.signal,
+  );
   if (!down.ok) return down;
   const template: InfraOwnedResource['identity'] = {
     projectId: context.projectId,
