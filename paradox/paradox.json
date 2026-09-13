@@ -90,6 +90,15 @@
       "exports": []
     },
     {
+      "path": "src/dockerComposeEngineInspection.test.ts",
+      "isEntrypoint": false,
+      "dependencies": [
+        "src/features/compose-runtime/adapters/inspectDockerComposeProjectAsync.ts",
+        "src/index.ts"
+      ],
+      "exports": []
+    },
+    {
       "path": "src/dockerComposeInspection.test.ts",
       "isEntrypoint": false,
       "dependencies": [
@@ -115,6 +124,17 @@
       "isEntrypoint": false,
       "dependencies": ["src/types/dockerComposeProcess.ts"],
       "exports": ["createSubprocessDockerComposeCommandRunner"]
+    },
+    {
+      "path": "src/features/compose-runtime/adapters/inspectDockerComposeProjectAsync.ts",
+      "isEntrypoint": false,
+      "dependencies": [
+        "src/features/compose-runtime/adapters/parseDockerComposeInspection.ts",
+        "src/features/compose-runtime/utils/dockerComposeLabels.ts",
+        "src/types/dockerComposeProcess.ts",
+        "src/types/dockerComposeRuntime.ts"
+      ],
+      "exports": ["inspectDockerComposeProjectAsync"]
     },
     {
       "path": "src/features/compose-runtime/adapters/parseDockerComposeInspection.ts",
@@ -1575,6 +1595,24 @@
       }
     },
     {
+      "name": "listArguments",
+      "description": null,
+      "sourceLocation": {
+        "filePath": "src/dockerComposeEngineInspection.test.ts",
+        "line": 72,
+        "column": 1
+      }
+    },
+    {
+      "name": "success",
+      "description": null,
+      "sourceLocation": {
+        "filePath": "src/dockerComposeEngineInspection.test.ts",
+        "line": 101,
+        "column": 1
+      }
+    },
+    {
       "name": "inventoryEntry",
       "description": null,
       "sourceLocation": {
@@ -1652,6 +1690,51 @@
       "sourceLocation": {
         "filePath": "src/features/compose-runtime/adapters/createSubprocessDockerComposeCommandRunner.ts",
         "line": 15,
+        "column": 1
+      }
+    },
+    {
+      "name": "inspectDockerComposeProjectAsync",
+      "description": "Inspect only Docker resources carrying the exact project/environment/adapter ownership scope.",
+      "sourceLocation": {
+        "filePath": "src/features/compose-runtime/adapters/inspectDockerComposeProjectAsync.ts",
+        "line": 19,
+        "column": 1
+      }
+    },
+    {
+      "name": "ownershipFilters",
+      "description": null,
+      "sourceLocation": {
+        "filePath": "src/features/compose-runtime/adapters/inspectDockerComposeProjectAsync.ts",
+        "line": 50,
+        "column": 1
+      }
+    },
+    {
+      "name": "listAsync",
+      "description": null,
+      "sourceLocation": {
+        "filePath": "src/features/compose-runtime/adapters/inspectDockerComposeProjectAsync.ts",
+        "line": 61,
+        "column": 1
+      }
+    },
+    {
+      "name": "inspectAsync",
+      "description": null,
+      "sourceLocation": {
+        "filePath": "src/features/compose-runtime/adapters/inspectDockerComposeProjectAsync.ts",
+        "line": 83,
+        "column": 1
+      }
+    },
+    {
+      "name": "commandFailure",
+      "description": null,
+      "sourceLocation": {
+        "filePath": "src/features/compose-runtime/adapters/inspectDockerComposeProjectAsync.ts",
+        "line": 101,
         "column": 1
       }
     },
@@ -2478,6 +2561,16 @@
         "sourcePath": "src/dockerComposeCliInput.test.ts"
       },
       {
+        "fromPath": "src/dockerComposeEngineInspection.test.ts",
+        "toPath": "src/features/compose-runtime/adapters/inspectDockerComposeProjectAsync.ts",
+        "sourcePath": "src/dockerComposeEngineInspection.test.ts"
+      },
+      {
+        "fromPath": "src/dockerComposeEngineInspection.test.ts",
+        "toPath": "src/index.ts",
+        "sourcePath": "src/dockerComposeEngineInspection.test.ts"
+      },
+      {
         "fromPath": "src/dockerComposeInspection.test.ts",
         "toPath": "src/features/compose-runtime/adapters/parseDockerComposeInspection.ts",
         "sourcePath": "src/dockerComposeInspection.test.ts"
@@ -2556,6 +2649,26 @@
         "fromPath": "src/features/compose-runtime/adapters/createSubprocessDockerComposeCommandRunner.ts",
         "toPath": "src/types/dockerComposeProcess.ts",
         "sourcePath": "src/features/compose-runtime/adapters/createSubprocessDockerComposeCommandRunner.ts"
+      },
+      {
+        "fromPath": "src/features/compose-runtime/adapters/inspectDockerComposeProjectAsync.ts",
+        "toPath": "src/types/dockerComposeProcess.ts",
+        "sourcePath": "src/features/compose-runtime/adapters/inspectDockerComposeProjectAsync.ts"
+      },
+      {
+        "fromPath": "src/features/compose-runtime/adapters/inspectDockerComposeProjectAsync.ts",
+        "toPath": "src/types/dockerComposeRuntime.ts",
+        "sourcePath": "src/features/compose-runtime/adapters/inspectDockerComposeProjectAsync.ts"
+      },
+      {
+        "fromPath": "src/features/compose-runtime/adapters/inspectDockerComposeProjectAsync.ts",
+        "toPath": "src/features/compose-runtime/utils/dockerComposeLabels.ts",
+        "sourcePath": "src/features/compose-runtime/adapters/inspectDockerComposeProjectAsync.ts"
+      },
+      {
+        "fromPath": "src/features/compose-runtime/adapters/inspectDockerComposeProjectAsync.ts",
+        "toPath": "src/features/compose-runtime/adapters/parseDockerComposeInspection.ts",
+        "sourcePath": "src/features/compose-runtime/adapters/inspectDockerComposeProjectAsync.ts"
       },
       {
         "fromPath": "src/features/compose-runtime/adapters/parseDockerComposeInspection.ts",
@@ -2901,6 +3014,36 @@
         "sourcePath": "src/dockerComposeCliInput.test.ts"
       },
       {
+        "fromSymbol": "src/dockerComposeEngineInspection.test.ts",
+        "toSymbol": "it",
+        "callExpression": "it",
+        "sourcePath": "src/dockerComposeEngineInspection.test.ts"
+      },
+      {
+        "fromSymbol": "src/dockerComposeEngineInspection.test.ts",
+        "toSymbol": "success",
+        "callExpression": "success",
+        "sourcePath": "src/dockerComposeEngineInspection.test.ts"
+      },
+      {
+        "fromSymbol": "src/dockerComposeEngineInspection.test.ts",
+        "toSymbol": "inspectDockerComposeProjectAsync",
+        "callExpression": "inspectDockerComposeProjectAsync",
+        "sourcePath": "src/dockerComposeEngineInspection.test.ts"
+      },
+      {
+        "fromSymbol": "src/dockerComposeEngineInspection.test.ts",
+        "toSymbol": "expect",
+        "callExpression": "expect",
+        "sourcePath": "src/dockerComposeEngineInspection.test.ts"
+      },
+      {
+        "fromSymbol": "src/dockerComposeEngineInspection.test.ts",
+        "toSymbol": "listArguments",
+        "callExpression": "listArguments",
+        "sourcePath": "src/dockerComposeEngineInspection.test.ts"
+      },
+      {
         "fromSymbol": "src/dockerComposeInspection.test.ts",
         "toSymbol": "it",
         "callExpression": "it",
@@ -3121,6 +3264,54 @@
         "toSymbol": "resolve",
         "callExpression": "resolve",
         "sourcePath": "src/features/compose-runtime/adapters/createSubprocessDockerComposeCommandRunner.ts"
+      },
+      {
+        "fromSymbol": "inspectDockerComposeProjectAsync",
+        "toSymbol": "ownershipFilters",
+        "callExpression": "ownershipFilters",
+        "sourcePath": "src/features/compose-runtime/adapters/inspectDockerComposeProjectAsync.ts"
+      },
+      {
+        "fromSymbol": "inspectDockerComposeProjectAsync",
+        "toSymbol": "listAsync",
+        "callExpression": "listAsync",
+        "sourcePath": "src/features/compose-runtime/adapters/inspectDockerComposeProjectAsync.ts"
+      },
+      {
+        "fromSymbol": "inspectDockerComposeProjectAsync",
+        "toSymbol": "inspectAsync",
+        "callExpression": "inspectAsync",
+        "sourcePath": "src/features/compose-runtime/adapters/inspectDockerComposeProjectAsync.ts"
+      },
+      {
+        "fromSymbol": "inspectDockerComposeProjectAsync",
+        "toSymbol": "parseDockerComposeInspection",
+        "callExpression": "parseDockerComposeInspection",
+        "sourcePath": "src/features/compose-runtime/adapters/inspectDockerComposeProjectAsync.ts"
+      },
+      {
+        "fromSymbol": "listAsync",
+        "toSymbol": "runAsync",
+        "callExpression": "session.runner.runAsync",
+        "sourcePath": "src/features/compose-runtime/adapters/inspectDockerComposeProjectAsync.ts"
+      },
+      {
+        "fromSymbol": "listAsync",
+        "toSymbol": "commandFailure",
+        "callExpression": "commandFailure",
+        "sourcePath": "src/features/compose-runtime/adapters/inspectDockerComposeProjectAsync.ts"
+      },
+      {
+        "fromSymbol": "inspectAsync",
+        "toSymbol": "runAsync",
+        "callExpression": "session.runner.runAsync",
+        "sourcePath": "src/features/compose-runtime/adapters/inspectDockerComposeProjectAsync.ts"
+      },
+      {
+        "fromSymbol": "inspectAsync",
+        "toSymbol": "commandFailure",
+        "callExpression": "commandFailure",
+        "sourcePath": "src/features/compose-runtime/adapters/inspectDockerComposeProjectAsync.ts"
       },
       {
         "fromSymbol": "parseDockerComposeInspection",

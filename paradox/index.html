@@ -209,6 +209,16 @@
               <button
                 class="nav-button"
                 type="button"
+                data-target="src/dockerComposeEngineInspection.test.ts"
+              >
+                src/dockerComposeEngineInspection.test.ts
+                <small>2 functions</small>
+              </button>
+            </li>
+            <li>
+              <button
+                class="nav-button"
+                type="button"
                 data-target="src/dockerComposeInspection.test.ts"
               >
                 src/dockerComposeInspection.test.ts
@@ -233,6 +243,16 @@
               >
                 src/features/compose-runtime/adapters/createSubprocessDockerComposeCommandRunner.ts
                 <small>2 functions</small>
+              </button>
+            </li>
+            <li>
+              <button
+                class="nav-button"
+                type="button"
+                data-target="src/features/compose-runtime/adapters/inspectDockerComposeProjectAsync.ts"
+              >
+                src/features/compose-runtime/adapters/inspectDockerComposeProjectAsync.ts
+                <small>5 functions</small>
               </button>
             </li>
             <li>
@@ -471,7 +491,7 @@
             <div class="summary">
               <div><strong>24</strong><span class="muted">public exports</span></div>
               <div><strong>0</strong><span class="muted">components</span></div>
-              <div><strong>35</strong><span class="muted">modules</span></div>
+              <div><strong>37</strong><span class="muted">modules</span></div>
               <div><strong>1</strong><span class="muted">entrypoints</span></div>
             </div>
             <h3>Entrypoints</h3>
@@ -504,6 +524,20 @@
                 <strong>Dependencies:</strong>
                 <code>src/features/compose-runtime/adapters/renderDockerComposeCliInput.ts</code>,
                 <code>src/index.ts</code>
+              </p>
+              <p><strong>Exports:</strong> <span class="empty">None</span></p>
+            </article>
+            <article
+              class="item"
+              data-search="src/dockerComposeEngineInspection.test.ts src/features/compose-runtime/adapters/inspectDockerComposeProjectAsync.ts src/index.ts"
+            >
+              <h3>src/dockerComposeEngineInspection.test.ts</h3>
+              <p class="muted">Referenced module</p>
+              <p>
+                <strong>Dependencies:</strong>
+                <code
+                  >src/features/compose-runtime/adapters/inspectDockerComposeProjectAsync.ts</code
+                >, <code>src/index.ts</code>
               </p>
               <p><strong>Exports:</strong> <span class="empty">None</span></p>
             </article>
@@ -550,6 +584,21 @@
               <p>
                 <strong>Exports:</strong> <code>createSubprocessDockerComposeCommandRunner</code>
               </p>
+            </article>
+            <article
+              class="item"
+              data-search="src/features/compose-runtime/adapters/inspectDockerComposeProjectAsync.ts src/features/compose-runtime/adapters/parseDockerComposeInspection.ts src/features/compose-runtime/utils/dockerComposeLabels.ts src/types/dockerComposeProcess.ts src/types/dockerComposeRuntime.ts inspectDockerComposeProjectAsync"
+            >
+              <h3>src/features/compose-runtime/adapters/inspectDockerComposeProjectAsync.ts</h3>
+              <p class="muted">Referenced module</p>
+              <p>
+                <strong>Dependencies:</strong>
+                <code>src/features/compose-runtime/adapters/parseDockerComposeInspection.ts</code>,
+                <code>src/features/compose-runtime/utils/dockerComposeLabels.ts</code>,
+                <code>src/types/dockerComposeProcess.ts</code>,
+                <code>src/types/dockerComposeRuntime.ts</code>
+              </p>
+              <p><strong>Exports:</strong> <code>inspectDockerComposeProjectAsync</code></p>
             </article>
             <article
               class="item"
@@ -2333,6 +2382,12 @@
                 module_src_dockerComposeCliInput_test_ts --&gt;
                 module_src_features_compose_runtime_adapters_renderDockerComposeCliInput_ts
                 module_src_dockerComposeCliInput_test_ts --&gt; module_src_index_ts
+                module_src_dockerComposeEngineInspection_test_ts[&quot;src/dockerComposeEngineInspection.test.ts&quot;]
+                package__ankhorage_docker_compose -.-&gt;
+                module_src_dockerComposeEngineInspection_test_ts
+                module_src_dockerComposeEngineInspection_test_ts --&gt;
+                module_src_features_compose_runtime_adapters_inspectDockerComposeProjectAsync_ts
+                module_src_dockerComposeEngineInspection_test_ts --&gt; module_src_index_ts
                 module_src_dockerComposeInspection_test_ts[&quot;src/dockerComposeInspection.test.ts&quot;]
                 package__ankhorage_docker_compose -.-&gt; module_src_dockerComposeInspection_test_ts
                 module_src_dockerComposeInspection_test_ts --&gt;
@@ -2351,6 +2406,17 @@
                 module_src_features_compose_runtime_adapters_createSubprocessDockerComposeCommandRunner_ts
                 module_src_features_compose_runtime_adapters_createSubprocessDockerComposeCommandRunner_ts
                 --&gt; module_src_types_dockerComposeProcess_ts
+                module_src_features_compose_runtime_adapters_inspectDockerComposeProjectAsync_ts[&quot;src/features/compose-runtime/adapters/inspectDockerComposeProjectAsync.ts&quot;]
+                package__ankhorage_docker_compose -.-&gt;
+                module_src_features_compose_runtime_adapters_inspectDockerComposeProjectAsync_ts
+                module_src_features_compose_runtime_adapters_inspectDockerComposeProjectAsync_ts
+                --&gt; module_src_features_compose_runtime_adapters_parseDockerComposeInspection_ts
+                module_src_features_compose_runtime_adapters_inspectDockerComposeProjectAsync_ts
+                --&gt; module_src_features_compose_runtime_utils_dockerComposeLabels_ts
+                module_src_features_compose_runtime_adapters_inspectDockerComposeProjectAsync_ts
+                --&gt; module_src_types_dockerComposeProcess_ts
+                module_src_features_compose_runtime_adapters_inspectDockerComposeProjectAsync_ts
+                --&gt; module_src_types_dockerComposeRuntime_ts
                 module_src_features_compose_runtime_adapters_parseDockerComposeInspection_ts[&quot;src/features/compose-runtime/adapters/parseDockerComposeInspection.ts&quot;]
                 package__ankhorage_docker_compose -.-&gt;
                 module_src_features_compose_runtime_adapters_parseDockerComposeInspection_ts
@@ -2566,6 +2632,10 @@ graph TD
   package__ankhorage_docker_compose -.-&gt; module_src_dockerComposeCliInput_test_ts
   module_src_dockerComposeCliInput_test_ts --&gt; module_src_features_compose_runtime_adapters_renderDockerComposeCliInput_ts
   module_src_dockerComposeCliInput_test_ts --&gt; module_src_index_ts
+  module_src_dockerComposeEngineInspection_test_ts[&quot;src/dockerComposeEngineInspection.test.ts&quot;]
+  package__ankhorage_docker_compose -.-&gt; module_src_dockerComposeEngineInspection_test_ts
+  module_src_dockerComposeEngineInspection_test_ts --&gt; module_src_features_compose_runtime_adapters_inspectDockerComposeProjectAsync_ts
+  module_src_dockerComposeEngineInspection_test_ts --&gt; module_src_index_ts
   module_src_dockerComposeInspection_test_ts[&quot;src/dockerComposeInspection.test.ts&quot;]
   package__ankhorage_docker_compose -.-&gt; module_src_dockerComposeInspection_test_ts
   module_src_dockerComposeInspection_test_ts --&gt; module_src_features_compose_runtime_adapters_parseDockerComposeInspection_ts
@@ -2580,6 +2650,12 @@ graph TD
   module_src_features_compose_runtime_adapters_createSubprocessDockerComposeCommandRunner_ts[&quot;src/features/compose-runtime/adapters/createSubprocessDockerComposeCommandRunner.ts&quot;]
   package__ankhorage_docker_compose -.-&gt; module_src_features_compose_runtime_adapters_createSubprocessDockerComposeCommandRunner_ts
   module_src_features_compose_runtime_adapters_createSubprocessDockerComposeCommandRunner_ts --&gt; module_src_types_dockerComposeProcess_ts
+  module_src_features_compose_runtime_adapters_inspectDockerComposeProjectAsync_ts[&quot;src/features/compose-runtime/adapters/inspectDockerComposeProjectAsync.ts&quot;]
+  package__ankhorage_docker_compose -.-&gt; module_src_features_compose_runtime_adapters_inspectDockerComposeProjectAsync_ts
+  module_src_features_compose_runtime_adapters_inspectDockerComposeProjectAsync_ts --&gt; module_src_features_compose_runtime_adapters_parseDockerComposeInspection_ts
+  module_src_features_compose_runtime_adapters_inspectDockerComposeProjectAsync_ts --&gt; module_src_features_compose_runtime_utils_dockerComposeLabels_ts
+  module_src_features_compose_runtime_adapters_inspectDockerComposeProjectAsync_ts --&gt; module_src_types_dockerComposeProcess_ts
+  module_src_features_compose_runtime_adapters_inspectDockerComposeProjectAsync_ts --&gt; module_src_types_dockerComposeRuntime_ts
   module_src_features_compose_runtime_adapters_parseDockerComposeInspection_ts[&quot;src/features/compose-runtime/adapters/parseDockerComposeInspection.ts&quot;]
   package__ankhorage_docker_compose -.-&gt; module_src_features_compose_runtime_adapters_parseDockerComposeInspection_ts
   module_src_features_compose_runtime_adapters_parseDockerComposeInspection_ts --&gt; module_src_features_compose_runtime_utils_dockerComposeLabels_ts
@@ -2707,10 +2783,12 @@ graph TD
                 module_examples_basic_usage_index_ts[&quot;examples/basic-usage/index.ts&quot;]
                 module_src_constants_infra_ts[&quot;src/constants/infra.ts&quot;]
                 module_src_dockerComposeCliInput_test_ts[&quot;src/dockerComposeCliInput.test.ts&quot;]
+                module_src_dockerComposeEngineInspection_test_ts[&quot;src/dockerComposeEngineInspection.test.ts&quot;]
                 module_src_dockerComposeInspection_test_ts[&quot;src/dockerComposeInspection.test.ts&quot;]
                 module_src_dockerComposeProcess_test_ts[&quot;src/dockerComposeProcess.test.ts&quot;]
                 module_src_dockerComposeRuntime_test_ts[&quot;src/dockerComposeRuntime.test.ts&quot;]
                 module_src_features_compose_runtime_adapters_createSubprocessDockerComposeCommandRunner_ts[&quot;src/features/compose-runtime/adapters/createSubprocessDockerComposeCommandRunner.ts&quot;]
+                module_src_features_compose_runtime_adapters_inspectDockerComposeProjectAsync_ts[&quot;src/features/compose-runtime/adapters/inspectDockerComposeProjectAsync.ts&quot;]
                 module_src_features_compose_runtime_adapters_parseDockerComposeInspection_ts[&quot;src/features/compose-runtime/adapters/parseDockerComposeInspection.ts&quot;]
                 module_src_features_compose_runtime_adapters_renderDockerComposeCliInput_ts[&quot;src/features/compose-runtime/adapters/renderDockerComposeCliInput.ts&quot;]
                 module_src_features_compose_runtime_application_destroyDockerComposeRuntimeAsync_ts[&quot;src/features/compose-runtime/application/destroyDockerComposeRuntimeAsync.ts&quot;]
@@ -2743,6 +2821,9 @@ graph TD
                 module_src_dockerComposeCliInput_test_ts --&gt;
                 module_src_features_compose_runtime_adapters_renderDockerComposeCliInput_ts
                 module_src_dockerComposeCliInput_test_ts --&gt; module_src_index_ts
+                module_src_dockerComposeEngineInspection_test_ts --&gt;
+                module_src_features_compose_runtime_adapters_inspectDockerComposeProjectAsync_ts
+                module_src_dockerComposeEngineInspection_test_ts --&gt; module_src_index_ts
                 module_src_dockerComposeInspection_test_ts --&gt;
                 module_src_features_compose_runtime_adapters_parseDockerComposeInspection_ts
                 module_src_dockerComposeInspection_test_ts --&gt;
@@ -2752,6 +2833,14 @@ graph TD
                 module_src_dockerComposeRuntime_test_ts --&gt; module_src_runtimeFixtures_test_ts
                 module_src_features_compose_runtime_adapters_createSubprocessDockerComposeCommandRunner_ts
                 --&gt; module_src_types_dockerComposeProcess_ts
+                module_src_features_compose_runtime_adapters_inspectDockerComposeProjectAsync_ts
+                --&gt; module_src_features_compose_runtime_adapters_parseDockerComposeInspection_ts
+                module_src_features_compose_runtime_adapters_inspectDockerComposeProjectAsync_ts
+                --&gt; module_src_features_compose_runtime_utils_dockerComposeLabels_ts
+                module_src_features_compose_runtime_adapters_inspectDockerComposeProjectAsync_ts
+                --&gt; module_src_types_dockerComposeProcess_ts
+                module_src_features_compose_runtime_adapters_inspectDockerComposeProjectAsync_ts
+                --&gt; module_src_types_dockerComposeRuntime_ts
                 module_src_features_compose_runtime_adapters_parseDockerComposeInspection_ts --&gt;
                 module_src_features_compose_runtime_utils_dockerComposeLabels_ts
                 module_src_features_compose_runtime_adapters_parseDockerComposeInspection_ts --&gt;
@@ -2880,10 +2969,12 @@ graph LR
   module_examples_basic_usage_index_ts[&quot;examples/basic-usage/index.ts&quot;]
   module_src_constants_infra_ts[&quot;src/constants/infra.ts&quot;]
   module_src_dockerComposeCliInput_test_ts[&quot;src/dockerComposeCliInput.test.ts&quot;]
+  module_src_dockerComposeEngineInspection_test_ts[&quot;src/dockerComposeEngineInspection.test.ts&quot;]
   module_src_dockerComposeInspection_test_ts[&quot;src/dockerComposeInspection.test.ts&quot;]
   module_src_dockerComposeProcess_test_ts[&quot;src/dockerComposeProcess.test.ts&quot;]
   module_src_dockerComposeRuntime_test_ts[&quot;src/dockerComposeRuntime.test.ts&quot;]
   module_src_features_compose_runtime_adapters_createSubprocessDockerComposeCommandRunner_ts[&quot;src/features/compose-runtime/adapters/createSubprocessDockerComposeCommandRunner.ts&quot;]
+  module_src_features_compose_runtime_adapters_inspectDockerComposeProjectAsync_ts[&quot;src/features/compose-runtime/adapters/inspectDockerComposeProjectAsync.ts&quot;]
   module_src_features_compose_runtime_adapters_parseDockerComposeInspection_ts[&quot;src/features/compose-runtime/adapters/parseDockerComposeInspection.ts&quot;]
   module_src_features_compose_runtime_adapters_renderDockerComposeCliInput_ts[&quot;src/features/compose-runtime/adapters/renderDockerComposeCliInput.ts&quot;]
   module_src_features_compose_runtime_application_destroyDockerComposeRuntimeAsync_ts[&quot;src/features/compose-runtime/application/destroyDockerComposeRuntimeAsync.ts&quot;]
@@ -2915,12 +3006,18 @@ graph LR
   module_examples_basic_usage_index_ts --&gt; module_dist_index_d_ts
   module_src_dockerComposeCliInput_test_ts --&gt; module_src_features_compose_runtime_adapters_renderDockerComposeCliInput_ts
   module_src_dockerComposeCliInput_test_ts --&gt; module_src_index_ts
+  module_src_dockerComposeEngineInspection_test_ts --&gt; module_src_features_compose_runtime_adapters_inspectDockerComposeProjectAsync_ts
+  module_src_dockerComposeEngineInspection_test_ts --&gt; module_src_index_ts
   module_src_dockerComposeInspection_test_ts --&gt; module_src_features_compose_runtime_adapters_parseDockerComposeInspection_ts
   module_src_dockerComposeInspection_test_ts --&gt; module_src_features_compose_runtime_utils_dockerComposeLabels_ts
   module_src_dockerComposeProcess_test_ts --&gt; module_src_index_ts
   module_src_dockerComposeRuntime_test_ts --&gt; module_src_index_ts
   module_src_dockerComposeRuntime_test_ts --&gt; module_src_runtimeFixtures_test_ts
   module_src_features_compose_runtime_adapters_createSubprocessDockerComposeCommandRunner_ts --&gt; module_src_types_dockerComposeProcess_ts
+  module_src_features_compose_runtime_adapters_inspectDockerComposeProjectAsync_ts --&gt; module_src_features_compose_runtime_adapters_parseDockerComposeInspection_ts
+  module_src_features_compose_runtime_adapters_inspectDockerComposeProjectAsync_ts --&gt; module_src_features_compose_runtime_utils_dockerComposeLabels_ts
+  module_src_features_compose_runtime_adapters_inspectDockerComposeProjectAsync_ts --&gt; module_src_types_dockerComposeProcess_ts
+  module_src_features_compose_runtime_adapters_inspectDockerComposeProjectAsync_ts --&gt; module_src_types_dockerComposeRuntime_ts
   module_src_features_compose_runtime_adapters_parseDockerComposeInspection_ts --&gt; module_src_features_compose_runtime_utils_dockerComposeLabels_ts
   module_src_features_compose_runtime_adapters_parseDockerComposeInspection_ts --&gt; module_src_features_compose_runtime_utils_dockerJson_ts
   module_src_features_compose_runtime_adapters_parseDockerComposeInspection_ts --&gt; module_src_features_compose_runtime_utils_parseDockerComposeInventory_ts
@@ -2990,10 +3087,12 @@ graph LR
                 module_examples_basic_usage_index_ts[&quot;examples/basic-usage/index.ts&quot;]
                 module_src_constants_infra_ts[&quot;src/constants/infra.ts&quot;]
                 module_src_dockerComposeCliInput_test_ts[&quot;src/dockerComposeCliInput.test.ts&quot;]
+                module_src_dockerComposeEngineInspection_test_ts[&quot;src/dockerComposeEngineInspection.test.ts&quot;]
                 module_src_dockerComposeInspection_test_ts[&quot;src/dockerComposeInspection.test.ts&quot;]
                 module_src_dockerComposeProcess_test_ts[&quot;src/dockerComposeProcess.test.ts&quot;]
                 module_src_dockerComposeRuntime_test_ts[&quot;src/dockerComposeRuntime.test.ts&quot;]
                 module_src_features_compose_runtime_adapters_createSubprocessDockerComposeCommandRunner_ts[&quot;src/features/compose-runtime/adapters/createSubprocessDockerComposeCommandRunner.ts&quot;]
+                module_src_features_compose_runtime_adapters_inspectDockerComposeProjectAsync_ts[&quot;src/features/compose-runtime/adapters/inspectDockerComposeProjectAsync.ts&quot;]
                 module_src_features_compose_runtime_adapters_parseDockerComposeInspection_ts[&quot;src/features/compose-runtime/adapters/parseDockerComposeInspection.ts&quot;]
                 module_src_features_compose_runtime_adapters_renderDockerComposeCliInput_ts[&quot;src/features/compose-runtime/adapters/renderDockerComposeCliInput.ts&quot;]
                 module_src_features_compose_runtime_application_destroyDockerComposeRuntimeAsync_ts[&quot;src/features/compose-runtime/application/destroyDockerComposeRuntimeAsync.ts&quot;]
@@ -3111,10 +3210,12 @@ graph LR
   module_examples_basic_usage_index_ts[&quot;examples/basic-usage/index.ts&quot;]
   module_src_constants_infra_ts[&quot;src/constants/infra.ts&quot;]
   module_src_dockerComposeCliInput_test_ts[&quot;src/dockerComposeCliInput.test.ts&quot;]
+  module_src_dockerComposeEngineInspection_test_ts[&quot;src/dockerComposeEngineInspection.test.ts&quot;]
   module_src_dockerComposeInspection_test_ts[&quot;src/dockerComposeInspection.test.ts&quot;]
   module_src_dockerComposeProcess_test_ts[&quot;src/dockerComposeProcess.test.ts&quot;]
   module_src_dockerComposeRuntime_test_ts[&quot;src/dockerComposeRuntime.test.ts&quot;]
   module_src_features_compose_runtime_adapters_createSubprocessDockerComposeCommandRunner_ts[&quot;src/features/compose-runtime/adapters/createSubprocessDockerComposeCommandRunner.ts&quot;]
+  module_src_features_compose_runtime_adapters_inspectDockerComposeProjectAsync_ts[&quot;src/features/compose-runtime/adapters/inspectDockerComposeProjectAsync.ts&quot;]
   module_src_features_compose_runtime_adapters_parseDockerComposeInspection_ts[&quot;src/features/compose-runtime/adapters/parseDockerComposeInspection.ts&quot;]
   module_src_features_compose_runtime_adapters_renderDockerComposeCliInput_ts[&quot;src/features/compose-runtime/adapters/renderDockerComposeCliInput.ts&quot;]
   module_src_features_compose_runtime_application_destroyDockerComposeRuntimeAsync_ts[&quot;src/features/compose-runtime/application/destroyDockerComposeRuntimeAsync.ts&quot;]
@@ -3256,6 +3357,29 @@ graph LR
           </section>
         </section>
         <section
+          id="view-src-dockercomposeengineinspection-test-ts"
+          class="view"
+          data-view="src/dockerComposeEngineInspection.test.ts"
+          hidden
+        >
+          <section class="panel">
+            <h2>src/dockerComposeEngineInspection.test.ts</h2>
+            <article
+              class="item"
+              data-search="listArguments src/dockerComposeEngineInspection.test.ts "
+            >
+              <h3>listArguments</h3>
+              <p class="muted"><code>src/dockerComposeEngineInspection.test.ts:72:1</code></p>
+              <p class="empty">No description available.</p>
+            </article>
+            <article class="item" data-search="success src/dockerComposeEngineInspection.test.ts ">
+              <h3>success</h3>
+              <p class="muted"><code>src/dockerComposeEngineInspection.test.ts:101:1</code></p>
+              <p class="empty">No description available.</p>
+            </article>
+          </section>
+        </section>
+        <section
           id="view-src-dockercomposeinspection-test-ts"
           class="view"
           data-view="src/dockerComposeInspection.test.ts"
@@ -3355,6 +3479,79 @@ graph LR
                 Execute one argv-safe command while keeping stdin and execution-only environment
                 values private.
               </p>
+            </article>
+          </section>
+        </section>
+        <section
+          id="view-src-features-compose-runtime-adapters-inspectdockercomposeprojectasync-ts"
+          class="view"
+          data-view="src/features/compose-runtime/adapters/inspectDockerComposeProjectAsync.ts"
+          hidden
+        >
+          <section class="panel">
+            <h2>src/features/compose-runtime/adapters/inspectDockerComposeProjectAsync.ts</h2>
+            <article
+              class="item"
+              data-search="inspectDockerComposeProjectAsync src/features/compose-runtime/adapters/inspectDockerComposeProjectAsync.ts Inspect only Docker resources carrying the exact project/environment/adapter ownership scope."
+            >
+              <h3>inspectDockerComposeProjectAsync</h3>
+              <p class="muted">
+                <code
+                  >src/features/compose-runtime/adapters/inspectDockerComposeProjectAsync.ts:19:1</code
+                >
+              </p>
+              <p>
+                Inspect only Docker resources carrying the exact project/environment/adapter
+                ownership scope.
+              </p>
+            </article>
+            <article
+              class="item"
+              data-search="ownershipFilters src/features/compose-runtime/adapters/inspectDockerComposeProjectAsync.ts "
+            >
+              <h3>ownershipFilters</h3>
+              <p class="muted">
+                <code
+                  >src/features/compose-runtime/adapters/inspectDockerComposeProjectAsync.ts:50:1</code
+                >
+              </p>
+              <p class="empty">No description available.</p>
+            </article>
+            <article
+              class="item"
+              data-search="listAsync src/features/compose-runtime/adapters/inspectDockerComposeProjectAsync.ts "
+            >
+              <h3>listAsync</h3>
+              <p class="muted">
+                <code
+                  >src/features/compose-runtime/adapters/inspectDockerComposeProjectAsync.ts:61:1</code
+                >
+              </p>
+              <p class="empty">No description available.</p>
+            </article>
+            <article
+              class="item"
+              data-search="inspectAsync src/features/compose-runtime/adapters/inspectDockerComposeProjectAsync.ts "
+            >
+              <h3>inspectAsync</h3>
+              <p class="muted">
+                <code
+                  >src/features/compose-runtime/adapters/inspectDockerComposeProjectAsync.ts:83:1</code
+                >
+              </p>
+              <p class="empty">No description available.</p>
+            </article>
+            <article
+              class="item"
+              data-search="commandFailure src/features/compose-runtime/adapters/inspectDockerComposeProjectAsync.ts "
+            >
+              <h3>commandFailure</h3>
+              <p class="muted">
+                <code
+                  >src/features/compose-runtime/adapters/inspectDockerComposeProjectAsync.ts:101:1</code
+                >
+              </p>
+              <p class="empty">No description available.</p>
             </article>
           </section>
         </section>
