@@ -1,5 +1,11 @@
 # @ankhorage/docker-compose
 
+## 0.4.0
+
+### Minor Changes
+
+- b6cbc69: Materialize workload templates containing privileged segments only at the Docker Compose reconcile boundary.
+
 ## 0.3.0
 
 ### Minor Changes
