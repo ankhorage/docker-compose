@@ -1,27 +1,898 @@
 [
   {
     "name": "createInfraAdapter",
-    "description": "Create the canonical Docker Compose runtime adapter entrypoint.\n\nThe foundation exposes the released Contracts boundary and fails lifecycle calls explicitly\nuntil the provider implementation phase supplies its external adapters.",
+    "description": "Create the canonical Docker Compose runtime adapter entrypoint.\n\nThe caller supplies a Docker Compose control-plane boundary. Portable workloads are projected\ninto Compose services, networks, volumes, configs and execution-only secrets.",
     "isReadme": true,
     "examples": [],
     "kind": "function",
     "modulePath": "src/features/compose-runtime/composition/createInfraAdapter.ts",
     "sourceLocation": {
       "filePath": "src/features/compose-runtime/composition/createInfraAdapter.ts",
-      "line": 13,
+      "line": 20,
       "column": 1
     },
     "exportPaths": ["src/index.ts"],
-    "relatedSymbols": [],
+    "relatedSymbols": ["DockerComposeAdapterOptions"],
     "signatures": [
       {
-        "label": "() => InfraRuntimeAdapter<\"docker-compose\">",
-        "parameters": [],
+        "label": "(options: DockerComposeAdapterOptions) => InfraRuntimeAdapter<\"docker-compose\">",
+        "parameters": [
+          {
+            "name": "options",
+            "type": "DockerComposeAdapterOptions",
+            "required": true,
+            "description": null
+          }
+        ],
         "returnType": "InfraRuntimeAdapter<\"docker-compose\">",
         "returnDescription": null
       }
     ],
     "members": [],
+    "structuredRows": []
+  },
+  {
+    "name": "DockerComposeAdapterOptions",
+    "description": null,
+    "isReadme": false,
+    "examples": [],
+    "kind": "type",
+    "modulePath": "src/types/dockerComposeRuntime.ts",
+    "sourceLocation": {
+      "filePath": "src/types/dockerComposeRuntime.ts",
+      "line": 14,
+      "column": 1
+    },
+    "exportPaths": ["src/index.ts"],
+    "relatedSymbols": ["DockerComposeControlPlane"],
+    "signatures": [],
+    "members": [
+      {
+        "name": "controlPlane",
+        "kind": "property",
+        "type": "DockerComposeControlPlane",
+        "required": true,
+        "description": null
+      }
+    ],
+    "structuredRows": []
+  },
+  {
+    "name": "DockerComposeConfig",
+    "description": null,
+    "isReadme": false,
+    "examples": [],
+    "kind": "type",
+    "modulePath": "src/types/dockerComposeRuntime.ts",
+    "sourceLocation": {
+      "filePath": "src/types/dockerComposeRuntime.ts",
+      "line": 57,
+      "column": 1
+    },
+    "exportPaths": ["src/index.ts"],
+    "relatedSymbols": [],
+    "signatures": [],
+    "members": [
+      {
+        "name": "configurationHash",
+        "kind": "property",
+        "type": "string",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "content",
+        "kind": "property",
+        "type": "string",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "kind",
+        "kind": "property",
+        "type": "\"config\"",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "name",
+        "kind": "property",
+        "type": "string",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "owner",
+        "kind": "property",
+        "type": "InfraOwnedResource",
+        "required": true,
+        "description": null
+      }
+    ],
+    "structuredRows": []
+  },
+  {
+    "name": "DockerComposeControlPlane",
+    "description": null,
+    "isReadme": false,
+    "examples": [],
+    "kind": "type",
+    "modulePath": "src/types/dockerComposeRuntime.ts",
+    "sourceLocation": {
+      "filePath": "src/types/dockerComposeRuntime.ts",
+      "line": 133,
+      "column": 1
+    },
+    "exportPaths": ["src/index.ts"],
+    "relatedSymbols": [
+      "DockerComposeExecutionProject",
+      "DockerComposeProject",
+      "DockerComposeProjectIdentity",
+      "DockerComposeProjectObservation",
+      "DockerComposeTargetAccess"
+    ],
+    "signatures": [],
+    "members": [
+      {
+        "name": "destroyAsync",
+        "kind": "method",
+        "type": "(identity: DockerComposeProjectIdentity, resourceIds: readonly string[], signal?: AbortSignal) => Promise<InfraResult<null>>",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "downAsync",
+        "kind": "method",
+        "type": "(identity: DockerComposeProjectIdentity, signal?: AbortSignal) => Promise<InfraResult<null>>",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "inspectAsync",
+        "kind": "method",
+        "type": "(identity: DockerComposeProjectIdentity, signal?: AbortSignal) => Promise<InfraResult<DockerComposeProjectObservation>>",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "reconcileAsync",
+        "kind": "method",
+        "type": "(project: DockerComposeExecutionProject, access: DockerComposeTargetAccess, pruneResourceIds: readonly string[], signal?: AbortSignal) => Promise<InfraResult<DockerComposeProjectObservation>>",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "validateAsync",
+        "kind": "method",
+        "type": "(project: DockerComposeProject, access: DockerComposeTargetAccess, signal?: AbortSignal) => Promise<InfraResult<null>>",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "waitUntilReadyAsync",
+        "kind": "method",
+        "type": "(identity: DockerComposeProjectIdentity, signal?: AbortSignal) => Promise<InfraResult<DockerComposeProjectObservation>>",
+        "required": true,
+        "description": null
+      }
+    ],
+    "structuredRows": []
+  },
+  {
+    "name": "DockerComposeDesiredState",
+    "description": null,
+    "isReadme": false,
+    "examples": [],
+    "kind": "unknown",
+    "modulePath": "src/types/dockerComposeRuntime.ts",
+    "sourceLocation": {
+      "filePath": "src/types/dockerComposeRuntime.ts",
+      "line": 164,
+      "column": 1
+    },
+    "exportPaths": ["src/index.ts"],
+    "relatedSymbols": [],
+    "signatures": [],
+    "members": [],
+    "structuredRows": []
+  },
+  {
+    "name": "DockerComposeExecutionProject",
+    "description": null,
+    "isReadme": false,
+    "examples": [],
+    "kind": "type",
+    "modulePath": "src/types/dockerComposeRuntime.ts",
+    "sourceLocation": {
+      "filePath": "src/types/dockerComposeRuntime.ts",
+      "line": 111,
+      "column": 1
+    },
+    "exportPaths": ["src/index.ts"],
+    "relatedSymbols": [
+      "DockerComposeConfig",
+      "DockerComposeMaterializedSecret",
+      "DockerComposeNetwork",
+      "DockerComposeProjectIdentity",
+      "DockerComposeService",
+      "DockerComposeVolume"
+    ],
+    "signatures": [],
+    "members": [
+      {
+        "name": "configs",
+        "kind": "property",
+        "type": "readonly DockerComposeConfig[]",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "identity",
+        "kind": "property",
+        "type": "DockerComposeProjectIdentity",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "network",
+        "kind": "property",
+        "type": "DockerComposeNetwork",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "secrets",
+        "kind": "property",
+        "type": "readonly DockerComposeMaterializedSecret[]",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "services",
+        "kind": "property",
+        "type": "readonly DockerComposeService[]",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "volumes",
+        "kind": "property",
+        "type": "readonly DockerComposeVolume[]",
+        "required": true,
+        "description": null
+      }
+    ],
+    "structuredRows": []
+  },
+  {
+    "name": "DockerComposeMaterializedSecret",
+    "description": null,
+    "isReadme": false,
+    "examples": [],
+    "kind": "type",
+    "modulePath": "src/types/dockerComposeRuntime.ts",
+    "sourceLocation": {
+      "filePath": "src/types/dockerComposeRuntime.ts",
+      "line": 106,
+      "column": 1
+    },
+    "exportPaths": ["src/index.ts"],
+    "relatedSymbols": [],
+    "signatures": [],
+    "members": [
+      {
+        "name": "configurationHash",
+        "kind": "property",
+        "type": "string",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "kind",
+        "kind": "property",
+        "type": "\"secret\"",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "name",
+        "kind": "property",
+        "type": "string",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "owner",
+        "kind": "property",
+        "type": "InfraOwnedResource",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "target",
+        "kind": "property",
+        "type": "{ readonly kind: \"environment\"; readonly name: string; } | { readonly kind: \"file\"; readonly path: string; }",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "value",
+        "kind": "property",
+        "type": "string",
+        "required": true,
+        "description": null
+      }
+    ],
+    "structuredRows": []
+  },
+  {
+    "name": "DockerComposeNetwork",
+    "description": null,
+    "isReadme": false,
+    "examples": [],
+    "kind": "type",
+    "modulePath": "src/types/dockerComposeRuntime.ts",
+    "sourceLocation": {
+      "filePath": "src/types/dockerComposeRuntime.ts",
+      "line": 46,
+      "column": 1
+    },
+    "exportPaths": ["src/index.ts"],
+    "relatedSymbols": [],
+    "signatures": [],
+    "members": [
+      {
+        "name": "configurationHash",
+        "kind": "property",
+        "type": "string",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "kind",
+        "kind": "property",
+        "type": "\"network\"",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "name",
+        "kind": "property",
+        "type": "string",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "owner",
+        "kind": "property",
+        "type": "InfraOwnedResource",
+        "required": true,
+        "description": null
+      }
+    ],
+    "structuredRows": []
+  },
+  {
+    "name": "DockerComposeOutput",
+    "description": null,
+    "isReadme": false,
+    "examples": [],
+    "kind": "unknown",
+    "modulePath": "src/types/dockerComposeRuntime.ts",
+    "sourceLocation": {
+      "filePath": "src/types/dockerComposeRuntime.ts",
+      "line": 165,
+      "column": 1
+    },
+    "exportPaths": ["src/index.ts"],
+    "relatedSymbols": [],
+    "signatures": [],
+    "members": [],
+    "structuredRows": []
+  },
+  {
+    "name": "DockerComposeProject",
+    "description": null,
+    "isReadme": false,
+    "examples": [],
+    "kind": "type",
+    "modulePath": "src/types/dockerComposeRuntime.ts",
+    "sourceLocation": {
+      "filePath": "src/types/dockerComposeRuntime.ts",
+      "line": 97,
+      "column": 1
+    },
+    "exportPaths": ["src/index.ts"],
+    "relatedSymbols": [
+      "DockerComposeConfig",
+      "DockerComposeNetwork",
+      "DockerComposeProjectIdentity",
+      "DockerComposeSecret",
+      "DockerComposeService",
+      "DockerComposeVolume"
+    ],
+    "signatures": [],
+    "members": [
+      {
+        "name": "configs",
+        "kind": "property",
+        "type": "readonly DockerComposeConfig[]",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "identity",
+        "kind": "property",
+        "type": "DockerComposeProjectIdentity",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "network",
+        "kind": "property",
+        "type": "DockerComposeNetwork",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "secrets",
+        "kind": "property",
+        "type": "readonly DockerComposeSecret[]",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "services",
+        "kind": "property",
+        "type": "readonly DockerComposeService[]",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "volumes",
+        "kind": "property",
+        "type": "readonly DockerComposeVolume[]",
+        "required": true,
+        "description": null
+      }
+    ],
+    "structuredRows": []
+  },
+  {
+    "name": "DockerComposeProjectIdentity",
+    "description": null,
+    "isReadme": false,
+    "examples": [],
+    "kind": "type",
+    "modulePath": "src/types/dockerComposeRuntime.ts",
+    "sourceLocation": {
+      "filePath": "src/types/dockerComposeRuntime.ts",
+      "line": 18,
+      "column": 1
+    },
+    "exportPaths": ["src/index.ts"],
+    "relatedSymbols": [],
+    "signatures": [],
+    "members": [
+      {
+        "name": "environment",
+        "kind": "property",
+        "type": "\"local\" | \"preview\" | \"production\"",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "projectId",
+        "kind": "property",
+        "type": "string",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "projectName",
+        "kind": "property",
+        "type": "string",
+        "required": true,
+        "description": null
+      }
+    ],
+    "structuredRows": []
+  },
+  {
+    "name": "DockerComposeProjectObservation",
+    "description": null,
+    "isReadme": false,
+    "examples": [],
+    "kind": "type",
+    "modulePath": "src/types/dockerComposeRuntime.ts",
+    "sourceLocation": {
+      "filePath": "src/types/dockerComposeRuntime.ts",
+      "line": 127,
+      "column": 1
+    },
+    "exportPaths": ["src/index.ts"],
+    "relatedSymbols": ["DockerComposeResourceObservation"],
+    "signatures": [],
+    "members": [
+      {
+        "name": "resources",
+        "kind": "property",
+        "type": "readonly DockerComposeResourceObservation[]",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "state",
+        "kind": "property",
+        "type": "\"absent\" | \"pending\" | \"ready\" | \"degraded\" | \"stopped\" | \"retained\" | \"failed\" | \"unknown\"",
+        "required": true,
+        "description": null
+      }
+    ],
+    "structuredRows": []
+  },
+  {
+    "name": "DockerComposeResource",
+    "description": null,
+    "isReadme": false,
+    "examples": [],
+    "kind": "unknown",
+    "modulePath": "src/types/dockerComposeRuntime.ts",
+    "sourceLocation": {
+      "filePath": "src/types/dockerComposeRuntime.ts",
+      "line": 166,
+      "column": 1
+    },
+    "exportPaths": ["src/index.ts"],
+    "relatedSymbols": [],
+    "signatures": [],
+    "members": [],
+    "structuredRows": []
+  },
+  {
+    "name": "DockerComposeResourceObservation",
+    "description": null,
+    "isReadme": false,
+    "examples": [],
+    "kind": "type",
+    "modulePath": "src/types/dockerComposeRuntime.ts",
+    "sourceLocation": {
+      "filePath": "src/types/dockerComposeRuntime.ts",
+      "line": 115,
+      "column": 1
+    },
+    "exportPaths": ["src/index.ts"],
+    "relatedSymbols": [],
+    "signatures": [],
+    "members": [
+      {
+        "name": "configurationHash",
+        "kind": "property",
+        "type": "string | undefined",
+        "required": false,
+        "description": null
+      },
+      {
+        "name": "dependsOnResourceIds",
+        "kind": "property",
+        "type": "readonly string[]",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "detail",
+        "kind": "property",
+        "type": "string | undefined",
+        "required": false,
+        "description": null
+      },
+      {
+        "name": "externalId",
+        "kind": "property",
+        "type": "string | undefined",
+        "required": false,
+        "description": null
+      },
+      {
+        "name": "persistent",
+        "kind": "property",
+        "type": "boolean",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "publicOutputs",
+        "kind": "property",
+        "type": "Readonly<Record<string, string | number | boolean>> | undefined",
+        "required": false,
+        "description": null
+      },
+      {
+        "name": "resourceId",
+        "kind": "property",
+        "type": "string",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "retention",
+        "kind": "property",
+        "type": "\"retain\" | \"delete-on-destroy\"",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "state",
+        "kind": "property",
+        "type": "\"absent\" | \"pending\" | \"ready\" | \"degraded\" | \"stopped\" | \"retained\" | \"failed\" | \"unknown\"",
+        "required": true,
+        "description": null
+      }
+    ],
+    "structuredRows": []
+  },
+  {
+    "name": "DockerComposeSecret",
+    "description": null,
+    "isReadme": false,
+    "examples": [],
+    "kind": "type",
+    "modulePath": "src/types/dockerComposeRuntime.ts",
+    "sourceLocation": {
+      "filePath": "src/types/dockerComposeRuntime.ts",
+      "line": 63,
+      "column": 1
+    },
+    "exportPaths": ["src/index.ts"],
+    "relatedSymbols": [],
+    "signatures": [],
+    "members": [
+      {
+        "name": "configurationHash",
+        "kind": "property",
+        "type": "string",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "kind",
+        "kind": "property",
+        "type": "\"secret\"",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "name",
+        "kind": "property",
+        "type": "string",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "owner",
+        "kind": "property",
+        "type": "InfraOwnedResource",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "reference",
+        "kind": "property",
+        "type": "InfraSecretReference",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "target",
+        "kind": "property",
+        "type": "{ readonly kind: \"environment\"; readonly name: string; } | { readonly kind: \"file\"; readonly path: string; }",
+        "required": true,
+        "description": null
+      }
+    ],
+    "structuredRows": []
+  },
+  {
+    "name": "DockerComposeService",
+    "description": null,
+    "isReadme": false,
+    "examples": [],
+    "kind": "type",
+    "modulePath": "src/types/dockerComposeRuntime.ts",
+    "sourceLocation": {
+      "filePath": "src/types/dockerComposeRuntime.ts",
+      "line": 72,
+      "column": 1
+    },
+    "exportPaths": ["src/index.ts"],
+    "relatedSymbols": [],
+    "signatures": [],
+    "members": [
+      {
+        "name": "args",
+        "kind": "property",
+        "type": "readonly string[] | undefined",
+        "required": false,
+        "description": null
+      },
+      {
+        "name": "command",
+        "kind": "property",
+        "type": "readonly string[] | undefined",
+        "required": false,
+        "description": null
+      },
+      {
+        "name": "configMounts",
+        "kind": "property",
+        "type": "readonly { readonly source: string; readonly target: string; }[]",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "configurationHash",
+        "kind": "property",
+        "type": "string",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "environment",
+        "kind": "property",
+        "type": "Readonly<Record<string, string>>",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "health",
+        "kind": "property",
+        "type": "InfraWorkloadHealthSpec | undefined",
+        "required": false,
+        "description": null
+      },
+      {
+        "name": "image",
+        "kind": "property",
+        "type": "string",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "kind",
+        "kind": "property",
+        "type": "\"service\"",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "name",
+        "kind": "property",
+        "type": "string",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "owner",
+        "kind": "property",
+        "type": "InfraOwnedResource",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "ports",
+        "kind": "property",
+        "type": "readonly { readonly name: string; readonly target: number; readonly protocol: \"tcp\" | \"udp\"; readonly published: boolean; }[]",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "replicas",
+        "kind": "property",
+        "type": "number",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "resources",
+        "kind": "property",
+        "type": "InfraWorkloadResourceSpec | undefined",
+        "required": false,
+        "description": null
+      },
+      {
+        "name": "secretEnvironment",
+        "kind": "property",
+        "type": "Readonly<Record<string, string>>",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "secretMounts",
+        "kind": "property",
+        "type": "readonly { readonly source: string; readonly target: string; }[]",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "volumes",
+        "kind": "property",
+        "type": "readonly { readonly source: string; readonly target: string; }[]",
+        "required": true,
+        "description": null
+      }
+    ],
+    "structuredRows": []
+  },
+  {
+    "name": "DockerComposeTargetAccess",
+    "description": null,
+    "isReadme": false,
+    "examples": [],
+    "kind": "unknown",
+    "modulePath": "src/types/dockerComposeRuntime.ts",
+    "sourceLocation": {
+      "filePath": "src/types/dockerComposeRuntime.ts",
+      "line": 24,
+      "column": 1
+    },
+    "exportPaths": ["src/index.ts"],
+    "relatedSymbols": [],
+    "signatures": [],
+    "members": [],
+    "structuredRows": []
+  },
+  {
+    "name": "DockerComposeVolume",
+    "description": null,
+    "isReadme": false,
+    "examples": [],
+    "kind": "type",
+    "modulePath": "src/types/dockerComposeRuntime.ts",
+    "sourceLocation": {
+      "filePath": "src/types/dockerComposeRuntime.ts",
+      "line": 51,
+      "column": 1
+    },
+    "exportPaths": ["src/index.ts"],
+    "relatedSymbols": [],
+    "signatures": [],
+    "members": [
+      {
+        "name": "configurationHash",
+        "kind": "property",
+        "type": "string",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "kind",
+        "kind": "property",
+        "type": "\"volume\"",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "name",
+        "kind": "property",
+        "type": "string",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "owner",
+        "kind": "property",
+        "type": "InfraOwnedResource",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "sizeGiB",
+        "kind": "property",
+        "type": "number",
+        "required": true,
+        "description": null
+      }
+    ],
     "structuredRows": []
   },
   {
@@ -39,6 +910,54 @@
     "exportPaths": ["src/index.ts"],
     "relatedSymbols": [],
     "signatures": [],
+    "members": [],
+    "structuredRows": []
+  },
+  {
+    "name": "projectDockerComposeProject",
+    "description": "Project portable workloads into deterministic Compose services, networks, volumes, configs and\nsecret references without Kubernetes-specific concepts or resolved secret values.",
+    "isReadme": true,
+    "examples": [],
+    "kind": "function",
+    "modulePath": "src/features/compose-runtime/application/projectDockerComposeProject.ts",
+    "sourceLocation": {
+      "filePath": "src/features/compose-runtime/application/projectDockerComposeProject.ts",
+      "line": 22,
+      "column": 1
+    },
+    "exportPaths": ["src/index.ts"],
+    "relatedSymbols": [
+      "DockerComposeDesiredState",
+      "DockerComposeProject",
+      "DockerComposeProjectIdentity"
+    ],
+    "signatures": [
+      {
+        "label": "(context: InfraExecutionContext, desired: DockerComposeDesiredState, identity: DockerComposeProjectIdentity) => InfraResult<DockerComposeProject>",
+        "parameters": [
+          {
+            "name": "context",
+            "type": "InfraExecutionContext",
+            "required": true,
+            "description": null
+          },
+          {
+            "name": "desired",
+            "type": "DockerComposeDesiredState",
+            "required": true,
+            "description": null
+          },
+          {
+            "name": "identity",
+            "type": "DockerComposeProjectIdentity",
+            "required": true,
+            "description": null
+          }
+        ],
+        "returnType": "InfraResult<DockerComposeProject>",
+        "returnDescription": null
+      }
+    ],
     "members": [],
     "structuredRows": []
   }
