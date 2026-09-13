@@ -9,21 +9,28 @@ import type {
 
 import type {
   DockerComposeAdapterOptions,
+  DockerComposeDesiredState,
   DockerComposeResourceObservation,
 } from '../../../types/dockerComposeRuntime';
-import { getDockerComposeProjectIdentity } from '../utils/getDockerComposeProjectIdentity';
 import { createObservedDockerComposeOwner } from '../utils/getDockerComposeResources';
+import { orderDockerComposeResourceIdsForRemoval } from '../utils/orderDockerComposeResourceIdsForRemoval';
+import { resolveDockerComposeTargetAsync } from '../utils/resolveDockerComposeTargetAsync';
 
 /*** Delete only owned and authorized Compose resources in reverse dependency order. */
 export async function destroyDockerComposeRuntimeAsync(
   options: DockerComposeAdapterOptions,
   context: InfraExecutionContext,
+  desired: DockerComposeDesiredState,
   request: InfraDestroyRequest,
 ): Promise<InfraResult<InfraReconcileResult>> {
   if (!isConfirmed(context, request)) return unconfirmedDestroy();
-  const identity = getDockerComposeProjectIdentity(context);
-  if (!identity.ok) return identity;
-  const observed = await options.controlPlane.inspectAsync(identity.value, context.signal);
+  const target = await resolveDockerComposeTargetAsync(context, desired);
+  if (!target.ok) return target;
+  const observed = await options.controlPlane.inspectAsync(
+    target.value.identity,
+    target.value.access,
+    context.signal,
+  );
   if (!observed.ok) return observed;
   const template: InfraOwnedResource['identity'] = {
     projectId: context.projectId,
@@ -38,8 +45,9 @@ export async function destroyDockerComposeRuntimeAsync(
     canDelete(resource, template, request),
   );
   const destroyed = await options.controlPlane.destroyAsync(
-    identity.value,
-    orderForRemoval(deletable),
+    target.value.identity,
+    target.value.access,
+    orderDockerComposeResourceIdsForRemoval(deletable),
     context.signal,
   );
   if (!destroyed.ok) return destroyed;
@@ -70,28 +78,6 @@ function canDelete(
         identity.resourceId === resource.resourceId,
     )
   );
-}
-
-function orderForRemoval(
-  resources: readonly DockerComposeResourceObservation[],
-): readonly string[] {
-  const byId = new Map(resources.map((resource) => [resource.resourceId, resource]));
-  const visited = new Set<string>();
-  const dependencyFirst: string[] = [];
-  const visit = (resourceId: string): void => {
-    if (visited.has(resourceId)) return;
-    const resource = byId.get(resourceId);
-    if (resource === undefined) return;
-    visited.add(resourceId);
-    for (const dependency of resource.dependsOnResourceIds) visit(dependency);
-    dependencyFirst.push(resourceId);
-  };
-  for (const resource of [...resources].sort(({ resourceId: left }, { resourceId: right }) =>
-    left.localeCompare(right),
-  )) {
-    visit(resource.resourceId);
-  }
-  return dependencyFirst.reverse();
 }
 
 function isConfirmed(context: InfraExecutionContext, request: InfraDestroyRequest): boolean {

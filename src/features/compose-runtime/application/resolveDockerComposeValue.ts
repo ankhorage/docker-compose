@@ -1,13 +1,13 @@
-import type {
-  InfraOutput,
-  InfraResult,
-  InfraSecretReference,
-  InfraWorkloadValue,
-} from '@ankhorage/contracts/infra';
+import type { InfraOutput, InfraResult, InfraWorkloadValue } from '@ankhorage/contracts/infra';
+
+import type { DockerComposeSecret } from '../../../types/dockerComposeRuntime';
 
 export type ResolvedDockerComposeValue =
   | { readonly kind: 'public'; readonly value: string }
-  | { readonly kind: 'secret'; readonly reference: InfraSecretReference };
+  | {
+      readonly kind: 'secret';
+      readonly reference: DockerComposeSecret['reference'];
+    };
 
 /*** Resolve public values while preserving secret references for execution-time materialization. */
 export function resolveDockerComposeValue(
@@ -21,6 +21,16 @@ export function resolveDockerComposeValue(
   }
   if (value.kind === 'secret') {
     return { ok: true, value: { kind: 'secret', reference: value.reference }, diagnostics: [] };
+  }
+  if (value.kind === 'credential') {
+    return {
+      ok: true,
+      value: {
+        kind: 'secret',
+        reference: { ...value.reference, key: value.key },
+      },
+      diagnostics: [],
+    };
   }
   const matches = outputs.filter(
     (output) => output.owner.resourceId === value.resourceId && output.name === value.output,

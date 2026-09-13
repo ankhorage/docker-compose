@@ -1,5 +1,6 @@
 import type {
   InfraComputeTarget,
+  InfraControlPlaneCredentialRef,
   InfraExecutionContext,
   InfraOutput,
   InfraOwnedResource,
@@ -63,7 +64,8 @@ export interface DockerComposeConfig extends DockerComposeDesiredResource {
 export interface DockerComposeSecret extends DockerComposeDesiredResource {
   readonly kind: 'secret';
   readonly name: string;
-  readonly reference: InfraSecretReference;
+  readonly reference:
+    InfraSecretReference | (InfraControlPlaneCredentialRef & { readonly key: string });
   readonly target:
     | { readonly kind: 'environment'; readonly name: string }
     | { readonly kind: 'file'; readonly path: string };
@@ -138,6 +140,7 @@ export interface DockerComposeControlPlane {
   ): Promise<InfraResult<null>>;
   inspectAsync(
     identity: DockerComposeProjectIdentity,
+    access: DockerComposeTargetAccess,
     signal?: AbortSignal,
   ): Promise<InfraResult<DockerComposeProjectObservation>>;
   reconcileAsync(
@@ -148,14 +151,17 @@ export interface DockerComposeControlPlane {
   ): Promise<InfraResult<DockerComposeProjectObservation>>;
   waitUntilReadyAsync(
     identity: DockerComposeProjectIdentity,
+    access: DockerComposeTargetAccess,
     signal?: AbortSignal,
   ): Promise<InfraResult<DockerComposeProjectObservation>>;
   downAsync(
     identity: DockerComposeProjectIdentity,
+    access: DockerComposeTargetAccess,
     signal?: AbortSignal,
   ): Promise<InfraResult<null>>;
   destroyAsync(
     identity: DockerComposeProjectIdentity,
+    access: DockerComposeTargetAccess,
     resourceIds: readonly string[],
     signal?: AbortSignal,
   ): Promise<InfraResult<null>>;

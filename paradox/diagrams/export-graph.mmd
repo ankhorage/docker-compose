@@ -1,7 +1,26 @@
 graph LR
   module_examples_basic_usage_index_ts["examples/basic-usage/index.ts"]
   module_src_constants_infra_ts["src/constants/infra.ts"]
+  module_src_dockerComposeCliControlPlane_test_ts["src/dockerComposeCliControlPlane.test.ts"]
+  module_src_dockerComposeCliInput_test_ts["src/dockerComposeCliInput.test.ts"]
+  module_src_dockerComposeEngineInspection_test_ts["src/dockerComposeEngineInspection.test.ts"]
+  module_src_dockerComposeEngineLifecycle_test_ts["src/dockerComposeEngineLifecycle.test.ts"]
+  module_src_dockerComposeEngineReconcile_test_ts["src/dockerComposeEngineReconcile.test.ts"]
+  module_src_dockerComposeEngineRemoval_test_ts["src/dockerComposeEngineRemoval.test.ts"]
+  module_src_dockerComposeInspection_test_ts["src/dockerComposeInspection.test.ts"]
+  module_src_dockerComposeProcess_test_ts["src/dockerComposeProcess.test.ts"]
   module_src_dockerComposeRuntime_test_ts["src/dockerComposeRuntime.test.ts"]
+  module_src_features_compose_runtime_adapters_createDockerComposeCliControlPlane_ts["src/features/compose-runtime/adapters/createDockerComposeCliControlPlane.ts"]
+  module_src_features_compose_runtime_adapters_createLocalDockerComposeSessionResolver_ts["src/features/compose-runtime/adapters/createLocalDockerComposeSessionResolver.ts"]
+  module_src_features_compose_runtime_adapters_createSubprocessDockerComposeCommandRunner_ts["src/features/compose-runtime/adapters/createSubprocessDockerComposeCommandRunner.ts"]
+  module_src_features_compose_runtime_adapters_inspectDockerComposeProjectAsync_ts["src/features/compose-runtime/adapters/inspectDockerComposeProjectAsync.ts"]
+  module_src_features_compose_runtime_adapters_parseDockerComposeInspection_ts["src/features/compose-runtime/adapters/parseDockerComposeInspection.ts"]
+  module_src_features_compose_runtime_adapters_reconcileDockerComposeProjectAsync_ts["src/features/compose-runtime/adapters/reconcileDockerComposeProjectAsync.ts"]
+  module_src_features_compose_runtime_adapters_removeDockerComposeResourcesAsync_ts["src/features/compose-runtime/adapters/removeDockerComposeResourcesAsync.ts"]
+  module_src_features_compose_runtime_adapters_renderDockerComposeCliInput_ts["src/features/compose-runtime/adapters/renderDockerComposeCliInput.ts"]
+  module_src_features_compose_runtime_adapters_runDockerComposeCommandAsync_ts["src/features/compose-runtime/adapters/runDockerComposeCommandAsync.ts"]
+  module_src_features_compose_runtime_adapters_stopDockerComposeProjectAsync_ts["src/features/compose-runtime/adapters/stopDockerComposeProjectAsync.ts"]
+  module_src_features_compose_runtime_adapters_waitForDockerComposeProjectAsync_ts["src/features/compose-runtime/adapters/waitForDockerComposeProjectAsync.ts"]
   module_src_features_compose_runtime_application_destroyDockerComposeRuntimeAsync_ts["src/features/compose-runtime/application/destroyDockerComposeRuntimeAsync.ts"]
   module_src_features_compose_runtime_application_ensureDockerComposeRuntimeAsync_ts["src/features/compose-runtime/application/ensureDockerComposeRuntimeAsync.ts"]
   module_src_features_compose_runtime_application_getDockerComposeStatusAsync_ts["src/features/compose-runtime/application/getDockerComposeStatusAsync.ts"]
@@ -16,20 +35,45 @@ graph LR
   module_src_features_compose_runtime_application_validateDockerComposeRuntimeAsync_ts["src/features/compose-runtime/application/validateDockerComposeRuntimeAsync.ts"]
   module_src_features_compose_runtime_application_validateDockerComposeWorkloads_ts["src/features/compose-runtime/application/validateDockerComposeWorkloads.ts"]
   module_src_features_compose_runtime_composition_createInfraAdapter_ts["src/features/compose-runtime/composition/createInfraAdapter.ts"]
+  module_src_features_compose_runtime_utils_dockerComposeLabels_ts["src/features/compose-runtime/utils/dockerComposeLabels.ts"]
   module_src_features_compose_runtime_utils_dockerComposeResourceFactories_ts["src/features/compose-runtime/utils/dockerComposeResourceFactories.ts"]
+  module_src_features_compose_runtime_utils_dockerJson_ts["src/features/compose-runtime/utils/dockerJson.ts"]
+  module_src_features_compose_runtime_utils_getDockerComposeOwnershipFilters_ts["src/features/compose-runtime/utils/getDockerComposeOwnershipFilters.ts"]
   module_src_features_compose_runtime_utils_getDockerComposeProjectIdentity_ts["src/features/compose-runtime/utils/getDockerComposeProjectIdentity.ts"]
   module_src_features_compose_runtime_utils_getDockerComposeResources_ts["src/features/compose-runtime/utils/getDockerComposeResources.ts"]
+  module_src_features_compose_runtime_utils_mergeDockerComposeServiceReplicas_ts["src/features/compose-runtime/utils/mergeDockerComposeServiceReplicas.ts"]
+  module_src_features_compose_runtime_utils_orderDockerComposeResourceIdsForRemoval_ts["src/features/compose-runtime/utils/orderDockerComposeResourceIdsForRemoval.ts"]
+  module_src_features_compose_runtime_utils_parseDockerComposeInventory_ts["src/features/compose-runtime/utils/parseDockerComposeInventory.ts"]
   module_src_features_compose_runtime_utils_resolveDockerComposeTargetAsync_ts["src/features/compose-runtime/utils/resolveDockerComposeTargetAsync.ts"]
   module_src_index_ts["src/index.ts"]
   module_src_infraAdapter_test_ts["src/infraAdapter.test.ts"]
   module_src_runtimeFixtures_test_ts["src/runtimeFixtures.test.ts"]
+  module_src_types_dockerComposeProcess_ts["src/types/dockerComposeProcess.ts"]
   module_src_types_dockerComposeRuntime_ts["src/types/dockerComposeRuntime.ts"]
+  export_createDockerComposeCliControlPlane["createDockerComposeCliControlPlane"]
+  module_src_features_compose_runtime_adapters_createDockerComposeCliControlPlane_ts --> export_createDockerComposeCliControlPlane
+  export_createDockerComposeCliControlPlane -.-> export_DockerComposeControlPlane
+  export_createDockerComposeCliControlPlane -.-> export_DockerComposeSessionResolver
   export_createInfraAdapter["createInfraAdapter"]
   module_src_features_compose_runtime_composition_createInfraAdapter_ts --> export_createInfraAdapter
   export_createInfraAdapter -.-> export_DockerComposeAdapterOptions
+  export_createLocalDockerComposeSessionResolver["createLocalDockerComposeSessionResolver"]
+  module_src_features_compose_runtime_adapters_createLocalDockerComposeSessionResolver_ts --> export_createLocalDockerComposeSessionResolver
+  export_createLocalDockerComposeSessionResolver -.-> export_DockerComposeSessionResolver
+  export_createSubprocessDockerComposeCommandRunner["createSubprocessDockerComposeCommandRunner"]
+  module_src_features_compose_runtime_adapters_createSubprocessDockerComposeCommandRunner_ts --> export_createSubprocessDockerComposeCommandRunner
+  export_createSubprocessDockerComposeCommandRunner -.-> export_DockerComposeCommandRunner
   export_DockerComposeAdapterOptions["DockerComposeAdapterOptions"]
   module_src_types_dockerComposeRuntime_ts --> export_DockerComposeAdapterOptions
   export_DockerComposeAdapterOptions -.-> export_DockerComposeControlPlane
+  export_DockerComposeCommandRequest["DockerComposeCommandRequest"]
+  module_src_types_dockerComposeProcess_ts --> export_DockerComposeCommandRequest
+  export_DockerComposeCommandResult["DockerComposeCommandResult"]
+  module_src_types_dockerComposeProcess_ts --> export_DockerComposeCommandResult
+  export_DockerComposeCommandRunner["DockerComposeCommandRunner"]
+  module_src_types_dockerComposeProcess_ts --> export_DockerComposeCommandRunner
+  export_DockerComposeCommandRunner -.-> export_DockerComposeCommandRequest
+  export_DockerComposeCommandRunner -.-> export_DockerComposeCommandResult
   export_DockerComposeConfig["DockerComposeConfig"]
   module_src_types_dockerComposeRuntime_ts --> export_DockerComposeConfig
   export_DockerComposeControlPlane["DockerComposeControlPlane"]
@@ -41,6 +85,9 @@ graph LR
   export_DockerComposeControlPlane -.-> export_DockerComposeTargetAccess
   export_DockerComposeDesiredState["DockerComposeDesiredState"]
   module_src_types_dockerComposeRuntime_ts --> export_DockerComposeDesiredState
+  export_DockerComposeEngineSession["DockerComposeEngineSession"]
+  module_src_types_dockerComposeProcess_ts --> export_DockerComposeEngineSession
+  export_DockerComposeEngineSession -.-> export_DockerComposeCommandRunner
   export_DockerComposeExecutionProject["DockerComposeExecutionProject"]
   module_src_types_dockerComposeRuntime_ts --> export_DockerComposeExecutionProject
   export_DockerComposeExecutionProject -.-> export_DockerComposeConfig
@@ -76,6 +123,10 @@ graph LR
   module_src_types_dockerComposeRuntime_ts --> export_DockerComposeSecret
   export_DockerComposeService["DockerComposeService"]
   module_src_types_dockerComposeRuntime_ts --> export_DockerComposeService
+  export_DockerComposeSessionResolver["DockerComposeSessionResolver"]
+  module_src_types_dockerComposeProcess_ts --> export_DockerComposeSessionResolver
+  export_DockerComposeSessionResolver -.-> export_DockerComposeEngineSession
+  export_DockerComposeSessionResolver -.-> export_DockerComposeTargetAccess
   export_DockerComposeTargetAccess["DockerComposeTargetAccess"]
   module_src_types_dockerComposeRuntime_ts --> export_DockerComposeTargetAccess
   export_DockerComposeVolume["DockerComposeVolume"]
