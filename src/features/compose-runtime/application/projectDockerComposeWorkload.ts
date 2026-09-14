@@ -194,6 +194,7 @@ function createService(
       target: port.port,
       protocol: port.protocol ?? 'tcp',
       published: workload.exposure === 'public',
+      ...(port.publishedPort === undefined ? {} : { publishedPort: port.publishedPort }),
     })),
     ...(workload.health === undefined ? {} : { health: workload.health }),
     ...(workload.resources === undefined ? {} : { resources: workload.resources }),
