@@ -141,7 +141,12 @@ function renderMounts(service: DockerComposeService): Readonly<Record<string, un
 function renderPorts(service: DockerComposeService): Readonly<Record<string, unknown>> {
   const published = service.ports
     .filter((port) => port.published)
-    .map(({ target, protocol }) => ({ target, published: '0', protocol, mode: 'host' }));
+    .map(({ target, protocol, publishedPort }) => ({
+      target,
+      published: String(publishedPort ?? 0),
+      protocol,
+      mode: 'host',
+    }));
   const exposed = service.ports
     .filter((port) => !port.published)
     .map(({ target, protocol }) => `${target}/${protocol}`);

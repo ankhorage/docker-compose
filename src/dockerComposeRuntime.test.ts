@@ -47,6 +47,15 @@ it('projects services, networks, volumes, configs and secret references without 
   expect(projected.value.volumes).toHaveLength(1);
   expect(projected.value.configs).toHaveLength(1);
   expect(projected.value.secrets).toHaveLength(2);
+  expect(projected.value.services[0]?.ports).toEqual([
+    {
+      name: 'http',
+      target: 8080,
+      protocol: 'tcp',
+      published: true,
+      publishedPort: 18_080,
+    },
+  ]);
   expect(JSON.stringify(projected.value)).not.toContain('runtime-secret');
   expect(JSON.stringify(projected.value).toLowerCase()).not.toContain('kubernetes');
 });
@@ -140,7 +149,7 @@ function createDesired(
   const workload: InfraWorkloadSpec = {
     id: 'api',
     artifact: { kind: 'image', image: 'registry.example/api@sha256:abc' },
-    ports: [{ name: 'http', port: 8080 }],
+    ports: [{ name: 'http', port: 8080, publishedPort: 18_080 }],
     exposure: 'public',
     environment: {
       MODE: { kind: 'literal', value: 'production' },

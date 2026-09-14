@@ -27,6 +27,9 @@ it('renders deterministic Compose input while keeping secret payloads out of the
   expect(parsed.secrets['sample-api-secret-file-0']).toEqual({
     environment: 'ANKHORAGE_COMPOSE_SECRET_0',
   });
+  expect(parsed.services.api?.ports).toEqual([
+    { target: 8080, published: '18080', protocol: 'tcp', mode: 'host' },
+  ]);
   expect(parsed.networks.default?.labels['com.ankhorage.infra.inventory']).not.toContain(
     'SENTINEL_SECRET',
   );
@@ -115,7 +118,9 @@ function createService(): DockerComposeService {
     configMounts: [],
     secretMounts: [{ source: 'sample-api-secret-file-0', target: '/run/secrets/token' }],
     volumes: [],
-    ports: [{ name: 'http', target: 8080, protocol: 'tcp', published: true }],
+    ports: [
+      { name: 'http', target: 8080, protocol: 'tcp', published: true, publishedPort: 18_080 },
+    ],
     health: {
       kind: 'http',
       port: 8080,

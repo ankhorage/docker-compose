@@ -97,6 +97,7 @@ export interface DockerComposeService extends DockerComposeDesiredResource {
     readonly target: number;
     readonly protocol: 'tcp' | 'udp';
     readonly published: boolean;
+    readonly publishedPort?: number;
   }[];
   readonly health?: InfraWorkloadHealthSpec;
   readonly resources?: InfraWorkloadResourceSpec;
