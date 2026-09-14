@@ -1,5 +1,11 @@
 # @ankhorage/docker-compose
 
+## 0.5.0
+
+### Minor Changes
+
+- 54110aa: Publish exact external workload ports through Docker Compose when declared.
+
 ## 0.4.0
 
 ### Minor Changes
