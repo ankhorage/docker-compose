@@ -24,6 +24,10 @@ it('renders deterministic Compose input while keeping secret payloads out of the
     MODE: 'production',
     TOKEN: '${ANKHORAGE_COMPOSE_SECRET_0:?}',
   });
+  expect(parsed.services.api?.depends_on).toEqual({
+    cache: { condition: 'service_started' },
+    database: { condition: 'service_healthy' },
+  });
   expect(parsed.secrets['sample-api-secret-file-0']).toEqual({
     environment: 'ANKHORAGE_COMPOSE_SECRET_0',
   });
@@ -73,7 +77,7 @@ function createExecutionProject(): DockerComposeExecutionProject {
     volumes: [],
     configs: [],
     secrets: [createSecret()],
-    services: [createService()],
+    services: [createDependencyService('database', true), createDependencyService('cache'), createService()],
   };
 }
 
@@ -107,10 +111,33 @@ function createSecret(): DockerComposeMaterializedSecret {
   };
 }
 
+function createDependencyService(name: string, healthy = false): DockerComposeService {
+  return {
+    kind: 'service',
+    owner: createOwner(`service:${name}`, ['network:default']),
+    name,
+    image: `registry.example/${name}@sha256:abc`,
+    environment: {},
+    secretEnvironment: {},
+    configMounts: [],
+    secretMounts: [],
+    volumes: [],
+    ports: [],
+    ...(healthy ? { health: { kind: 'command' as const, command: ['true'] } } : {}),
+    replicas: 1,
+    configurationHash: `${name}-hash`,
+  };
+}
+
 function createService(): DockerComposeService {
   return {
     kind: 'service',
-    owner: createOwner('service:api', ['network:default', 'secret:api:file-0']),
+    owner: createOwner('service:api', [
+      'network:default',
+      'secret:api:file-0',
+      'service:database',
+      'service:cache',
+    ]),
     name: 'api',
     image: 'registry.example/api@sha256:abc',
     environment: { MODE: 'production' },
