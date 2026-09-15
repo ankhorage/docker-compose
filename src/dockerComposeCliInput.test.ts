@@ -11,6 +11,8 @@ import { createSubprocessDockerComposeCommandRunner } from './index';
 
 const configContent =
   'CREATE FUNCTION sample() RETURNS void AS $$ BEGIN RETURN; END; $$ LANGUAGE plpgsql;';
+const escapedConfigContent =
+  'CREATE FUNCTION sample() RETURNS void AS $$$$ BEGIN RETURN; END; $$$$ LANGUAGE plpgsql;';
 
 it('renders deterministic Compose input while keeping secret payloads out of the document', () => {
   const input = renderDockerComposeCliInput(createExecutionProject());
@@ -33,7 +35,7 @@ it('renders deterministic Compose input while keeping secret payloads out of the
     cache: { condition: 'service_started' },
     database: { condition: 'service_healthy' },
   });
-  expect(parsed.configs['sample-api-config-0']?.content).toBe(configContent.replaceAll('$', '$$'));
+  expect(parsed.configs['sample-api-config-0']?.content).toBe(escapedConfigContent);
   expect(parsed.secrets['sample-api-secret-file-0']).toEqual({
     environment: 'ANKHORAGE_COMPOSE_SECRET_0',
   });
@@ -70,7 +72,7 @@ it('produces input accepted by the real Docker Compose parser', async () => {
   expect(parsed.stderr).not.toContain('SENTINEL_SECRET');
 });
 
-it('preserves dollar signs in literal config content through Compose interpolation', async () => {
+it('keeps literal config dollar escapes through Compose config rendering', async () => {
   const input = renderDockerComposeCliInput(createExecutionProject());
   const rendered = await createSubprocessDockerComposeCommandRunner().runAsync({
     executable: 'docker',
@@ -83,7 +85,7 @@ it('preserves dollar signs in literal config content through Compose interpolati
   const parsed = JSON.parse(rendered.stdout) as {
     readonly configs: Readonly<Record<string, { readonly content: string }>>;
   };
-  expect(parsed.configs['sample-api-config-0']?.content).toBe(configContent);
+  expect(parsed.configs['sample-api-config-0']?.content).toBe(escapedConfigContent);
 });
 
 function createExecutionProject(): DockerComposeExecutionProject {

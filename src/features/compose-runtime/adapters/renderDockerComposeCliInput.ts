@@ -278,7 +278,7 @@ function requireSecretBinding(
 
 /*** Escape literal dollar signs so Compose interpolation preserves config payload bytes. */
 function escapeComposeInterpolation(value: string): string {
-  return value.replaceAll('$', '$$');
+  return value.replaceAll('$', () => '$$');
 }
 
 function quoteShell(value: string): string {
