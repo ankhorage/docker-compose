@@ -40,7 +40,7 @@ function createDocument(
     services: Object.fromEntries(
       project.services.map((service) => [
         service.name,
-        renderService(service, secretBindings, inventory),
+        renderService(service, project.services, secretBindings, inventory),
       ]),
     ),
     networks: {
@@ -85,6 +85,7 @@ function createSecretBindings(
 
 function renderService(
   service: DockerComposeService,
+  services: readonly DockerComposeService[],
   secretBindings: ReadonlyMap<string, SecretBinding>,
   inventory: string,
 ): Readonly<Record<string, unknown>> {
@@ -97,7 +98,7 @@ function renderService(
     labels: { ...resourceLabels(service), [DOCKER_COMPOSE_LABELS.inventory]: inventory },
     ...renderMounts(service),
     ...renderPorts(service),
-    ...renderDependencies(service),
+    ...renderDependencies(service, services),
     ...(service.health === undefined ? {} : { healthcheck: renderHealthcheck(service.health) }),
     deploy: renderDeploy(service),
   };
@@ -156,17 +157,26 @@ function renderPorts(service: DockerComposeService): Readonly<Record<string, unk
   };
 }
 
-function renderDependencies(service: DockerComposeService): Readonly<Record<string, unknown>> {
+function renderDependencies(
+  service: DockerComposeService,
+  services: readonly DockerComposeService[],
+): Readonly<Record<string, unknown>> {
   const dependencies = service.owner.dependsOn
     .map(({ resourceId }) => resourceId)
     .filter((resourceId) => resourceId.startsWith('service:'))
-    .map((resourceId) => toComposeName(resourceId.slice('service:'.length)))
-    .sort();
+    .map((resourceId) => {
+      const dependency = services.find(({ owner }) => owner.identity.resourceId === resourceId);
+      return {
+        name: toComposeName(resourceId.slice('service:'.length)),
+        condition: dependency?.health === undefined ? 'service_started' : 'service_healthy',
+      } as const;
+    })
+    .sort(({ name: left }, { name: right }) => left.localeCompare(right));
   return dependencies.length === 0
     ? {}
     : {
         depends_on: Object.fromEntries(
-          dependencies.map((dependency) => [dependency, { condition: 'service_started' }]),
+          dependencies.map(({ name, condition }) => [name, { condition }]),
         ),
       };
 }
