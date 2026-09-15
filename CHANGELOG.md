@@ -1,5 +1,11 @@
 # @ankhorage/docker-compose
 
+## 0.5.2
+
+### Patch Changes
+
+- b61e514: Preserve literal dollar signs in Docker Compose config payloads across Compose interpolation.
+
 ## 0.5.1
 
 ### Patch Changes
