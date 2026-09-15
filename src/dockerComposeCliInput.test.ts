@@ -77,7 +77,11 @@ function createExecutionProject(): DockerComposeExecutionProject {
     volumes: [],
     configs: [],
     secrets: [createSecret()],
-    services: [createDependencyService('database', true), createDependencyService('cache'), createService()],
+    services: [
+      createDependencyService('database', true),
+      createDependencyService('cache'),
+      createService(),
+    ],
   };
 }
 
