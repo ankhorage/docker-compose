@@ -9,7 +9,8 @@ import type {
 } from './index';
 import { createSubprocessDockerComposeCommandRunner } from './index';
 
-const configContent = 'CREATE FUNCTION sample() RETURNS void AS $$ BEGIN RETURN; END; $$ LANGUAGE plpgsql;';
+const configContent =
+  'CREATE FUNCTION sample() RETURNS void AS $$ BEGIN RETURN; END; $$ LANGUAGE plpgsql;';
 
 it('renders deterministic Compose input while keeping secret payloads out of the document', () => {
   const input = renderDockerComposeCliInput(createExecutionProject());
