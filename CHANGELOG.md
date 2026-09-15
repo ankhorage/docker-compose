@@ -1,5 +1,11 @@
 # @ankhorage/docker-compose
 
+## 0.5.3
+
+### Patch Changes
+
+- 543a004: Actually double literal dollar signs in inline Compose config content before interpolation.
+
 ## 0.5.2
 
 ### Patch Changes
