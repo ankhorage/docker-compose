@@ -11,6 +11,8 @@ import { createSubprocessDockerComposeCommandRunner } from './index';
 
 const configContent =
   'CREATE FUNCTION sample() RETURNS void AS $$ BEGIN RETURN; END; $$ LANGUAGE plpgsql;';
+const escapedConfigContent =
+  'CREATE FUNCTION sample() RETURNS void AS $$$$ BEGIN RETURN; END; $$$$ LANGUAGE plpgsql;';
 
 it('renders deterministic Compose input while keeping secret payloads out of the document', () => {
   const input = renderDockerComposeCliInput(createExecutionProject());
@@ -33,7 +35,7 @@ it('renders deterministic Compose input while keeping secret payloads out of the
     cache: { condition: 'service_started' },
     database: { condition: 'service_healthy' },
   });
-  expect(parsed.configs['sample-api-config-0']?.content).toBe(configContent.replaceAll('$', '$$'));
+  expect(parsed.configs['sample-api-config-0']?.content).toBe(escapedConfigContent);
   expect(parsed.secrets['sample-api-secret-file-0']).toEqual({
     environment: 'ANKHORAGE_COMPOSE_SECRET_0',
   });
