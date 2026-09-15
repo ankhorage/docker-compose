@@ -2,11 +2,15 @@ import { expect, it } from 'bun:test';
 
 import { renderDockerComposeCliInput } from './features/compose-runtime/adapters/renderDockerComposeCliInput';
 import type {
+  DockerComposeConfig,
   DockerComposeExecutionProject,
   DockerComposeMaterializedSecret,
   DockerComposeService,
 } from './index';
 import { createSubprocessDockerComposeCommandRunner } from './index';
+
+const configContent =
+  'CREATE FUNCTION sample() RETURNS void AS $$ BEGIN RETURN; END; $$ LANGUAGE plpgsql;';
 
 it('renders deterministic Compose input while keeping secret payloads out of the document', () => {
   const input = renderDockerComposeCliInput(createExecutionProject());
@@ -15,6 +19,7 @@ it('renders deterministic Compose input while keeping secret payloads out of the
     readonly networks: Readonly<
       Record<string, { readonly labels: Readonly<Record<string, string>> }>
     >;
+    readonly configs: Readonly<Record<string, { readonly content: string }>>;
     readonly secrets: Readonly<Record<string, { readonly environment: string }>>;
   };
 
@@ -28,6 +33,7 @@ it('renders deterministic Compose input while keeping secret payloads out of the
     cache: { condition: 'service_started' },
     database: { condition: 'service_healthy' },
   });
+  expect(parsed.configs['sample-api-config-0']?.content).toBe(configContent.replaceAll('$', '$$'));
   expect(parsed.secrets['sample-api-secret-file-0']).toEqual({
     environment: 'ANKHORAGE_COMPOSE_SECRET_0',
   });
@@ -64,6 +70,22 @@ it('produces input accepted by the real Docker Compose parser', async () => {
   expect(parsed.stderr).not.toContain('SENTINEL_SECRET');
 });
 
+it('preserves dollar signs in literal config content through Compose interpolation', async () => {
+  const input = renderDockerComposeCliInput(createExecutionProject());
+  const rendered = await createSubprocessDockerComposeCommandRunner().runAsync({
+    executable: 'docker',
+    arguments: ['compose', '-f', '-', 'config', '--format', 'json'],
+    stdin: input.document,
+    environment: input.environment,
+  });
+
+  expect(rendered.exitCode, rendered.stderr).toBe(0);
+  const parsed = JSON.parse(rendered.stdout) as {
+    readonly configs: Readonly<Record<string, { readonly content: string }>>;
+  };
+  expect(parsed.configs['sample-api-config-0']?.content).toBe(configContent);
+});
+
 function createExecutionProject(): DockerComposeExecutionProject {
   const identity = { projectId: 'sample', environment: 'local' as const, projectName: 'sample' };
   return {
@@ -75,7 +97,7 @@ function createExecutionProject(): DockerComposeExecutionProject {
       configurationHash: 'network-hash',
     },
     volumes: [],
-    configs: [],
+    configs: [createConfig()],
     secrets: [createSecret()],
     services: [
       createDependencyService('database', true),
@@ -101,6 +123,16 @@ function createOwner(resourceId: string, dependencies: readonly string[] = []) {
       adapter: 'docker-compose' as const,
       resourceId: dependency,
     })),
+  };
+}
+
+function createConfig(): DockerComposeConfig {
+  return {
+    kind: 'config',
+    owner: createOwner('config:api:0'),
+    name: 'sample-api-config-0',
+    content: configContent,
+    configurationHash: 'config-hash',
   };
 }
 
@@ -138,6 +170,7 @@ function createService(): DockerComposeService {
     kind: 'service',
     owner: createOwner('service:api', [
       'network:default',
+      'config:api:0',
       'secret:api:file-0',
       'service:database',
       'service:cache',
@@ -146,7 +179,7 @@ function createService(): DockerComposeService {
     image: 'registry.example/api@sha256:abc',
     environment: { MODE: 'production' },
     secretEnvironment: { TOKEN: 'sample-api-secret-file-0' },
-    configMounts: [],
+    configMounts: [{ source: 'sample-api-config-0', target: '/app/bootstrap.sql' }],
     secretMounts: [{ source: 'sample-api-secret-file-0', target: '/run/secrets/token' }],
     volumes: [],
     ports: [

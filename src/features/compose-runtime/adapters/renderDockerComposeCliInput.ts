@@ -59,7 +59,10 @@ function createDocument(
       ]),
     ),
     configs: Object.fromEntries(
-      project.configs.map((config) => [config.name, { content: config.content }]),
+      project.configs.map((config) => [
+        config.name,
+        { content: escapeComposeInterpolation(config.content) },
+      ]),
     ),
     secrets: Object.fromEntries(
       project.secrets
@@ -271,6 +274,11 @@ function requireSecretBinding(
   const binding = bindings.get(name);
   if (binding === undefined) throw new Error('Docker Compose secret binding is missing.');
   return binding;
+}
+
+/*** Escape literal dollar signs so Compose interpolation preserves config payload bytes. */
+function escapeComposeInterpolation(value: string): string {
+  return value.replaceAll('$', '$$');
 }
 
 function quoteShell(value: string): string {
