@@ -1,5 +1,11 @@
 # @ankhorage/docker-compose
 
+## 0.5.1
+
+### Patch Changes
+
+- 8b290c8: Wait for health-checked portable workload dependencies to become healthy before starting dependent Docker Compose services.
+
 ## 0.5.0
 
 ### Minor Changes
